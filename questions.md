@@ -1,12 +1,8 @@
 # Questions on the _vaccine injury profile_
 
-<style>
-	sup.required: { color: rgb(193, 23, 23); font-weight: bold; }
-</style>
-
 This section details the questions **CO**VERSE asked its users in the _vaccine injury profile_.
 
-Items marked with a <sup class="required">\*</sup> were required in order to indicate a _complete_ profile.
+Items marked with a <sup style="color: rgb(193, 23, 23); font-weight: bold;">\*</sup> were required in order to indicate a _complete_ profile.
 
 ---
 
@@ -20,6 +16,6 @@ We estimate the form will take 20–60 minutes to complete, depending on your ci
 
 ## Basic personal data
 
-| Biological sex <sup class="required">\*</sup> | Year of birth | State <sup class="required">\*</sup> | Postcode |
+| Biological sex <sup style="color: rgb(193, 23, 23); font-weight: bold;">\*</sup> | Year of birth | State <sup style="color: rgb(193, 23, 23); font-weight: bold;">\*</sup> | Postcode |
 | --- | --- | --- | --- |
-| <input type="radio" id="sex_female" name="sex" value="female" disabled> female<br> <input type="radio" id="sex_male" name="sex" value="male" disabled> male<br> | <input type="number" id="year_of_birth" name="year_of_birth" disabled> | <select><option></select> | <input type="number" id="postcode" name="postcode" disabled> |
+| ○ female<br> ○ male | <span style="width: 4rem; border: 1px solid;">&nbsp;</span> | <span style="width: 10rem; border: 1px solid;">&nbsp;</span> | <span style="width: 4rem; border: 1px solid;">&nbsp;</span> |
