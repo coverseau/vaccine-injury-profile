@@ -59,7 +59,7 @@ Vaccine brand **<sup style="color:#c11717;">\*</sup>**
 * `Novavax (Nuvaxovid)`
 * `other`
 
-Date of vaccination (if known) `▭`<br>
+Date of vaccination (if known) `          `<br>
 <small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
 
 How long before your symptoms started?
@@ -86,7 +86,7 @@ Vaccine brand
 * `Novavax (Nuvaxovid)`
 * `other`
 
-Date of vaccination (if known) `▭`<br>
+Date of vaccination (if known) `          `<br>
 <small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
 
 How long before your symptoms started?
@@ -113,7 +113,7 @@ Vaccine brand
 * `Novavax (Nuvaxovid)`
 * `other`
 
-Date of vaccination (if known) `▭`<br>
+Date of vaccination (if known) `          `<br>
 <small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
 
 How long before your symptoms started?
@@ -140,7 +140,7 @@ Vaccine brand
 * `Novavax (Nuvaxovid)`
 * `other`
 
-Date of vaccination (if known) `▭`<br>
+Date of vaccination (if known) `          `<br>
 <small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
 
 How long before your symptoms started?
@@ -167,7 +167,7 @@ Vaccine brand
 * `Novavax (Nuvaxovid)`
 * `other`
 
-Date of vaccination (if known) `▭`<br>
+Date of vaccination (if known) `          `<br>
 <small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
 
 How long before your symptoms started?
@@ -191,9 +191,104 @@ If you had a COVID-19 vaccination after you’d already had an adverse reaction,
 
 ## Vaccine mandates
 
-For the vaccine dose(s) that injured you, were you subject to a workplace vaccine mandate at the time?
-○ yes <br>
-○ no <br>
-○ no (but bullied/coerced by workplace)
+For the vaccine dose(s) that injured you, were you subject to a workplace vaccine mandate at the time?<br>
+○ `yes`<br>
+○ `no`<br>
+○ `no (but bullied/coerced by workplace)`
 
 ---
+
+## Adverse reaction / symptom details
+
+<small>How bad were the following symptoms when they were **_at their worst_**?<br>
+Note that this list is long. You may wish to complete part of it now, then scroll to the very bottom to save a draft, and return another day to complete it.</small>
+
+|      | minimal | mild  | moderate | moderately severe | severe |  N/A  |
+| :--- |  :---:  | :---: |  :---:   |       :---:       | :---:  | :---: |
+| fatigue | ○ | ○ | ○ | ○ | ○ | ○ |
+| exercise intolerance | ○ | ○ | ○ | ○ | ○ | ○ |
+| brain fog | ○ | ○ | ○ | ○ | ○ | ○ |
+| dizziness | ○ | ○ | ○ | ○ | ○ | ○ |
+| insomnia | ○ | ○ | ○ | ○ | ○ | ○ |
+| sleep disturbances | ○ | ○ | ○ | ○ | ○ | ○ |
+| excessive sleep | ○ | ○ | ○ | ○ | ○ | ○ |
+| paralysis | ○ | ○ | ○ | ○ | ○ | ○ |
+| seizures | ○ | ○ | ○ | ○ | ○ | ○ |
+| head pressure | ○ | ○ | ○ | ○ | ○ | ○ |
+| new headaches | ○ | ○ | ○ | ○ | ○ | ○ |
+| memory loss | ○ | ○ | ○ | ○ | ○ | ○ |
+| new severe anxiety | ○ | ○ | ○ | ○ | ○ | ○ |
+| feeling off-balance, or in motion while at rest | ○ | ○ | ○ | ○ | ○ | ○ |
+| tinnitus | ○ | ○ | ○ | ○ | ○ | ○ |
+| sensitivity to sound | ○ | ○ | ○ | ○ | ○ | ○ |
+| sensitivity to light | ○ | ○ | ○ | ○ | ○ | ○ |
+| visual disturbances | ○ | ○ | ○ | ○ | ○ | ○ |
+| temporary blindness | ○ | ○ | ○ | ○ | ○ | ○ |
+| glaucoma | ○ | ○ | ○ | ○ | ○ | ○ |
+| dry eyes | ○ | ○ | ○ | ○ | ○ | ○ |
+| nerve pain | ○ | ○ | ○ | ○ | ○ | ○ |
+| tremors | ○ | ○ | ○ | ○ | ○ | ○ |
+| muscle twitching | ○ | ○ | ○ | ○ | ○ | ○ |
+| internal vibrations | ○ | ○ | ○ | ○ | ○ | ○ |
+| tingling / numbness in extremities | ○ | ○ | ○ | ○ | ○ | ○ |
+| burning sensation on skin | ○ | ○ | ○ | ○ | ○ | ○ |
+| joint pain / arthritis | ○ | ○ | ○ | ○ | ○ | ○ |
+| muscle aches | ○ | ○ | ○ | ○ | ○ | ○ |
+| muscle weakness | ○ | ○ | ○ | ○ | ○ | ○ |
+| unstable joints | ○ | ○ | ○ | ○ | ○ | ○ |
+| muscle loss | ○ | ○ | ○ | ○ | ○ | ○ |
+| heaviness in legs | ○ | ○ | ○ | ○ | ○ | ○ |
+| adrenaline surges | ○ | ○ | ○ | ○ | ○ | ○ |
+| chest pain | ○ | ○ | ○ | ○ | ○ | ○ |
+| myocarditis | ○ | ○ | ○ | ○ | ○ | ○ |
+| pericarditis | ○ | ○ | ○ | ○ | ○ | ○ |
+| heart palpitations | ○ | ○ | ○ | ○ | ○ | ○ |
+| shortness of breath | ○ | ○ | ○ | ○ | ○ | ○ |
+| high heart rate | ○ | ○ | ○ | ○ | ○ | ○ |
+| low blood pressure | ○ | ○ | ○ | ○ | ○ | ○ |
+| high blood pressure | ○ | ○ | ○ | ○ | ○ | ○ |
+| persistent cough | ○ | ○ | ○ | ○ | ○ | ○ |
+| heartburn / indigestion | ○ | ○ | ○ | ○ | ○ | ○ |
+| dry mouth | ○ | ○ | ○ | ○ | ○ | ○ |
+| abdominal / stomach pain | ○ | ○ | ○ | ○ | ○ | ○ |
+| nausea | ○ | ○ | ○ | ○ | ○ | ○ |
+| diarrhoea | ○ | ○ | ○ | ○ | ○ | ○ |
+| loss of bowel control | ○ | ○ | ○ | ○ | ○ | ○ |
+| constipation | ○ | ○ | ○ | ○ | ○ | ○ |
+| bloody or black tar-like stool | ○ | ○ | ○ | ○ | ○ | ○ |
+| excessive gas | ○ | ○ | ○ | ○ | ○ | ○ |
+| increased thirst | ○ | ○ | ○ | ○ | ○ | ○ |
+| frequent urination | ○ | ○ | ○ | ○ | ○ | ○ |
+| loss of bladder control | ○ | ○ | ○ | ○ | ○ | ○ |
+| abnormal glucose levels | ○ | ○ | ○ | ○ | ○ | ○ |
+| discolouring of skin / eyes | ○ | ○ | ○ | ○ | ○ | ○ |
+| discolouration in fingertips / toes | ○ | ○ | ○ | ○ | ○ | ○ |
+| bulging veins | ○ | ○ | ○ | ○ | ○ | ○ |
+| poor circulation | ○ | ○ | ○ | ○ | ○ | ○ |
+| swelling of extremities | ○ | ○ | ○ | ○ | ○ | ○ |
+| swollen lymph nodes | ○ | ○ | ○ | ○ | ○ | ○ |
+| persistent sore throat | ○ | ○ | ○ | ○ | ○ | ○ |
+| heat intolerance | ○ | ○ | ○ | ○ | ○ | ○ |
+| skin redness, hives, petechia or rashes | ○ | ○ | ○ | ○ | ○ | ○ |
+| new food allergies / intolerances | ○ | ○ | ○ | ○ | ○ | ○ |
+| anaphylaxis | ○ | ○ | ○ | ○ | ○ | ○ |
+| hair loss | ○ | ○ | ○ | ○ | ○ | ○ |
+| chills | ○ | ○ | ○ | ○ | ○ | ○ |
+| irregular menstrual cycle | ○ | ○ | ○ | ○ | ○ | ○ |
+| resurgence of latent disease (e.g. shingles, EBV, cancer, autoimmune disease, etc.) | ○ | ○ | ○ | ○ | ○ | ○ |
+
+List any other symptoms not mentioned above (separated by a comma)<br>
+`                         `
+
+Are your symptoms more often on one side of your body? **<sup style="color:#c11717;">\*</sup>**
+○ `left` &nbsp; ○ `right` &nbsp; ○ `varies` &nbsp; ○ `no difference` &nbsp; ○ `N/A`
+
+Overall, do you feel you are getting better? **<sup style="color:#c11717;">\*</sup>**
+* `yes`
+  * In what month did your symptoms begin to improve? `  `<br> <small>i.e. how many months until you began to notice any improvement?</small>
+* `slowly improving`
+  * In what month did your symptoms begin to improve? `  `<br> <small>i.e. how many months until you began to notice any improvement?</small>
+* `no`
+* `getting worse`
+* `fluctuating`
+  * In what month did your symptoms begin to improve? `  `<br> <small>i.e. how many months until you began to notice any improvement?</small>
