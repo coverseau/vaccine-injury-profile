@@ -2,7 +2,7 @@
 
 This section details the questions **CO**VERSE asked its users in the _vaccine injury profile_.
 
-Items marked with a <sup style="color: rgb(193, 23, 23); font-weight: bold;">\*</sup> were required in order to indicate a _complete_ profile.
+Items marked with a **<sup style="color:#c11717;">\*</sup>** were required in order to indicate a _complete_ profile.
 
 ---
 
@@ -16,6 +16,8 @@ We estimate the form will take 20–60 minutes to complete, depending on your ci
 
 ## Basic personal data
 
-| Biological sex <sup style="color: rgb(193, 23, 23); font-weight: bold;">\*</sup> | Year of birth | State <sup style="color: rgb(193, 23, 23); font-weight: bold;">\*</sup> | Postcode |
+| Biological sex **<sup style="color:#c11717;">\*</sup>** | Year of birth | State **<sup style="color:#c11717;">\*</sup>** | Postcode |
 | --- | --- | --- | --- |
-| ○ female<br> ○ male | <span style="width: 4rem; border: 1px solid;">&nbsp;</span> | <span style="width: 10rem; border: 1px solid;">&nbsp;</span> | <span style="width: 4rem; border: 1px solid;">&nbsp;</span> |
+| ○ female<br> ○ male | ┌────┐<br > └────┘ | ┌──────────┐<br > └──────────┘ | ┌────┐<br > └────┘ |
+
+
