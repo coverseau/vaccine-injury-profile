@@ -1,6 +1,6 @@
 # **CO**VERSE’s “vaccine injury profile”
 
-Last edited: 8^th^ March 2026.
+Last edited: 8<sup>th</sup> March 2026.
 
 This repository containts summary statistics and analysis of **CO**VERSE’s “vaccine injury profile” data.
 

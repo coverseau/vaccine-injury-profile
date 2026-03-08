@@ -48,6 +48,9 @@ Thumbs.db
 *.mov
 *.wmv
 
+# raw private data
+raw/
+
 # other files
 .nova/
 *.xcworkspace
