@@ -370,3 +370,63 @@ From all of the above, which treatments and supplements have you found to be lea
 
 ---
 
+## Injury impacts
+
+Were you able to undertake _any_ work (including domestic work) at the peak of your reaction? **<sup style="color:#c11717;">\*</sup>**
+* `yes`
+* `no`
+
+As a percentage, at what capacity were you able to work?<br>
+0% ───────────────────────── 100%
+
+For how long were you unable to pursue your normal activities and workload?
+* `1-3 weeks`
+* `1-3 months`
+* `4-6 months`
+* `6-9 months`
+* `9-12 months`
+* `1-2 years`
+* `more than 2 years`
+* `ongoing`
+
+Have you been able to undertake _any_ work (including domestic work) during the past month? **<sup style="color:#c11717;">\*</sup>**
+* `yes`
+* `no`
+
+As a percentage, at what capacity were you able to work?<br>
+0% ───────────────────────── 100%
+
+What do you most need assistance with?<br>
+□ `access to appropriate medical care / tests / treatment`<br>
+□ `mental health support`<br>
+□ `financial support due to loss of work`<br>
+□ `financial support due to medical expenses`<br>
+□ other `          `
+
+---
+
+## Financial issues
+
+Have you been able to access financial assistance? **<sup style="color:#c11717;">\*</sup>**<br>
+□ `no`<br>
+□ `paid leave entitlements`<br>
+□ `workers’ compensation`<br>
+□ `income protection insurance`<br>
+□ `superannuation (early withdrawal)`<br>
+□ `jobseeker`<br>
+□ `new loan`<br>
+□ `extension of existing loan`<br>
+□ `friend or family`<br>
+□ `disability support pension`<br>
+□ `NDIS`<br>
+□ `COVID-19 vaccine claims scheme`<br>
+□ `not required`<br>
+□ other `          `<br>
+<small>Select all that apply</small>
+
+If you qualify for workers’ compensation, have you had issues with your claim? **<sup style="color:#c11717;">\*</sup>**<br>
+○ `yes` &nbsp; ○ `no` &nbsp; ○ `N/A`
+
+What issues have you faced with your workers’ compensation claim?<br>
+`                         `
+
