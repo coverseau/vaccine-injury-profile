@@ -2,7 +2,9 @@
 
 This section details the questions **CO**VERSE asked its users in the _vaccine injury profile_.
 
-Items marked with a **<sup style="color:#c11717;">\*</sup>** were required in order to indicate a _complete_ profile, and items inside code blocks (e.g. `   `) are options that were provided for specific questions.
+* Items marked with a **<sup style="color:#c11717;">\*</sup>** were required in order to indicate a _complete_ profile.
+* Items inside code blocks (e.g. `   `) are options that were provided for specific questions.
+* Items prefixed with square brackets (\[ \]) indicate that the question was only displayed when some precondition was met.
 
 ---
 
@@ -62,7 +64,7 @@ Vaccine brand **<sup style="color:#c11717;">\*</sup>**
 Date of vaccination (if known) `          `<br>
 <small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
 
-How long before your symptoms started?
+\[`if adverse reaction`\]<br> How long before your symptoms started?
 * `0-5 minutes`
 * `6-30 minutes`
 * `31-59 minutes`
@@ -75,6 +77,8 @@ How long before your symptoms started?
 ---
 
 ## Vaccination — 2<sup>nd</sup> dose
+
+\[`if had a prior vaccine dose`\]
 
 Did you experience an adverse reaction to your 2<sup>nd</sup> dose?<br>
 ○ `yes`<br> ○ `no`
@@ -89,7 +93,7 @@ Vaccine brand
 Date of vaccination (if known) `          `<br>
 <small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
 
-How long before your symptoms started?
+\[`if adverse reaction`\]<br> How long before your symptoms started?
 * `0-5 minutes`
 * `6-30 minutes`
 * `31-59 minutes`
@@ -102,6 +106,8 @@ How long before your symptoms started?
 ---
 
 ## Vaccination — 3<sup>rd</sup> dose
+
+\[`if had a prior vaccine dose`\]
 
 Did you experience an adverse reaction to your 3<sup>rd</sup> (or booster) dose?<br>
 ○ `yes`<br> ○ `no`
@@ -116,7 +122,7 @@ Vaccine brand
 Date of vaccination (if known) `          `<br>
 <small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
 
-How long before your symptoms started?
+\[`if adverse reaction`\]<br> How long before your symptoms started?
 * `0-5 minutes`
 * `6-30 minutes`
 * `31-59 minutes`
@@ -129,6 +135,8 @@ How long before your symptoms started?
 ---
 
 ## Vaccination — 4<sup>th</sup> dose
+
+\[`if had a prior vaccine dose`\]
 
 Did you experience an adverse reaction to your 4<sup>th</sup> (or booster) dose?<br>
 ○ `yes`<br> ○ `no`
@@ -143,7 +151,7 @@ Vaccine brand
 Date of vaccination (if known) `          `<br>
 <small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
 
-How long before your symptoms started?
+\[`if adverse reaction`\]<br> How long before your symptoms started?
 * `0-5 minutes`
 * `6-30 minutes`
 * `31-59 minutes`
@@ -156,6 +164,8 @@ How long before your symptoms started?
 ---
 
 ## Vaccination — 5<sup>th</sup>+ dose
+
+\[`if had a prior vaccine dose`\]
 
 Did you experience an adverse reaction to your 5<sup>th</sup> (or any additional)  dose?<br>
 ○ `yes`<br> ○ `no`
@@ -170,7 +180,7 @@ Vaccine brand
 Date of vaccination (if known) `          `<br>
 <small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
 
-How long before your symptoms started?
+\[`if adverse reaction`\]<br> How long before your symptoms started?
 * `0-5 minutes`
 * `6-30 minutes`
 * `31-59 minutes`
@@ -285,13 +295,11 @@ Are your symptoms more often on one side of your body? **<sup style="color:#c117
 
 Overall, do you feel you are getting better? **<sup style="color:#c11717;">\*</sup>**
 * `yes`
-  * In what month did your symptoms begin to improve? `  `<br> <small>i.e. how many months until you began to notice any improvement?</small>
 * `slowly improving`
-  * In what month did your symptoms begin to improve? `  `<br> <small>i.e. how many months until you began to notice any improvement?</small>
 * `no`
 * `getting worse`
 * `fluctuating`
-  * In what month did your symptoms begin to improve? `  `<br> <small>i.e. how many months until you began to notice any improvement?</small>
+\[`if yes, slowly improving, or fluctuating`\]In what month did your symptoms begin to improve? `  `<br> <small>i.e. how many months until you began to notice any improvement?</small>
 
 ---
 
@@ -307,7 +315,7 @@ Has your injury been reported to the TGA? **<sup style="color:#c11717;">\*</sup>
 ○ `no`<br>
 ○ `unsure`
 
-Has the TGA been in contact with you about your case?<br>
+\[`if reported to the TGA`\]<br> Has the TGA been in contact with you about your case?<br>
 ○ `yes`<br> ○ `no`<br>
 <small>Only tick ‘yes’ if the TGA contacted you for further information and/or to arrange further medical investigations. If you were called back only to check the validity of your report, click ‘no’.</small>
 
