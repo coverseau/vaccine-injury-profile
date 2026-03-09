@@ -280,7 +280,7 @@ Note that this list is long. You may wish to complete part of it now, then scrol
 List any other symptoms not mentioned above (separated by a comma)<br>
 `                         `
 
-Are your symptoms more often on one side of your body? **<sup style="color:#c11717;">\*</sup>**
+Are your symptoms more often on one side of your body? **<sup style="color:#c11717;">\*</sup>**<br>
 ○ `left` &nbsp; ○ `right` &nbsp; ○ `varies` &nbsp; ○ `no difference` &nbsp; ○ `N/A`
 
 Overall, do you feel you are getting better? **<sup style="color:#c11717;">\*</sup>**
@@ -292,3 +292,81 @@ Overall, do you feel you are getting better? **<sup style="color:#c11717;">\*</s
 * `getting worse`
 * `fluctuating`
   * In what month did your symptoms begin to improve? `  `<br> <small>i.e. how many months until you began to notice any improvement?</small>
+
+---
+
+## Healthcare access, diagnostics and treatment
+
+Has your usual GP recognised your vaccine injury? **<sup style="color:#c11717;">\*</sup>**<br>
+○ `yes`<br> ○ `no`
+
+Has your injury been reported to the TGA? **<sup style="color:#c11717;">\*</sup>**<br>
+○ `yes (self-reported)`<br>
+○ `yes (reported by GP / specialist)`<br>
+○ `yes (reported by hospital)`<br>
+○ `no`<br>
+○ `unsure`
+
+Has the TGA been in contact with you about your case?<br>
+○ `yes`<br> ○ `no`<br>
+<small>Only tick ‘yes’ if the TGA contacted you for further information and/or to arrange further medical investigations. If you were called back only to check the validity of your report, click ‘no’.</small>
+
+Have you been referred to any specialists? **<sup style="color:#c11717;">\*</sup>**<br>
+○ `yes`<br> ○ `no`
+
+What specialists have you been referred to?<br>
+□ `cardiologist`<br>
+□ `dermatologist`<br>
+□ `endocrinologist`<br>
+□ `gastrologist`<br>
+□ `gynecologist`<br>
+□ `haematologist`<br>
+□ `immunologist`<br>
+□ `neurologist`<br>
+□ `opthamologist`<br>
+□ `respiratory physician`<br>
+□ `rheumatologist`<br>
+□ `otolaryngologist`<br>
+□ `psychologist`<br>
+□ other `          `
+
+Have you received a formal diagnosis from a doctor?<br>
+○ `yes`<br> ○ `no`
+
+Please list official diagnosis given (separated by a comma)<br>
+`                         `
+
+How long after your reaction were you investigated and diagnosed?<br>
+* `0-1 day`
+* `2-30 days`
+* `1-3 months`
+* `4-6 months`
+* `7-12 months`
+* `more than 1 year`
+* `still waiting`
+
+Have you received a diagnosis that later proved to be incorrect?<br>
+○ `yes` &nbsp; ○ `no`
+
+Which test results, diagnosis or symptoms seem of particular significance or rare / unique (if any)<br>
+`                         `
+
+List any prescribed medications or treatments provided by your GP or specialist (separated by comma)<br>
+`                         `
+
+List any alternative health expertise or treatments you’ve tried (separated by a comma)<br>
+`                         `
+
+List any supplements you’ve been taking (separated by a comma)<br>
+`                         `
+
+From all of the above, which treatments and supplements have you found most helpful (list in order, separated by comma)<br>
+`                         `<br>
+<small>Order from most helpful to least helpful</small>
+
+From all of the above, which treatments and supplements have you found to be least helpful (list in order, separated by comma)<br>
+`                         `<br>
+<small>Order from most helpful to least helpful</small>
+
+---
+
