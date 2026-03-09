@@ -4,7 +4,7 @@ This section details the questions **CO**VERSE asked its users in the _vaccine i
 
 * Items marked with a **<sup style="color:#c11717;">\*</sup>** were required in order to indicate a _complete_ profile.
 * Items inside code blocks (e.g. `   `) are options that were provided for specific questions.
-* Items prefixed with square brackets (\[ \]) indicate that the question was only displayed when some precondition was met.
+* Items prefixed with square brackets (\[`   `\]) indicate that the question was only displayed when some precondition was met.
 
 ---
 
@@ -299,7 +299,8 @@ Overall, do you feel you are getting better? **<sup style="color:#c11717;">\*</s
 * `no`
 * `getting worse`
 * `fluctuating`
-\[`if yes, slowly improving, or fluctuating`\]In what month did your symptoms begin to improve? `  `<br> <small>i.e. how many months until you began to notice any improvement?</small>
+
+\[`if yes, slowly improving, or fluctuating`\]<br> In what month did your symptoms begin to improve? `  `<br> <small>i.e. how many months until you began to notice any improvement?</small>
 
 ---
 
@@ -322,7 +323,7 @@ Has your injury been reported to the TGA? **<sup style="color:#c11717;">\*</sup>
 Have you been referred to any specialists? **<sup style="color:#c11717;">\*</sup>**<br>
 ○ `yes`<br> ○ `no`
 
-What specialists have you been referred to?<br>
+\[`if referred to specialists`\]<br> What specialists have you been referred to?<br>
 □ `cardiologist`<br>
 □ `dermatologist`<br>
 □ `endocrinologist`<br>
@@ -341,6 +342,7 @@ What specialists have you been referred to?<br>
 Have you received a formal diagnosis from a doctor?<br>
 ○ `yes`<br> ○ `no`
 
+\[`if given formal diagnosis`\]<br> 
 Please list official diagnosis given (separated by a comma)<br>
 `                         `
 
@@ -384,7 +386,7 @@ Were you able to undertake _any_ work (including domestic work) at the peak of y
 * `yes`
 * `no`
 
-As a percentage, at what capacity were you able to work?<br>
+\[`if unable to undertake work`\]<br> As a percentage, at what capacity were you able to work?<br>
 0%─────────────────────────100%
 
 For how long were you unable to pursue your normal activities and workload?
@@ -401,7 +403,7 @@ Have you been able to undertake _any_ work (including domestic work) during the 
 * `yes`
 * `no`
 
-As a percentage, at what capacity were you able to work?<br>
+\[`if unable to undertake work`\]<br> As a percentage, at what capacity were you able to work?<br>
 0%─────────────────────────100%
 
 What do you most need assistance with?<br>
@@ -435,7 +437,7 @@ Have you been able to access financial assistance? **<sup style="color:#c11717;"
 If you qualify for workers’ compensation, have you had issues with your claim? **<sup style="color:#c11717;">\*</sup>**<br>
 ○ `yes` &nbsp; ○ `no` &nbsp; ○ `N/A`
 
-What issues have you faced with your workers’ compensation claim?<br>
+\[`if experienced workers’ compensation issues`\]<br> What issues have you faced with your workers’ compensation claim?<br>
 `                         `
 
 ---
@@ -445,12 +447,12 @@ What issues have you faced with your workers’ compensation claim?<br>
 Have you had COVID-19?<br>
 ○ `yes`<br> ○ `no`
 
-Did you have COVID-19 prior to your vaccination?<br>
+\[`if had COVID-19`\]<br> Did you have COVID-19 prior to your vaccination?<br>
 ○ `yes, before my 1st vaccination`<br>
 ○ `yes, in-between vaccinations`<br>
 ○ `no`
 
-Have you had a negative serology test?<br>
+\[`if did not have COVID-19 prior to vaccination`\]<br> Have you had a negative serology test?<br>
 ○ `yes`<br> ○ `no`<br>
 (blood test to check for COVID-19 antibodies)
 
@@ -461,10 +463,10 @@ Have you had a negative serology test?<br>
 Do you have pre-existing medical condition(s)?<br>
 ○ `yes` &nbsp; ○ `no`
 
-Have they been made worse by your COVID-19 vaccination?<br>
+\[`if pre-existing medical conditions`\]<br> Have they been made worse by your COVID-19 vaccination?<br>
 ○ `yes` &nbsp; ○ `no`
 
-Please list all pre-existing medical conditions (separated by comma)<br>
+\[`if pre-existing medical conditions`\]<br> Please list all pre-existing medical conditions (separated by comma)<br>
 `                         `
 
 ---
@@ -488,7 +490,7 @@ _For internal use only. We may contact you if we feel your story can provide fur
 Has your story been reported by mainstream media?<br>
 ○ `yes` &nbsp; ○ `no`
 
-Please provide the web link (if possible) `                         `
+\[`if media story`\]<br> Please provide the web link (if possible) `                         `
 
 Is there anything else you’d like us to know?
 ```
