@@ -464,8 +464,11 @@ Please list all pre-existing medical conditions (separated by comma)<br>
 ## Your story (optional)
 
 Tell us your story in your own words:
-> 
-> 
+`                         
+                         
+                         
+                         
+                         `
 
 <small>What was your life like before you got the vaccine?<br>
 Details of your reaction, symptoms, timeline, your experience seeking diagnosis / support, the effect on your work and relationships, and what life is like now.<br>
@@ -478,5 +481,5 @@ Has your story been reported by mainstream media?<br>
 Please provide the web link (if possible) `                         `
 
 Is there anything else you’d like us to know?
-> 
-> 
+`                         
+                         `
