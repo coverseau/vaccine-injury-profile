@@ -377,7 +377,7 @@ Were you able to undertake _any_ work (including domestic work) at the peak of y
 * `no`
 
 As a percentage, at what capacity were you able to work?<br>
-0% ───────────────────────── 100%
+0%─────────────────────────100%
 
 For how long were you unable to pursue your normal activities and workload?
 * `1-3 weeks`
@@ -394,7 +394,7 @@ Have you been able to undertake _any_ work (including domestic work) during the 
 * `no`
 
 As a percentage, at what capacity were you able to work?<br>
-0% ───────────────────────── 100%
+0%─────────────────────────100%
 
 What do you most need assistance with?<br>
 □ `access to appropriate medical care / tests / treatment`<br>
@@ -430,3 +430,53 @@ If you qualify for workers’ compensation, have you had issues with your claim?
 What issues have you faced with your workers’ compensation claim?<br>
 `                         `
 
+---
+
+# COVID-19 infection history
+
+Have you had COVID-19?<br>
+○ `yes`<br> ○ `no`
+
+Did you have COVID-19 prior to your vaccination?<br>
+○ `yes, before my 1st vaccination`<br>
+○ `yes, in-between vaccinations`<br>
+○ `no`
+
+Have you had a negative serology test?<br>
+○ `yes`<br> ○ `no`<br>
+(blood test to check for COVID-19 antibodies)
+
+---
+
+## Medical history
+
+Do you have pre-existing medical condition(s)?<br>
+○ `yes` &nbsp; ○ `no`
+
+Have they been made worse by your COVID-19 vaccination?<br>
+○ `yes` &nbsp; ○ `no`
+
+Please list all pre-existing medical conditions (separated by comma)<br>
+`                         `
+
+---
+
+## Your story (optional)
+
+Tell us your story in your own words:
+> 
+> 
+
+<small>What was your life like before you got the vaccine?<br>
+Details of your reaction, symptoms, timeline, your experience seeking diagnosis / support, the effect on your work and relationships, and what life is like now.<br>
+If you have already written your story for [Jab Injuries Australia](https://au.jabinjuriesglobal.com/), [Real Not Rare](https://www.realnotrare.com/), [#CanWeTalkAboutIt](https://www.canwetalkaboutit.org/), or any other website, include a link to it here.<br>
+_For internal use only. We may contact you if we feel your story can provide further insight for the community, and we won’t publish any of your story without your express permission._</small>
+
+Has your story been reported by mainstream media?<br>
+○ `yes` &nbsp; ○ `no`
+
+Please provide the web link (if possible) `                         `
+
+Is there anything else you’d like us to know?
+> 
+> 
