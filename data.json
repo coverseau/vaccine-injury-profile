@@ -1,8 +1,0 @@
-const rawData = {
-	demographics: {
-		sex: {
-			female: 0,
-			male: 0
-		}
-	}
-}

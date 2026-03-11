@@ -1,68 +1,140 @@
-# Questions on the _vaccine injury profile_
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Questions on COVERSE’s “vaccine injury profile”">
+	<meta name="author" content="COVERSE">
+	<meta name="keywords" content="COVID-19,vaccine,COVERSE">
+	<meta name="format-detection" content="telephone=no">
+	<title>Questions on COVERSE’s “vaccine injury profile”</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+	<link href="style.css" rel="stylesheet">
+</head>
+<body class="p-4 container">
+	<div class="container bg-light rounded shadow p-4 mb-5">
+		<header id="header" class="text-center border-bottom mb-5">
+			<img class="img-fluid d-block mx-auto" style="max-height: 240px;" src="logo.svg">
+			<h1 class="display-4 text-center">Questions on COVERSE’s <i>vaccine injury profile</i></h1>
+		</header>
+		<section>
+			<p>This document details the questions <b>CO</b>VERSE asked its users in the <i>vaccine injury profile</i>.</p>
+			<ul>
+				<li>Items marked <sup class="required">*</sup> were required in order to indicate a <em>complete</em> profile.</li>
+				<li>Question logic has been implemented in this document to reflect the way it was presented to users.</li>
+			</ul>
+		</section>
+	</div>
+	
+	<section id="introduction">
+		<p>It is important for us to collect data on COVID-19 vaccine injures in Australia so that we have independent data to support our advocacy efforts.</p>
+		<p>Record your injury in as much detail as possible below. You do not need to complete it all at once — you can save it as a draft and return later when you are able to finish it. Note, if you want to ask us a question or need specific help regarding your injury then <a href="mailto:contact@coverse.org.a">send us an email</a>).</p>
+		<p>We estimate the form will take 20–60 minutes to complete, depending on your circumstances and how much information you wish to provide. This information is held in confidence and individual response details will never be published.</p>
+	</section>
+	
+	<hr>
+	
+	<section class="pt-4" id="personal">
+		<h2>Basic personal data</h2>
+		<div class="row pt-4">
+			<div class="col">
+				<label for="sex">Biological sex <sup class="required">*</sup></label>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" id="sexFemale" name="sex" value="female" required> <label class="form-check-label" for="sexFemale">female</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" id="sexMale" name="sex" value="male" required> <label class="form-check-label" for="sexMale">male</lable>
+				</div>
+			</div>
+			<div class="col">
+				<label class="form-label" for="yearOfBirth">Year of birth</label>
+				<input type="number" class="form-control" id="yearOfBirth" min="1901" max="2030" step="1" placeholder="optional">
+			</div>
+			<div class="col">
+				<label class="form-label" for="postcode">State <sup class="required">*</sup></label>
+				<select class="form-select" id="state" required>
+					<option disabled>- select -</option>
+					<option value="ACT">ACT</option>
+					<option value="NSW">NSW</option>
+					<option value="NT">NT</option>
+					<option value="QLD">QLD</option>
+					<option value="SA">SA</option>
+					<option value="TAS">TAS</option>
+					<option value="VIC">VIC</option>
+					<option value="WA">WA</option>
+				</select>
+			</div>
+			<div class="col">
+				<label class="form-label" for="postcode">Postcode</label>
+				<input type="number" class="form-control" id="postcode" min="0" max="9999" step="1" placeholder="optional">
+			</div>
+		</div>
+		<div class="pt-4">
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" id="verification" name="verification" value="yes" required> <label class="form-check-label" for="verification">I verify that: <sup class="required">*</sup></label>
+			</div>
+			<ul class="small">
+				<li>The information that I enter in this profile is true and correct to the best of my knowledge, information and belief.</li>
+				<li>The information that I enter in this profile is in regards to:
+					<ul>
+						<li>My own experience as a COVID-19 vaccine-injured individual, or</li>
+						<li>The experience of a COVID-19 vaccine-injured child for whom I am the parent / guardian.</li>
+					</ul>
+				</li>
+				<li>I agree to allow <b>CO</b>VERSE to use my anonymised data to generate statistics and anecdotes about the community of COVID-19 vaccine-injured Australians.</li>
+				<li>I agree to notify <b>CO</b>VERSE immediately if I should discover mistakes in my story or diagnoses, in order to maintain the integrity of <b>CO</b>VERSE data, storytelling and web materials.</li>
+			</ul>
+		</div>
+		<div class="pt-4">
+			Are you interested in being involved in research of vaccine-injured people, should the opportunity arise?
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" id="research" name="research" value="yes" required> <label class="form-check-label" for="research">yes</label>
+			</div>
+			<small class="form-text">We <strong>will not</strong> send your details to anyone without your explicit permission. Ticking this box just let’s us know that you are interested in participating in research, and we will contact you to discuss this with you if an opportunity arises.</small>
+		</div>
+	</section>
+	
+	<hr>
+	
+	<section class="pt-4" id="vax1">
+		<h2>Vaccination — 1<sup>st</sup> dose</h2>
+		<div class="pt-4"
+			<label for="sex">Did you experience an adverse reaction to your 1<sup>st</sup> dose? <sup class="required">*</sup></label>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="vax1aefiyes" name="vax1aefi" value="yes" required> <label class="form-check-label" for="vax1aefiyes">yes</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="vax1aefino" name="vax1aefi" value="no" required> <label class="form-check-label" for="vax1aefino">no</lable>
+			</div>
+		</div>
+		<div class="row pt-4">
+			<div class="col">
+				<label class="form-label" for="vax1brand">Vaccine brand <sup class="required">*</sup></label>
+				<select class="form-select" id="vax1brand" name="vax1brand" required onchange="if ( this.value=='other' ) {  document.getElementById('vax1other').removeAttribute('disabled'); document.getElementById('vax1other').className='form-control'; } else { document.getElementById('vax1other').setAttribute('disabled',true); document.getElementById('vax1other').className='form-control d-none'; }">
+					<option disabled>- select -</option>
+					<option value="Pfizer (Comirnaty)">Pfizer (Comirnaty)</option>
+					<option value="Moderna (Spikevax)">Moderna (Spikevax)</option>
+					<option value="AstraZeneca (Vaxzevria)">AstraZeneca (Vaxzevria)</option>
+					<option value="Novavax (Nuvaxovid)">Novavax (Nuvaxovid)</option>
+					<option value="other">other</option>
+				</select>
+				<input type="text" class="form-control d-none" id="vax1other" disabled>
+			</div>
+			<div class="col">
+				<label class="form-label" for="vax1date">Date of vaccination (if known)</label>
+				<input type="date" class="form-control" id="vax1date" min="2021-01-01" max="2025-12-31" placeholder="optional">
+				<small class="form-text">If exact date unknown, enter 1<sup>st</sup> of the month</small>
+			</div>
+		</div>
+	</section>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
 
-This section details the questions **CO**VERSE asked its users in the _vaccine injury profile_.
 
-* Items marked with a **<sup style="color:#c11717;">\*</sup>** were required in order to indicate a _complete_ profile.
-* Items inside code blocks (e.g. `   `) are options that were provided for specific questions.
-* Items prefixed with square brackets (\[`   `\]) indicate that the question was only displayed when some precondition was met.
+<pre>
 
----
-
-It is important for us to collect data on COVID-19 vaccine injures in Australia so that we have independent data to support our advocacy efforts.
-
-Record your injury in as much detail as possible below. You do not need to complete it all at once — you can save it as a draft and return later when you are able to finish it. Note, if you want to ask us a question or need specific help regarding your injury then [send us an email](mailto:contact@coverse.org.au).
-
-We estimate the form will take 20–60 minutes to complete, depending on your circumstances and how much information you wish to provide. This information is held in confidence and individual response details will never be published.
-
----
-
-## Basic personal data
-
-Biological sex **<sup style="color:#c11717;">\*</sup>**<br>
-○ `female`<br> ○ `male`
-
-Year of birth `    `
-
-State **<sup style="color:#c11717;">\*</sup>**
-* `ACT`
-* `NSW`
-* `NT`
-* `QLD`
-* `SA`
-* `TAS`
-* `VIC`
-* `WA`
-
-Postcode `    `
-
-☑ I verify that:
-* <small>The information that I enter in this profile is true and correct to the best of my knowledge, information and belief.</small>
-* <small>The information that I enter in this profile is in regards to:</small>
-  * <small>My own experience as a COVID-19 vaccine-injured individual, or</small>
-  * <small>The experience of a COVID-19 vaccine-injured child for whom I am the parent / guardian.</small>
-* <small>I agree to allow **CO**VERSE to use my anonymised data to generate statistics and anecdotes about the community of COVID-19 vaccine-injured Australians.</small>
-* <small>I agree to notify **CO**VERSE immediately if I should discover mistakes in my story or diagnoses, in order to maintain the integrity of **CO**VERSE data, storytelling and web materials.</small>
-
-Are you interested in being involved in research of vaccine-injured people, should the opportunity arise?<br>
-☑ `yes`<br>
-<small>We **will not** send your details to anyone without your explicit permission. Ticking this box just let’s us know that you are interested in participating in research, and we will contact you to discuss this with you if an opportunity arises.</small>
-
----
-
-## Vaccination — 1<sup>st</sup> dose
-
-Did you experience an adverse reaction to your 1<sup>st</sup> dose? **<sup style="color:#c11717;">\*</sup>**<br>
-○ `yes`<br> ○ `no`
-
-Vaccine brand **<sup style="color:#c11717;">\*</sup>**
-* `Pfizer (Comirnaty)`
-* `Moderna (Spikevax)`
-* `AstraZeneca (Vaxzevria)`
-* `Novavax (Nuvaxovid)`
-* `other`
-
-Date of vaccination (if known) `          `<br>
-<small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
 
 \[`if adverse reaction`\]<br> How long before your symptoms started?
 * `0-5 minutes`
@@ -357,7 +429,7 @@ Have you been referred to any specialists? **<sup style="color:#c11717;">\*</sup
 Have you received a formal diagnosis from a doctor?<br>
 ○ `yes`<br> ○ `no`
 
-\[`if given formal diagnosis`\]<br> 
+\[`if given formal diagnosis`\]<br>
 Please list official diagnosis given (separated by a comma)<br>
 `                         `
 
@@ -490,11 +562,11 @@ Do you have pre-existing medical condition(s)?<br>
 
 Tell us your story in your own words:
 ```
-                         
-                         
-                         
-                         
-                         
+						 
+						 
+						 
+						 
+						 
 ```
 
 <small>What was your life like before you got the vaccine?<br>
@@ -509,6 +581,7 @@ Has your story been reported by mainstream media?<br>
 
 Is there anything else you’d like us to know?
 ```
-                         
-                         
+						 
+						 
 ```
+</pre>

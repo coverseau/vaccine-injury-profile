@@ -1,0 +1,21 @@
+
+:root {
+	--coverse-ochre: #c75b12;
+	--coverse-red: #c11717;
+	--coverse-yellow: #c1a017;
+	--coverse-green: #17c15c;
+	--coverse-light-blue: #17a1c1;
+	--coverse-dark-blue: #1717c1;
+	--coverse-purple: #a017c1;
+	--bs-primary: var(--coverse-ochre);
+	--bs-danger: var(--coverse-red);
+}
+
+a {
+	color: var(--bs-primary);
+}
+
+sup.required {
+	font-weight: bolder;
+	color: var(--bs-danger);
+}
