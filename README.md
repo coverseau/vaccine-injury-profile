@@ -1,8 +1,6 @@
 # **CO**VERSE’s “vaccine injury profile”
 
-[![CC BY 4.0](https://i.creativecommons.org/l/by/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
-
-Last edited: 8<sup>th</sup> March 2026.
+Last edited: 11<sup>th</sup> March 2026.
 
 **CO**VERSE is Australia’s national charity dedicated to supporting Australians who have suffered harms from the COVID-19 vaccines. It was founded in 2022, and its mission and activities can be found on its website at [coverse.org.au](https://coverse.org.au/).
 
@@ -17,5 +15,4 @@ The material in this reposity is licensed under the Creative Commons _[Attributi
 * Only noncommercial uses of the work are permitted.
 * No derivatives or adaptations of the work are permitted.
 
-This work is licensed under [https://creativecommons.org/licenses/by-nc-nd/4.0/](CC BY-NC-ND 4.0)
-!(https://mirrors.creativecommons.org/presskit/icons/cc.svg)!(https://mirrors.creativecommons.org/presskit/icons/by.svg)!(https://mirrors.creativecommons.org/presskit/icons/nc.svg)!(https://mirrors.creativecommons.org/presskit/icons/nd.svg)
+This work is licensed under [CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/)![](https://mirrors.creativecommons.org/presskit/icons/cc.svg)![](https://mirrors.creativecommons.org/presskit/icons/by.svg)![](https://mirrors.creativecommons.org/presskit/icons/nc.svg)![](https://mirrors.creativecommons.org/presskit/icons/nd.svg)
