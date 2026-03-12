@@ -7,6 +7,7 @@
 	--coverse-light-blue: #17a1c1;
 	--coverse-dark-blue: #1717c1;
 	--coverse-purple: #a017c1;
+	
 	--bs-primary: var(--coverse-ochre);
 	--bs-danger: var(--coverse-red);
 }
