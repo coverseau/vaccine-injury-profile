@@ -14,19 +14,22 @@
 <body class="p-4 container">
 	<div class="container bg-light rounded shadow p-4 mb-5">
 		<header id="header" class="text-center border-bottom mb-5">
-			<img class="img-fluid d-block mx-auto" style="max-height: 240px;" src="logo.svg">
+			<img class="img-fluid d-block mx-auto" style="max-height: 240px;" alt="COVERSE logo" src="logo.svg">
 			<h1 class="display-4 text-center">Questions on COVERSE’s <i>vaccine injury profile</i></h1>
 		</header>
 		<section>
+			<h2 class="d-none">Information</h2>
 			<p>This document details the questions <b>CO</b>VERSE asked its users in the <i>vaccine injury profile</i>.</p>
 			<ul>
 				<li>Items marked <sup class="required">*</sup> were required in order to indicate a <em>complete</em> profile.</li>
 				<li>Question logic has been implemented in this document to reflect the way it was presented to users.</li>
+				<li><b>CO</b>VERSE tried to use non-technical language in order to make this <i>profile</i> accessible to non-expert users.</li>
 			</ul>
 		</section>
 	</div>
 	
 	<section id="introduction">
+		<h2 class="d-none">Introduction</h2>
 		<p>It is important for us to collect data on COVID-19 vaccine injures in Australia so that we have independent data to support our advocacy efforts.</p>
 		<p>Record your injury in as much detail as possible below. You do not need to complete it all at once — you can save it as a draft and return later when you are able to finish it. Note, if you want to ask us a question or need specific help regarding your injury then <a href="mailto:contact@coverse.org.a">send us an email</a>).</p>
 		<p>We estimate the form will take 20–60 minutes to complete, depending on your circumstances and how much information you wish to provide. This information is held in confidence and individual response details will never be published.</p>
@@ -38,22 +41,22 @@
 		<h2>Basic personal data</h2>
 		<div class="row pt-4">
 			<div class="col">
-				<label for="sex">Biological sex <sup class="required">*</sup></label>
+				Biological sex <sup class="required">*</sup>
 				<div class="form-check">
 					<input class="form-check-input" type="radio" id="sexFemale" name="sex" value="female" required> <label class="form-check-label" for="sexFemale">female</label>
 				</div>
 				<div class="form-check">
-					<input class="form-check-input" type="radio" id="sexMale" name="sex" value="male" required> <label class="form-check-label" for="sexMale">male</lable>
+					<input class="form-check-input" type="radio" id="sexMale" name="sex" value="male" required> <label class="form-check-label" for="sexMale">male</label>
 				</div>
 			</div>
 			<div class="col">
 				<label class="form-label" for="yearOfBirth">Year of birth</label>
-				<input type="number" class="form-control" id="yearOfBirth" min="1901" max="2030" step="1" placeholder="optional">
+				<input type="number" class="form-control w-auto" id="yearOfBirth" min="1901" max="2030" step="1" placeholder="optional">
 			</div>
 			<div class="col">
 				<label class="form-label" for="postcode">State <sup class="required">*</sup></label>
-				<select class="form-select" id="state" required>
-					<option disabled>- select -</option>
+				<select class="form-select w-auto" id="state" required>
+					<option value="" disabled>- select -</option>
 					<option value="ACT">ACT</option>
 					<option value="NSW">NSW</option>
 					<option value="NT">NT</option>
@@ -66,7 +69,7 @@
 			</div>
 			<div class="col">
 				<label class="form-label" for="postcode">Postcode</label>
-				<input type="number" class="form-control" id="postcode" min="0" max="9999" step="1" placeholder="optional">
+				<input type="number" class="form-control w-auto" id="postcode" min="0" max="9999" step="1" placeholder="optional">
 			</div>
 		</div>
 		<div class="pt-4">
@@ -94,432 +97,1183 @@
 		</div>
 	</section>
 	
-	<hr>
+	<hr id="vax1line">
 	
 	<section class="pt-4" id="vax1">
 		<h2>Vaccination — 1<sup>st</sup> dose</h2>
-		<div class="pt-4"
-			<label for="sex">Did you experience an adverse reaction to your 1<sup>st</sup> dose? <sup class="required">*</sup></label>
+		<div class="pt-4">
+			Did you experience an adverse reaction to your 1<sup>st</sup> dose? <sup class="required">*</sup>
 			<div class="form-check">
-				<input class="form-check-input" type="radio" id="vax1aefiyes" name="vax1aefi" value="yes" required> <label class="form-check-label" for="vax1aefiyes">yes</label>
+				<input class="form-check-input" type="radio" id="vax1aefiyes" name="vax1aefi" value="yes" required onchange="if (this.checked) { document.getElementById('vax1onsetContainer').className='pt-4'; document.getElementById('vax2').className='pt-4'; document.getElementById('vax2line').className=''; }"> <label class="form-check-label" for="vax1aefiyes">yes</label>
 			</div>
 			<div class="form-check">
-				<input class="form-check-input" type="radio" id="vax1aefino" name="vax1aefi" value="no" required> <label class="form-check-label" for="vax1aefino">no</lable>
+				<input class="form-check-input" type="radio" id="vax1aefino" name="vax1aefi" value="no" required onchange="if (this.checked) { document.getElementById('vax1onsetContainer').className='pt-4 d-none'; document.getElementById('vax2').className='pt-4'; document.getElementById('vax2line').className=''; }"> <label class="form-check-label" for="vax1aefino">no</label>
 			</div>
 		</div>
 		<div class="row pt-4">
 			<div class="col">
 				<label class="form-label" for="vax1brand">Vaccine brand <sup class="required">*</sup></label>
-				<select class="form-select" id="vax1brand" name="vax1brand" required onchange="if ( this.value=='other' ) {  document.getElementById('vax1other').removeAttribute('disabled'); document.getElementById('vax1other').className='form-control'; } else { document.getElementById('vax1other').setAttribute('disabled',true); document.getElementById('vax1other').className='form-control d-none'; }">
-					<option disabled>- select -</option>
+				<select class="form-select w-auto" id="vax1brand" name="vax1brand" required onchange="if ( this.value=='other' ) { document.getElementById('vax1other').removeAttribute('disabled'); document.getElementById('vax1other').className='form-control w-auto'; } else { document.getElementById('vax1other').setAttribute('disabled',true); document.getElementById('vax1other').className='form-control w-auto d-none'; }">
+					<option value="" disabled>- select -</option>
 					<option value="Pfizer (Comirnaty)">Pfizer (Comirnaty)</option>
 					<option value="Moderna (Spikevax)">Moderna (Spikevax)</option>
 					<option value="AstraZeneca (Vaxzevria)">AstraZeneca (Vaxzevria)</option>
 					<option value="Novavax (Nuvaxovid)">Novavax (Nuvaxovid)</option>
 					<option value="other">other</option>
 				</select>
-				<input type="text" class="form-control d-none" id="vax1other" disabled>
+				<input type="text" class="form-control w-auto d-none" id="vax1other" disabled>
 			</div>
 			<div class="col">
 				<label class="form-label" for="vax1date">Date of vaccination (if known)</label>
-				<input type="date" class="form-control" id="vax1date" min="2021-01-01" max="2025-12-31" placeholder="optional">
+				<input type="date" class="form-control w-auto" id="vax1date" min="2021-01-01" max="2025-12-31">
 				<small class="form-text">If exact date unknown, enter 1<sup>st</sup> of the month</small>
+			</div>
+		</div>
+		<div id="vax1onsetContainer" class="pt-4 d-none">
+			<label class="form-label" for="vax1onset">How long before your symptoms started?</label>
+			<select class="form-select w-auto" id="vax1onset" name="vax1onset">
+				<option value="">optional</option>
+				<option value="0-5 minutes">0-5 minutes</option>
+				<option value="6-30 minutes">6-30 minutes</option>
+				<option value="31-59 minutes">31-59 minutes</option>
+				<option value="1-12 hours">1-12 hours</option>
+				<option value="13-23 hours">13-23 hours</option>
+				<option value="1-7 days">1-7 days</option>
+				<option value="8-14 days">8-14 days</option>
+				<option value="15-30 days">15-30 days</option>
+				<option value="1-3 months">1-3 months</option>
+				<option value="4-12 months">4-12 months</option>
+				<option value="more than 1 year">more than 1 year</option>
+			</select>
+		</div>
+	</section>
+	
+	<hr id="vax2line" class="d-none">
+	
+	<section class="pt-4 d-none" id="vax2">
+		<h2>Vaccination — 2<sup>nd</sup> dose</h2>
+		<div class="pt-4">
+			Did you experience an adverse reaction to your 2<sup>nd</sup> dose?
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="vax2aefiyes" name="vax2aefi" value="yes" onchange="if (this.checked) { document.getElementById('vax2onsetContainer').className='pt-4'; document.getElementById('vax3').className='pt-4'; document.getElementById('vax3line').className=''; }"> <label class="form-check-label" for="vax2aefiyes">yes</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="vax2aefino" name="vax2aefi" value="no" onchange="if (this.checked) { document.getElementById('vax2onsetContainer').className='pt-4 d-none'; document.getElementById('vax3').className='pt-4'; document.getElementById('vax3line').className=''; }"> <label class="form-check-label" for="vax2aefino">no</label>
+			</div>
+		</div>
+		<div class="row pt-4">
+			<div class="col">
+				<label class="form-label" for="vax2brand">Vaccine brand</label>
+				<select class="form-select w-auto" id="vax2brand" name="vax2brand" onchange="if ( this.value=='other' ) { document.getElementById('vax2other').removeAttribute('disabled'); document.getElementById('vax2other').className='form-control w-auto'; } else { document.getElementById('vax2other').setAttribute('disabled',true); document.getElementById('vax2other').className='form-control w-auto d-none'; }">
+					<option value="">- select -</option>
+					<option value="Pfizer (Comirnaty)">Pfizer (Comirnaty)</option>
+					<option value="Moderna (Spikevax)">Moderna (Spikevax)</option>
+					<option value="AstraZeneca (Vaxzevria)">AstraZeneca (Vaxzevria)</option>
+					<option value="Novavax (Nuvaxovid)">Novavax (Nuvaxovid)</option>
+					<option value="other">other</option>
+				</select>
+				<input type="text" class="form-control w-auto d-none" id="vax2other" disabled>
+			</div>
+			<div class="col">
+				<label class="form-label" for="vax2date">Date of vaccination (if known)</label>
+				<input type="date" class="form-control w-auto" id="vax2date" min="2021-01-01" max="2025-12-31">
+				<small class="form-text">If exact date unknown, enter 1<sup>st</sup> of the month</small>
+			</div>
+		</div>
+		<div id="vax2onsetContainer" class="pt-4 d-none">
+			<label class="form-label" for="vax2onset">How long before your symptoms started?</label>
+			<select class="form-select w-auto" id="vax2onset" name="vax2onset">
+				<option value="">optional</option>
+				<option value="0-5 minutes">0-5 minutes</option>
+				<option value="6-30 minutes">6-30 minutes</option>
+				<option value="31-59 minutes">31-59 minutes</option>
+				<option value="1-12 hours">1-12 hours</option>
+				<option value="13-23 hours">13-23 hours</option>
+				<option value="1-7 days">1-7 days</option>
+				<option value="8-14 days">8-14 days</option>
+				<option value="15-30 days">15-30 days</option>
+				<option value="1-3 months">1-3 months</option>
+				<option value="4-12 months">4-12 months</option>
+				<option value="more than 1 year">more than 1 year</option>
+			</select>
+		</div>
+	</section>
+	
+	<hr id="vax3line" class="d-none">
+	
+	<section class="pt-4 d-none" id="vax3">
+		<h2>Vaccination — 3<sup>rd</sup> dose</h2>
+		<div class="pt-4">
+			Did you experience an adverse reaction to your 3<sup>rd</sup> (or booster) dose?
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="vax3aefiyes" name="vax3aefi" value="yes" onchange="if (this.checked) { document.getElementById('vax3onsetContainer').className='pt-4'; document.getElementById('vax4').className='pt-4'; document.getElementById('vax4line').className=''; }"> <label class="form-check-label" for="vax3aefiyes">yes</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="vax3aefino" name="vax3aefi" value="no" onchange="if (this.checked) { document.getElementById('vax3onsetContainer').className='pt-4 d-none'; document.getElementById('vax4').className='pt-4'; document.getElementById('vax4line').className=''; }"> <label class="form-check-label" for="vax3aefino">no</label>
+			</div>
+		</div>
+		<div class="row pt-4">
+			<div class="col">
+				<label class="form-label" for="vax3brand">Vaccine brand</label>
+				<select class="form-select w-auto" id="vax3brand" name="vax3brand" onchange="if ( this.value=='other' ) { document.getElementById('vax3other').removeAttribute('disabled'); document.getElementById('vax3other').className='form-control w-auto'; } else { document.getElementById('vax3other').setAttribute('disabled',true); document.getElementById('vax3other').className='form-control w-auto d-none'; }">
+					<option value="">- select -</option>
+					<option value="Pfizer (Comirnaty)">Pfizer (Comirnaty)</option>
+					<option value="Moderna (Spikevax)">Moderna (Spikevax)</option>
+					<option value="AstraZeneca (Vaxzevria)">AstraZeneca (Vaxzevria)</option>
+					<option value="Novavax (Nuvaxovid)">Novavax (Nuvaxovid)</option>
+					<option value="other">other</option>
+				</select>
+				<input type="text" class="form-control w-auto d-none" id="vax3other" disabled>
+			</div>
+			<div class="col">
+				<label class="form-label" for="vax3date">Date of vaccination (if known)</label>
+				<input type="date" class="form-control w-auto" id="vax3date" min="2021-01-01" max="2025-12-31">
+				<small class="form-text">If exact date unknown, enter 1<sup>st</sup> of the month</small>
+			</div>
+		</div>
+		<div id="vax3onsetContainer" class="pt-4 d-none">
+			<label class="form-label" for="vax3onset">How long before your symptoms started?</label>
+			<select class="form-select w-auto" id="vax3onset" name="vax3onset">
+				<option value="">optional</option>
+				<option value="0-5 minutes">0-5 minutes</option>
+				<option value="6-30 minutes">6-30 minutes</option>
+				<option value="31-59 minutes">31-59 minutes</option>
+				<option value="1-12 hours">1-12 hours</option>
+				<option value="13-23 hours">13-23 hours</option>
+				<option value="1-7 days">1-7 days</option>
+				<option value="8-14 days">8-14 days</option>
+				<option value="15-30 days">15-30 days</option>
+				<option value="1-3 months">1-3 months</option>
+				<option value="4-12 months">4-12 months</option>
+				<option value="more than 1 year">more than 1 year</option>
+			</select>
+		</div>
+	</section>
+	
+	<hr id="vax4line" class="d-none">
+	
+	<section class="pt-4 d-none" id="vax4">
+		<h2>Vaccination — 4<sup>th</sup> dose</h2>
+		<div class="pt-4">
+			Did you experience an adverse reaction to your 4<sup>th</sup> (or booster) dose?
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="vax4aefiyes" name="vax4aefi" value="yes" onchange="if (this.checked) { document.getElementById('vax4onsetContainer').className='pt-4'; document.getElementById('vax5').className='pt-4'; document.getElementById('vax5line').className=''; }"> <label class="form-check-label" for="vax4aefiyes">yes</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="vax4aefino" name="vax4aefi" value="no" onchange="if (this.checked) { document.getElementById('vax4onsetContainer').className='pt-4 d-none'; document.getElementById('vax5').className='pt-4'; document.getElementById('vax5line').className=''; }"> <label class="form-check-label" for="vax4aefino">no</label>
+			</div>
+		</div>
+		<div class="row pt-4">
+			<div class="col">
+				<label class="form-label" for="vax4brand">Vaccine brand</label>
+				<select class="form-select w-auto" id="vax4brand" name="vax4brand" onchange="if ( this.value=='other' ) { document.getElementById('vax4other').removeAttribute('disabled'); document.getElementById('vax4other').className='form-control w-auto'; } else { document.getElementById('vax4other').setAttribute('disabled',true); document.getElementById('vax4other').className='form-control w-auto d-none'; }">
+					<option value="">- select -</option>
+					<option value="Pfizer (Comirnaty)">Pfizer (Comirnaty)</option>
+					<option value="Moderna (Spikevax)">Moderna (Spikevax)</option>
+					<option value="AstraZeneca (Vaxzevria)">AstraZeneca (Vaxzevria)</option>
+					<option value="Novavax (Nuvaxovid)">Novavax (Nuvaxovid)</option>
+					<option value="other">other</option>
+				</select>
+				<input type="text" class="form-control w-auto d-none" id="vax4other" disabled>
+			</div>
+			<div class="col">
+				<label class="form-label" for="vax4date">Date of vaccination (if known)</label>
+				<input type="date" class="form-control w-auto" id="vax4date" min="2021-01-01" max="2025-12-31">
+				<small class="form-text">If exact date unknown, enter 1<sup>st</sup> of the month</small>
+			</div>
+		</div>
+		<div id="vax4onsetContainer" class="pt-4 d-none">
+			<label class="form-label" for="vax4onset">How long before your symptoms started?</label>
+			<select class="form-select w-auto" id="vax4onset" name="vax4onset">
+				<option value="">optional</option>
+				<option value="0-5 minutes">0-5 minutes</option>
+				<option value="6-30 minutes">6-30 minutes</option>
+				<option value="31-59 minutes">31-59 minutes</option>
+				<option value="1-12 hours">1-12 hours</option>
+				<option value="13-23 hours">13-23 hours</option>
+				<option value="1-7 days">1-7 days</option>
+				<option value="8-14 days">8-14 days</option>
+				<option value="15-30 days">15-30 days</option>
+				<option value="1-3 months">1-3 months</option>
+				<option value="4-12 months">4-12 months</option>
+				<option value="more than 1 year">more than 1 year</option>
+			</select>
+		</div>
+	</section>
+	
+	<hr id="vax5line" class="d-none">
+	
+	<section class="pt-4 d-none" id="vax5">
+		<h2>Vaccination — 5<sup>th</sup>+ dose</h2>
+		<div class="pt-4">
+			Did you experience an adverse reaction to your 5<sup>th</sup> (or any additional) dose?
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="vax5aefiyes" name="vax5aefi" value="yes" onchange="if (this.checked) { document.getElementById('vax5onsetContainer').className='pt-4'; }"> <label class="form-check-label" for="vax5aefiyes">yes</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="vax5aefino" name="vax5aefi" value="no" onchange="if (this.checked) { document.getElementById('vax5onsetContainer').className='pt-4 d-none'; }"> <label class="form-check-label" for="vax5aefino">no</label>
+			</div>
+		</div>
+		<div class="row pt-4">
+			<div class="col">
+				<label class="form-label" for="vax5brand">Vaccine brand</label>
+				<select class="form-select w-auto" id="vax5brand" name="vax5brand" onchange="if ( this.value=='other' ) { document.getElementById('vax5other').removeAttribute('disabled'); document.getElementById('vax5other').className='form-control w-auto'; } else { document.getElementById('vax5other').setAttribute('disabled',true); document.getElementById('vax5other').className='form-control w-auto d-none'; }">
+					<option value="">- select -</option>
+					<option value="Pfizer (Comirnaty)">Pfizer (Comirnaty)</option>
+					<option value="Moderna (Spikevax)">Moderna (Spikevax)</option>
+					<option value="AstraZeneca (Vaxzevria)">AstraZeneca (Vaxzevria)</option>
+					<option value="Novavax (Nuvaxovid)">Novavax (Nuvaxovid)</option>
+					<option value="other">other</option>
+				</select>
+				<input type="text" class="form-control w-auto d-none" id="vax5other" disabled>
+			</div>
+			<div class="col">
+				<label class="form-label" for="vax5date">Date of vaccination (if known)</label>
+				<input type="date" class="form-control w-auto" id="vax5date" min="2021-01-01" max="2025-12-31">
+				<small class="form-text">If exact date unknown, enter 1<sup>st</sup> of the month</small>
+			</div>
+		</div>
+		<div id="vax5onsetContainer" class="pt-4 d-none">
+			<label class="form-label" for="vax5onset">How long before your symptoms started?</label>
+			<select class="form-select w-auto" id="vax5onset" name="vax5onset">
+				<option value="">optional</option>
+				<option value="0-5 minutes">0-5 minutes</option>
+				<option value="6-30 minutes">6-30 minutes</option>
+				<option value="31-59 minutes">31-59 minutes</option>
+				<option value="1-12 hours">1-12 hours</option>
+				<option value="13-23 hours">13-23 hours</option>
+				<option value="1-7 days">1-7 days</option>
+				<option value="8-14 days">8-14 days</option>
+				<option value="15-30 days">15-30 days</option>
+				<option value="1-3 months">1-3 months</option>
+				<option value="4-12 months">4-12 months</option>
+				<option value="more than 1 year">more than 1 year</option>
+			</select>
+		</div>
+	</section>
+	
+	<hr>
+	
+	<section class="pt-4" id="subsequent">
+		<h2>Subsequent reactions</h2>
+		<p class="pt-4">If you had a COVID-19 vaccination after you’d already had an adverse reaction, what was your later experience?<br>
+			<span class="form-check d-inline-block"><input class="form-check-input" type="radio" id="vaxSubsequentBetter" name="vaxSubsequent" value="I felt better"> <label class="form-check-label" for="vaxSubsequentBetter">I felt better</label></span> &nbsp;
+			<span class="form-check d-inline-block"><input class="form-check-input" type="radio" id="vaxSubsequentWorse" name="vaxSubsequent" value="I got worse"> <label class="form-check-label" for="vaxSubsequentWorse">I got worse</label></span> &nbsp;
+			<span class="form-check d-inline-block"><input class="form-check-input" type="radio" id="vaxSubsequentNoChange" name="vaxSubsequent" value="No change in my symptoms"> <label class="form-check-label" for="vaxSubsequentNoChange">No change in my symptoms</label></span> &nbsp;
+			<span class="form-check d-inline-block"><input class="form-check-input" type="radio" id="vaxSubsequentNA" name="vaxSubsequent" value="N/A"> <label class="form-check-label" for="vaxSubsequentNA">N/A</label></span>
+		</p>
+	</section>
+	
+	<hr>
+	
+	<section class="pt-4" id="mandates">
+		<h2>Vaccine mandates</h2>
+		<div class="pt-4">
+			For the vaccine dose(s) that injured you, were you subject to a workplace vaccine mandate at the time?
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="vaxMandatesYes" name="vaxMandates" value="yes"> <label class="form-check-label" for="vaxMandatesYes">yes</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="vaxMandatesNo" name="vaxMandates" value="no"> <label class="form-check-label" for="vaxMandatesNo">no</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="vaxMandatesNoBullied" name="vaxMandates" value="no (but bullied/coerced by workplace)"> <label class="form-check-label" for="vaxMandatesNoBullied">no (but bullied/coerced by workplace)</label>
 			</div>
 		</div>
 	</section>
 	
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-</html>
-
-
+	<hr>
+	
+	<section class="pt-4" id="symptoms">
+		<h2>Adverse reaction / symptom details</h2>
+		<p class="small pt-4">How bad were the following symptoms when they were <strong><em>at their worst</em></strong>?<br>
+		Note that this list is long. You may wish to complete part of it now, then scroll to the very bottom to save a draft, and return another day to complete it.</p>
+		
+		<table class="table table-sm table-hover text-center align-middle small pt-4">
+			<thead>
+				<tr>
+					<th class="text-start align-bottom"></th>
+					<th scope="col" class="text-center align-bottom">minimal</th>
+					<th scope="col" class="text-center align-bottom">mild</th>
+					<th scope="col" class="text-center align-bottom">moderate</th>
+					<th scope="col" class="text-center align-bottom">moderately severe</th>
+					<th scope="col" class="text-center align-bottom">severe</th>
+					<th scope="col" class="text-center align-bottom">N/A</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row" class="text-start">fatigue</th>
+					<td><input class="form-check-input" type="radio" name="symptomFatigue" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFatigue" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFatigue" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFatigue" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFatigue" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFatigue" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">exercise intolerance</th>
+					<td><input class="form-check-input" type="radio" name="symptomExerciseIntolerance" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExerciseIntolerance" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExerciseIntolerance" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExerciseIntolerance" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExerciseIntolerance" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExerciseIntolerance" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">brain fog</th>
+					<td><input class="form-check-input" type="radio" name="symptomBrainFog" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBrainFog" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBrainFog" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBrainFog" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBrainFog" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBrainFog" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">dizziness</th>
+					<td><input class="form-check-input" type="radio" name="symptomDizziness" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDizziness" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDizziness" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDizziness" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDizziness" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDizziness" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">insomnia</th>
+					<td><input class="form-check-input" type="radio" name="symptomInsomnia" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomInsomnia" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomInsomnia" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomInsomnia" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomInsomnia" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomInsomnia" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">sleep disturbances</th>
+					<td><input class="form-check-input" type="radio" name="symptomSleepDisturbances" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSleepDisturbances" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSleepDisturbances" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSleepDisturbances" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSleepDisturbances" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSleepDisturbances" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">excessive sleep</th>
+					<td><input class="form-check-input" type="radio" name="symptomExcessiveSleep" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExcessiveSleep" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExcessiveSleep" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExcessiveSleep" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExcessiveSleep" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExcessiveSleep" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">paralysis</th>
+					<td><input class="form-check-input" type="radio" name="symptomParalysis" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomParalysis" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomParalysis" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomParalysis" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomParalysis" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomParalysis" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">seizures</th>
+					<td><input class="form-check-input" type="radio" name="symptomSeizures" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSeizures" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSeizures" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSeizures" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSeizures" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSeizures" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">head pressure</th>
+					<td><input class="form-check-input" type="radio" name="symptomHeadPressure" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeadPressure" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeadPressure" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeadPressure" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeadPressure" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeadPressure" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">new headaches</th>
+					<td><input class="form-check-input" type="radio" name="symptomNewHeadaches" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewHeadaches" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewHeadaches" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewHeadaches" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewHeadaches" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewHeadaches" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">memory loss</th>
+					<td><input class="form-check-input" type="radio" name="symptomMemoryLoss" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMemoryLoss" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMemoryLoss" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMemoryLoss" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMemoryLoss" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMemoryLoss" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">new severe anxiety</th>
+					<td><input class="form-check-input" type="radio" name="symptomNewSevereAnxiety" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewSevereAnxiety" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewSevereAnxiety" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewSevereAnxiety" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewSevereAnxiety" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewSevereAnxiety" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">feeling off-balance, or in motion while at rest</th>
+					<td><input class="form-check-input" type="radio" name="symptomFeelingOffBalance" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFeelingOffBalance" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFeelingOffBalance" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFeelingOffBalance" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFeelingOffBalance" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFeelingOffBalance" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">tinnitus</th>
+					<td><input class="form-check-input" type="radio" name="symptomTinnitus" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTinnitus" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTinnitus" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTinnitus" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTinnitus" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTinnitus" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">sensitivity to sound</th>
+					<td><input class="form-check-input" type="radio" name="symptomSensitivityToSound" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSensitivityToSound" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSensitivityToSound" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSensitivityToSound" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSensitivityToSound" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSensitivityToSound" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">sensitivity to light</th>
+					<td><input class="form-check-input" type="radio" name="symptomSensitivityToLight" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSensitivityToLight" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSensitivityToLight" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSensitivityToLight" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSensitivityToLight" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSensitivityToLight" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">visual disturbances</th>
+					<td><input class="form-check-input" type="radio" name="symptomVisualDisturbances" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomVisualDisturbances" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomVisualDisturbances" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomVisualDisturbances" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomVisualDisturbances" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomVisualDisturbances" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">temporary blindness</th>
+					<td><input class="form-check-input" type="radio" name="symptomTemporaryBlindness" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTemporaryBlindness" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTemporaryBlindness" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTemporaryBlindness" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTemporaryBlindness" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTemporaryBlindness" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">glaucoma</th>
+					<td><input class="form-check-input" type="radio" name="symptomGlaucoma" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomGlaucoma" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomGlaucoma" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomGlaucoma" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomGlaucoma" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomGlaucoma" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">dry eyes</th>
+					<td><input class="form-check-input" type="radio" name="symptomDryEyes" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDryEyes" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDryEyes" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDryEyes" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDryEyes" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDryEyes" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">nerve pain</th>
+					<td><input class="form-check-input" type="radio" name="symptomNervePain" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNervePain" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNervePain" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNervePain" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNervePain" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNervePain" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">tremors</th>
+					<td><input class="form-check-input" type="radio" name="symptomTremors" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTremors" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTremors" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTremors" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTremors" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTremors" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">muscle twitching</th>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleTwitching" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleTwitching" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleTwitching" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleTwitching" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleTwitching" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleTwitching" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">internal vibrations</th>
+					<td><input class="form-check-input" type="radio" name="symptomInternalVibrations" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomInternalVibrations" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomInternalVibrations" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomInternalVibrations" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomInternalVibrations" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomInternalVibrations" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">tingling / numbness in extremities</th>
+					<td><input class="form-check-input" type="radio" name="symptomTinglingNumbnessInExtremities" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTinglingNumbnessInExtremities" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTinglingNumbnessInExtremities" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTinglingNumbnessInExtremities" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTinglingNumbnessInExtremities" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomTinglingNumbnessInExtremities" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">burning sensation on skin</th>
+					<td><input class="form-check-input" type="radio" name="symptomBurningSensationOnSkin" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBurningSensationOnSkin" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBurningSensationOnSkin" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBurningSensationOnSkin" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBurningSensationOnSkin" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBurningSensationOnSkin" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">joint pain / arthritis</th>
+					<td><input class="form-check-input" type="radio" name="symptomJointPainArthritis" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomJointPainArthritis" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomJointPainArthritis" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomJointPainArthritis" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomJointPainArthritis" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomJointPainArthritis" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">muscle aches</th>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleAches" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleAches" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleAches" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleAches" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleAches" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleAches" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">muscle weakness</th>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleWeakness" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleWeakness" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleWeakness" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleWeakness" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleWeakness" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleWeakness" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">unstable joints</th>
+					<td><input class="form-check-input" type="radio" name="symptomUnstableJoints" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomUnstableJoints" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomUnstableJoints" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomUnstableJoints" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomUnstableJoints" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomUnstableJoints" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">muscle loss</th>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleLoss" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleLoss" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleLoss" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleLoss" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleLoss" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMuscleLoss" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">heaviness in legs</th>
+					<td><input class="form-check-input" type="radio" name="symptomHeavinessInLegs" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeavinessInLegs" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeavinessInLegs" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeavinessInLegs" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeavinessInLegs" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeavinessInLegs" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">adrenaline surges</th>
+					<td><input class="form-check-input" type="radio" name="symptomAdrenalineSurges" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAdrenalineSurges" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAdrenalineSurges" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAdrenalineSurges" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAdrenalineSurges" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAdrenalineSurges" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">chest pain</th>
+					<td><input class="form-check-input" type="radio" name="symptomChestPain" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomChestPain" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomChestPain" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomChestPain" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomChestPain" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomChestPain" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">myocarditis</th>
+					<td><input class="form-check-input" type="radio" name="symptomMyocarditis" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMyocarditis" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMyocarditis" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMyocarditis" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMyocarditis" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomMyocarditis" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">pericarditis</th>
+					<td><input class="form-check-input" type="radio" name="symptomPericarditis" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPericarditis" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPericarditis" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPericarditis" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPericarditis" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPericarditis" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">heart palpitations</th>
+					<td><input class="form-check-input" type="radio" name="symptomHeartPalpitations" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeartPalpitations" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeartPalpitations" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeartPalpitations" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeartPalpitations" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeartPalpitations" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">shortness of breath</th>
+					<td><input class="form-check-input" type="radio" name="symptomShortnessOfBreath" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomShortnessOfBreath" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomShortnessOfBreath" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomShortnessOfBreath" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomShortnessOfBreath" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomShortnessOfBreath" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">high heart rate</th>
+					<td><input class="form-check-input" type="radio" name="symptomHighHeartRate" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHighHeartRate" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHighHeartRate" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHighHeartRate" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHighHeartRate" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHighHeartRate" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">low blood pressure</th>
+					<td><input class="form-check-input" type="radio" name="symptomLowBloodPressure" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLowBloodPressure" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLowBloodPressure" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLowBloodPressure" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLowBloodPressure" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLowBloodPressure" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">high blood pressure</th>
+					<td><input class="form-check-input" type="radio" name="symptomHighBloodPressure" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHighBloodPressure" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHighBloodPressure" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHighBloodPressure" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHighBloodPressure" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHighBloodPressure" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">persistent cough</th>
+					<td><input class="form-check-input" type="radio" name="symptomPersistentCough" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPersistentCough" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPersistentCough" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPersistentCough" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPersistentCough" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPersistentCough" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">heartburn / indigestion</th>
+					<td><input class="form-check-input" type="radio" name="symptomHeartburnIndigestion" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeartburnIndigestion" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeartburnIndigestion" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeartburnIndigestion" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeartburnIndigestion" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeartburnIndigestion" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">dry mouth</th>
+					<td><input class="form-check-input" type="radio" name="symptomDryMouth" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDryMouth" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDryMouth" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDryMouth" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDryMouth" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDryMouth" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">abdominal / stomach pain</th>
+					<td><input class="form-check-input" type="radio" name="symptomAbdominalStomachPain" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAbdominalStomachPain" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAbdominalStomachPain" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAbdominalStomachPain" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAbdominalStomachPain" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAbdominalStomachPain" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">nausea</th>
+					<td><input class="form-check-input" type="radio" name="symptomNausea" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNausea" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNausea" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNausea" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNausea" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNausea" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">diarrhoea</th>
+					<td><input class="form-check-input" type="radio" name="symptomDiarrhoea" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiarrhoea" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiarrhoea" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiarrhoea" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiarrhoea" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiarrhoea" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">loss of bowel control</th>
+					<td><input class="form-check-input" type="radio" name="symptomLossOfBowelControl" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLossOfBowelControl" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLossOfBowelControl" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLossOfBowelControl" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLossOfBowelControl" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLossOfBowelControl" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">constipation</th>
+					<td><input class="form-check-input" type="radio" name="symptomConstipation" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomConstipation" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomConstipation" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomConstipation" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomConstipation" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomConstipation" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">bloody or black tar-like stool</th>
+					<td><input class="form-check-input" type="radio" name="symptomBloodyOrBlackTarLikeStool" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBloodyOrBlackTarLikeStool" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBloodyOrBlackTarLikeStool" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBloodyOrBlackTarLikeStool" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBloodyOrBlackTarLikeStool" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBloodyOrBlackTarLikeStool" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">excessive gas</th>
+					<td><input class="form-check-input" type="radio" name="symptomExcessiveGas" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExcessiveGas" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExcessiveGas" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExcessiveGas" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExcessiveGas" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomExcessiveGas" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">increased thirst</th>
+					<td><input class="form-check-input" type="radio" name="symptomIncreasedThirst" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomIncreasedThirst" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomIncreasedThirst" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomIncreasedThirst" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomIncreasedThirst" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomIncreasedThirst" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">frequent urination</th>
+					<td><input class="form-check-input" type="radio" name="symptomFrequentUrination" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFrequentUrination" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFrequentUrination" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFrequentUrination" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFrequentUrination" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomFrequentUrination" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">loss of bladder control</th>
+					<td><input class="form-check-input" type="radio" name="symptomLossOfBladderControl" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLossOfBladderControl" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLossOfBladderControl" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLossOfBladderControl" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLossOfBladderControl" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomLossOfBladderControl" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">abnormal glucose levels</th>
+					<td><input class="form-check-input" type="radio" name="symptomAbnormalGlucoseLevels" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAbnormalGlucoseLevels" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAbnormalGlucoseLevels" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAbnormalGlucoseLevels" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAbnormalGlucoseLevels" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAbnormalGlucoseLevels" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">discolouring of skin / eyes</th>
+					<td><input class="form-check-input" type="radio" name="symptomDiscolouringOfSkinEyes" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiscolouringOfSkinEyes" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiscolouringOfSkinEyes" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiscolouringOfSkinEyes" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiscolouringOfSkinEyes" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiscolouringOfSkinEyes" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">discolouration in fingertips / toes</th>
+					<td><input class="form-check-input" type="radio" name="symptomDiscolourationOfFingertipsToes" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiscolourationOfFingertipsToes" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiscolourationOfFingertipsToes" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiscolourationOfFingertipsToes" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiscolourationOfFingertipsToes" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomDiscolourationOfFingertipsToes" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">bulging veins</th>
+					<td><input class="form-check-input" type="radio" name="symptomBulgingVeins" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBulgingVeins" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBulgingVeins" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBulgingVeins" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBulgingVeins" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomBulgingVeins" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">poor circulation</th>
+					<td><input class="form-check-input" type="radio" name="symptomPoorCirculation" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPoorCirculation" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPoorCirculation" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPoorCirculation" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPoorCirculation" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPoorCirculation" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">swelling of extremities</th>
+					<td><input class="form-check-input" type="radio" name="symptomSwellingOfExtremities" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSwellingOfExtremities" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSwellingOfExtremities" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSwellingOfExtremities" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSwellingOfExtremities" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSwellingOfExtremities" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">swollen lymph nodes</th>
+					<td><input class="form-check-input" type="radio" name="symptomSwollenLymphNodes" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSwollenLymphNodes" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSwollenLymphNodes" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSwollenLymphNodes" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSwollenLymphNodes" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSwollenLymphNodes" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">persistent sore throat</th>
+					<td><input class="form-check-input" type="radio" name="symptomPersistentSoreThroat" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPersistentSoreThroat" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPersistentSoreThroat" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPersistentSoreThroat" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPersistentSoreThroat" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomPersistentSoreThroat" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">heat intolerance</th>
+					<td><input class="form-check-input" type="radio" name="symptomHeatIntolerance" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeatIntolerance" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeatIntolerance" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeatIntolerance" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeatIntolerance" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHeatIntolerance" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">skin redness, hives, petechia or rashes</th>
+					<td><input class="form-check-input" type="radio" name="symptomSkinRednessHivesPetechiaOrRashes" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSkinRednessHivesPetechiaOrRashes" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSkinRednessHivesPetechiaOrRashes" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSkinRednessHivesPetechiaOrRashes" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSkinRednessHivesPetechiaOrRashes" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomSkinRednessHivesPetechiaOrRashes" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">new food allergies / intolerances</th>
+					<td><input class="form-check-input" type="radio" name="symptomNewFoodAllergiesIntolerances" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewFoodAllergiesIntolerances" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewFoodAllergiesIntolerances" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewFoodAllergiesIntolerances" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewFoodAllergiesIntolerances" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomNewFoodAllergiesIntolerances" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">anaphylaxis</th>
+					<td><input class="form-check-input" type="radio" name="symptomAnaphylaxis" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAnaphylaxis" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAnaphylaxis" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAnaphylaxis" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAnaphylaxis" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomAnaphylaxis" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">hair loss</th>
+					<td><input class="form-check-input" type="radio" name="symptomHairLoss" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHairLoss" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHairLoss" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHairLoss" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHairLoss" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomHairLoss" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">chills</th>
+					<td><input class="form-check-input" type="radio" name="symptomChills" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomChills" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomChills" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomChills" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomChills" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomChills" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">irregular menstrual cycle</th>
+					<td><input class="form-check-input" type="radio" name="symptomIrregularMenstrualCycle" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomIrregularMenstrualCycle" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomIrregularMenstrualCycle" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomIrregularMenstrualCycle" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomIrregularMenstrualCycle" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomIrregularMenstrualCycle" value="N/A"></td>
+				</tr>
+				<tr>
+					<th scope="row" class="text-start">resurgence of latent disease (e.g. shingles, EBV, cancer, autoimmune disease, etc.)</th>
+					<td><input class="form-check-input" type="radio" name="symptomResurgenceOfLatentDisease" value="mild"></td>
+					<td><input class="form-check-input" type="radio" name="symptomResurgenceOfLatentDisease" value="minimal"></td>
+					<td><input class="form-check-input" type="radio" name="symptomResurgenceOfLatentDisease" value="moderate"></td>
+					<td><input class="form-check-input" type="radio" name="symptomResurgenceOfLatentDisease" value="moderately severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomResurgenceOfLatentDisease" value="severe"></td>
+					<td><input class="form-check-input" type="radio" name="symptomResurgenceOfLatentDisease" value="N/A"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<p class="pt-4"><label for="symptomOther" class="form-label">List any other symptoms not mentioned above (separated by a comma)</label><input type="text" class="form-control" id="symptomOther" name="symptomOther" placeholder="optional"></p>
+		
+		<p class="pt-4">Are your symptoms more often on one side of your body? <sup class="required">*</sup><br>
+			<span class="form-check d-inline-block"><input class="form-check-input" type="radio" id="sideOfBodyLeft" name="sideOfBody" value="left"> <label class="form-check-label" for="sideOfBodyLeft">left</label></span> &nbsp;
+			<span class="form-check d-inline-block"><input class="form-check-input" type="radio" id="sideOfBodyRight" name="sideOfBody" value="right"> <label class="form-check-label" for="sideOfBodyRight">right</label></span> &nbsp;
+			<span class="form-check d-inline-block"><input class="form-check-input" type="radio" id="sideOfBodyVaries" name="sideOfBody" value="varies"><label class="form-check-label" for="sideOfBodyVaries">varies</label></span> &nbsp;
+			<span class="form-check d-inline-block"><input class="form-check-input" type="radio" id="sideOfBodyNA" name="sideOfBody" value="N/A"> <label class="form-check-label" for="sideOfBodyNA">N/A</label></span>
+		</p>
+		
+		<div class="row pt-4">
+			<div class="col">
+				<p><label for="gettingBetter" class="form-label">Overall, do you feel you are getting better? <sup class="required">*</sup></label>
+					<select class="form-select w-auto" id="gettingBetter" onchange="if (this.value=='yes' || this.value=='slowly improving' || this.value=='fluctuating') { document.getElementById('symptomsImproveContainer').className=''; document.getElementById('symptomsImprove').removeAttribute('disabled'); } else { document.getElementById('symptomsImproveContainer').className='d-none';  document.getElementById('symptomsImprove').setAttribute('disabled',true); }" required>
+						<option value="" disabled>- select -</option>
+						<option value="yes">yes</option>
+						<option value="slowly improving">slowly improving</option>
+						<option value="no">no</option>
+						<option value="getting worse">getting worse</option>
+						<option value="fluctuating">fluctuating</option>
+					</select>
+				</p>
+			</div>
+			<div class="col">
+				<p id="symptomsImproveContainer" class="d-none"><label for="symptomsImprove" class="form-label">In what month did your symptoms begin to improve?</label><input type="number" class="form-control" id="symptomsImprove" name="symptomsImproved" placeholder="optional" min="1" max="60" disabled><small>i.e. how many months until you began to notice any improvement?</small></p>
+			</div>
+		</div>
+	</section>
+		
+	<hr>
+		
+	<section class="pt-4" id="healthcare">
+		<h2>Healthcare access, diagnostics and treatment</h2>
+		
+		<div class="row pt-4">
+			<div class="col">
+				Has your usual GP recognised your vaccine injury? <sup class="required">*</sup>
+				<div class="form-check"><input class="form-check-input" type="radio" id="gpRecongnisedYes" name="gpRecongnised" value="yes"> <label class="form-check-label" for="gpRecongnisedYes">yes</label></div>
+				<div class="form-check"><input class="form-check-input" type="radio" id="gpRecongnisedNo" name="gpRecongnised" value="no"> <label class="form-check-label" for="gpRecongnisedNo">no</label></div>
+			</div>
+			<div class="col">
+				Has your injury been reported to the TGA? <sup class="required">*</sup>
+				<div class="form-check"><input class="form-check-input" type="radio" id="tgaReportedYesSelf" name="tgaReported" value="yes (self-reported)" onchange="if (this.checked) { document.getElementById('tgaFollowedUpContainer').className = ''; document.getElementById('tgaFollowedUpYes').removeAttribute('disabled'); document.getElementById('tgaFollowedUpNo').removeAttribute('disabled'); }" required> <label class="form-check-label" for="tgaReportedYesSelf">yes (self-reported)</label></div>
+				<div class="form-check"><input class="form-check-input" type="radio" id="tgaReportedYesGP" name="tgaReported" value="yes (reported by GP / specialist)" onchange="if (this.checked) { document.getElementById('tgaFollowedUpContainer').className = ''; document.getElementById('tgaFollowedUpYes').removeAttribute('disabled'); document.getElementById('tgaFollowedUpNo').removeAttribute('disabled'); }" required> <label class="form-check-label" for="tgaReportedYesGP">yes (reported by GP / specialist)</label></div>
+				<div class="form-check"><input class="form-check-input" type="radio" id="tgaReportedYesHospital" name="tgaReported" value="yes (reported by hospital)" onchange="if (this.checked) { document.getElementById('tgaFollowedUpContainer').className = ''; document.getElementById('tgaFollowedUpYes').removeAttribute('disabled'); document.getElementById('tgaFollowedUpNo').removeAttribute('disabled'); }" required> <label class="form-check-label" for="tgaReportedYesHospital">yes (reported by hospital)</label></div>
+				<div class="form-check"><input class="form-check-input" type="radio" id="tgaReportedNo" name="tgaReported" value="no" onchange="if (this.checked) { document.getElementById('tgaFollowedUpContainer').className = 'd-none'; document.getElementById('tgaFollowedUpYes').setAttribute('disabled', true); document.getElementById('tgaFollowedUpNo').setAttribute('disabled', true); }" required> <label class="form-check-label" for="tgaReportedNo">no</label></div>
+				<div class="form-check"><input class="form-check-input" type="radio" id="tgaReportedUnsure" name="tgaReported" value="unsure" onchange="if (this.checked) { document.getElementById('tgaFollowedUpContainer').className = 'd-none'; document.getElementById('tgaFollowedUpYes').setAttribute('disabled', true); document.getElementById('tgaFollowedUpNo').setAttribute('disabled', true); }" required> <label class="form-check-label" for="tgaReportedUnsure">unsure</label></div>
+			</div>
+			<div class="col">
+				<div class="d-none" id="tgaFollowedUpContainer">
+					Has the TGA been in contact with you about your case?
+					<div class="form-check"><input class="form-check-input" type="radio" id="tgaFollowedUpYes" name="tgaFollowedUp" value="yes"> <label class="form-check-label" for="tgaFollowedUpYes">yes</label></div>
+					<div class="form-check"><input class="form-check-input" type="radio" id="tgaFollowedUpNo" name="tgaFollowedUp" value="no"> <label class="form-check-label" for="tgaFollowedUpNo">no</label></div>
+					<small>Only tick ‘yes’ if the TGA contacted you for further information and/or to arrange further medical investigations. If you were called back only to check the validity of your report, click ‘no’.</small>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row pt-4">
+			<div class="col">
+				Have you been referred to any specialists? <sup class="required">*</sup>
+				<div class="form-check"><input class="form-check-input" type="radio" id="specialistsYes" name="specialists" value="yes" onchange="if (this.checked) { document.getElementById('whatSpecialists').className=''; }" required> <label class="form-check-label" for="specialistsYes">yes</label></div>
+				<div class="form-check"><input class="form-check-input" type="radio" id="specialistsNo" name="specialists" value="no" onchange="if (this.checked) { document.getElementById('whatSpecialists').className='d-none'; }" required> <label class="form-check-label" for="specialistsNo">no</label></div>
+			</div>
+			<div class="col">
+				<div class="d-none" id="whatSpecialists">
+					What specialists have you been referred to?
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsCardiologist" name="referredSpecialists" value="cardiologist"> <label class="form-check-label" for="specialistsCardiologist">cardiologist</label></div>
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsDermatologist" name="referredSpecialists" value="dermatologist"> <label class="form-check-label" for="specialistsDermatologist">dermatologist</label></div>
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsEndocrinologist" name="referredSpecialists" value="endocrinologist"> <label class="form-check-label" for="specialistsEndocrinologist">endocrinologist</label></div>
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsGastrologist" name="referredSpecialists" value="gastrologist"> <label class="form-check-label" for="specialistsGastrologist">gastrologist</label></div>
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsGynecologist" name="referredSpecialists" value="gynecologist"> <label class="form-check-label" for="specialistsGynecologist">gynecologist</label></div>
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsHaematologist" name="referredSpecialists" value="haematologist"> <label class="form-check-label" for="specialistsHaematologist">haematologist</label></div>
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsImmunologist" name="referredSpecialists" value="immunologist"> <label class="form-check-label" for="specialistsImmunologist">immunologist</label></div>
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsNeurologist" name="referredSpecialists" value="neurologist"> <label class="form-check-label" for="specialistsNeurologist">neurologist</label></div>
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsOpthamologist" name="referredSpecialists" value="opthamologist"> <label class="form-check-label" for="specialistsOpthamologist">opthamologist</label></div>
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsRespiratoryPhysician" name="referredSpecialists" value="respiratory physician"> <label class="form-check-label" for="specialistsRespiratoryPhysician">respiratory physician</label></div>
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsRheumatologist" name="referredSpecialists" value="rheumatologist"> <label class="form-check-label" for="specialistsRheumatologist">rheumatologist</label></div>
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsOtolaryngologist" name="referredSpecialists" value="otolaryngologist"> <label class="form-check-label" for="specialistsOtolaryngologist">otolaryngologist</label></div>
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsPsychologist" name="referredSpecialists" value="psychologist"> <label class="form-check-label" for="specialistsPsychologist">psychologist</label></div>
+					<div class="form-check"><input class="form-check-input" type="checkbox" id="specialistsOther" name="referredSpecialists" value="other" onchange="if (this.checked) { document.getElementById('specialistsOtherOther').className='form-control w-auto'; document.getElementById('specialistsOtherOther').removeAttribute('disabled'); } else { document.getElementById('specialistsOtherOther').className='form-control w-auto d-none'; document.getElementById('specialistsOtherOther').setAttribute('disabled', true); }"> <label class="form-check-label" for="specialistsOther">other</label></div>
+					<input type="text" class="form-control w-auto d-none" id="specialistsOtherOther" disabled>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row pt-4">
+			<div class="col">
+				Have you received a formal diagnosis from a doctor?
+				<div class="form-check"><input class="form-check-input" type="radio" id="formalDiagnosisYes" name="formalDiagnosis" value="yes" onchange="if (this.checked) { document.getElementById('diagnosesContainer').className=''; document.getElementById('diagnoses').removeAttribute('disabled'); }" required> <label class="form-check-label" for="formalDiagnosisYes">yes</label></div>
+				<div class="form-check"><input class="form-check-input" type="radio" id="formalDiagnosisNo" name="formalDiagnosis" value="no" onchange="if (this.checked) { document.getElementById('diagnosesContainer').className='d-none'; document.getElementById('diagnoses').setAttribute('disabled', true); }" required> <label class="form-check-label" for="formalDiagnosisNo">no</label></div>
+			</div>
+			<div class="col">
+				<div id="diagnosesContainer" class="d-none">
+					<label for="diagnoses" class="form-label">list official diagnosis given (separated by a comma)</label>
+					<input type="text" class="form-control w-auto" id="diagnoses" name="diagnoses" disabled>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row pt-4">
+			<div class="col">
+				<label class="form-label" for="howLong">How long after your reaction were you investigated and diagnosed?</label>
+				<select class="form-select w-auto" id="howLong">
+					<option value="">- select -</option>
+					<option value="0-1 day">0-1 day</option>
+					<option value="2-30 days">2-30 days</option>
+					<option value="1-3 months">1-3 months</option>
+					<option value="4-6 months">4-6 months</option>
+					<option value="7-12 months">7-12 months</option>
+					<option value="more than 1 year">more than 1 year</option>
+					<option value="still waiting">still waiting</option>
+				</select>
+			</div>
+			<div class="col">
+				<p>Have you received a diagnosis that later proved to be incorrect?<br>
+					<span class="form-check d-inline-block"><input class="form-check-input" type="radio" id="diagnosisIncorrectYes" name="diagnosisIncorrect" value="yes"> <label class="form-check-label" for="diagnosisIncorrectYes">yes</label></span> &nbsp;
+					<span class="form-check d-inline-block"><input class="form-check-input" type="radio" id="diagnosisIncorrectNo" name="diagnosisIncorrect" value="no"> <label class="form-check-label" for="diagnosisIncorrectNo">no</label></span> &nbsp;
+			</div>
+		</div>
+		
+		<p class="pt-4"><label for="testsSignificant" class="form-label">Which test results, diagnosis or symptoms seem of particular significance or rare / unique (if any)</label><input type="text" class="form-control" id="testsSignificant" name="testsSignificant" placeholder="optional"></p>
+			
+		<p class="pt-4"><label for="medications" class="form-label">List any prescribed medications or treatments provided by your GP or specialist (separated by comma)</label><input type="text" class="form-control" id="medications" name="medications" placeholder="optional"></p>
+			
+		<p class="pt-4"><label for="treatmentsAlternative" class="form-label">List any alternative health expertise or treatments you’ve tried (separated by a comma)</label><input type="text" class="form-control" id="treatmentsAlternative" name="treatmentsAlternative" placeholder="optional"></p>
+				
+		<p class="pt-4"><label for="supplements" class="form-label">List any supplements you’ve been taking (separated by a comma)</label><input type="text" class="form-control" id="supplements" name="supplements" placeholder="optional"></p>
+		
+		<div class="row pt-4">
+			<p class="col"><label for="treatmentsMostHelpful" class="form-label">From all of the above, which treatments and supplements have you found most helpful (list in order, separated by comma)</label><input type="text" class="form-control" id="treatmentsMostHelpful" name="treatmentsMostHelpful" placeholder="optional"> <small>Order from most helpful to least helpful</small></p>
+			<p class="col"><label for="treatmentsLeastHelpful" class="form-label">From all of the above, which treatments and supplements have you found to be least helpful (list in order, separated by comma)</label><input type="text" class="form-control" id="treatmentsLeastHelpful" name="treatmentsLeastHelpful" placeholder="optional"> <small>Order from least helpful</small></p>
+		</div>
+	</section>
+	
+	<hr>
+	
+	<section class="pt-4" id="impacts">
+		<h2>Injury impacts</h2>
+		
+		<div class="row pt-4">
+			<div class="col">
+				<label class="form-label" for="anyWork">Were you able to undertake <em>any</em> work (including domestic work) at the peak of your reaction? <sup class="required">*</sup></label>
+				<select class="form-select w-auto" id="anyWork" required onchange="if (this.value=='yes') { document.getElementById('anyWorkPercentageContainer').className=''; document.getElementById('howLongUnableContainer').className='pt-4 d-none'; } else { document.getElementById('anyWorkPercentageContainer').className='d-none'; document.getElementById('howLongUnableContainer').className='pt-4'; }">
+					<option value="" disabled>- select -</option>
+					<option value="yes">yes</option>
+					<option value="no">no</option>
+				</select>
+			</div>
+			<div class="col">
+				<div id="anyWorkPercentageContainer" class="d-none">
+					<label class="form-label" for="anyWorkPercentage">As a percentage, at what capacity were you able to work?</label>
+					<input type="range" class="form-range d-inline-block" id="anyWorkPercentage" name="anyWorkPercentage" onchange="document.getElementById('anyWorkPercentageShow').innerText=this.value + '%'" min="0" max="100" step="10">
+					<div class="text-center" id="anyWorkPercentageShow">?%</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="pt-4 d-none" id="howLongUnableContainer">
+			<label class="form-label" for="howLongUnable">For how long were you unable to pursue your normal activities and workload?</label>
+			<select class="form-select w-auto" id="howLongUnable">
+				<option value="">- select -</option>
+				<option value="1-3 weeks">1-3 weeks</option>
+				<option value="1-3 months">1-3 months</option>
+				<option value="4-6 months">4-6 months</option>
+				<option value="6-9 months">6-9 months</option>
+				<option value="9-12 months">9-12 months</option>
+				<option value="1-2 years">1-2 years</option>
+				<option value="more than 2 years">more than 2 years</option>
+				<option value="ongoing">ongoing</option>
+			</select>
+		</div>
+		
+		<div class="row pt-4">
+			<div class="col">
+				<label class="form-label" for="monthWork">Have you been able to undertake <em>any</em> work (including domestic work) during the past month? <sup class="required">*</sup></label>
+				<select class="form-select w-auto" id="monthWork" required onchange="if (this.value=='yes') { document.getElementById('monthWorkPercentageContainer').className=''; } else { document.getElementById('monthWorkPercentageContainer').className='d-none'; }">
+					<option value="" disabled>- select -</option>
+					<option value="yes">yes</option>
+					<option value="no">no</option>
+				</select>
+			</div>
+			<div class="col">
+				<div id="monthWorkPercentageContainer" class="d-none">
+					<label class="form-label" for="monthWorkPercentage">As a percentage, at what capacity were you able to work?</label>
+					<input type="range" class="form-range d-inline-block" id="monthWorkPercentage" name="monthWorkPercentage" onchange="document.getElementById('monthWorkPercentageShow').innerText=this.value + '%'" min="0" max="100" step="10">
+					<div class="text-center" id="monthWorkPercentageShow">?%</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="pt-4">
+			What do you most need assistance with?
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="assistanceTreatment" name="assistance" value="access to appropriate medical care / tests / treatment"> <label class="form-check-label" for="assistanceTreatment">access to appropriate medical care / tests / treatment</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="assistanceMentalHealth" name="assistance" value="mental health support"> <label class="form-check-label" for="assistanceMentalHealth">mental health support</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="assistanceIncome" name="assistance" value="financial support due to loss of work"> <label class="form-check-label" for="assistanceIncome">financial support due to loss of work</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="assistanceExpenses" name="assistance" value="financial support due to loss of work"> <label class="form-check-label" for="assistanceExpenses">financial support due to medical expenses</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="assistanceOther" name="assistance" value="other" onchange="if (this.checked) { document.getElementById('assistanceOtherOther').className='form-control w-auto'; document.getElementById('assistanceOtherOther').removeAttribute('disabled'); } else { document.getElementById('assistanceOtherOther').className='form-control w-auto d-none'; document.getElementById('assistanceOtherOther').setAttribute('disabled', true); }"> <label class="form-check-label" for="assistanceOther">other</label></div>
+			<input type="text" class="form-control w-auto d-none" id="assistanceOtherOther" disabled>
+		</div>
+	</section>
+	
+	<hr>
+	
+	<section class="pt-4" id="financial">
+		<h2>Financial issues</h2>
+		
+		<div class="pt-4">
+			Have you been able to access financial assistance? <sup class="required">*</sup>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financialNo" name="financial" value="no"> <label class="form-check-label" for="financialNo">no</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financialPaidLeave" name="financial" value="paid leave entitlements"> <label class="form-check-label" for="financialPaidLeave">paid leave entitlements</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financialWorkersCompensation" name="financial" value="workers’ compensation"> <label class="form-check-label" for="financialWorkersCompensation">workers’ compensation</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financialIncomeProtectionInsurance" name="financial" value="income protection insurance"> <label class="form-check-label" for="financialIncomeProtectionInsurance">income protection insurance</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financialSuperannuationEarlyWithdrawal" name="financial" value="superannuation (early withdrawal)"> <label class="form-check-label" for="financialSuperannuationEarlyWithdrawal">superannuation (early withdrawal)</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financiaJobseeker" name="financial" value="jobseeker"> <label class="form-check-label" for="financiaJobseeker">jobseeker</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financialNewLoan" name="financial" value="new loan"> <label class="form-check-label" for="financialNewLoan">new loan</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financialExistingLoan" name="financial" value="extension of existing loan"> <label class="form-check-label" for="financialExistingLoan">extension of existing loan</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financialFriendOrFamily" name="financial" value="friend or family"> <label class="form-check-label" for="financialFriendOrFamily">friend or family</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financialDSP" name="financial" value="disability support pension"> <label class="form-check-label" for="financialDSP">disability support pension</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financialNDIS" name="financial" value="NDIS"> <label class="form-check-label" for="financialNDIS">NDIS</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financialCOVID19VaccineClaimsScheme" name="financial" value="COVID-19 vaccine claims scheme"> <label class="form-check-label" for="financialCOVID19VaccineClaimsScheme">COVID-19 vaccine claims scheme</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financialNotRequired" name="financial" value="not required"> <label class="form-check-label" for="financialNotRequired">not required</label></div>
+			<div class="form-check"><input class="form-check-input" type="checkbox" id="financialOther" name="financial" value="other" onchange="if (this.checked) { document.getElementById('financialOtherOther').className='form-control w-auto'; document.getElementById('financialOtherOther').removeAttribute('disabled'); } else { document.getElementById('financialOtherOther').className='form-control w-auto d-none'; document.getElementById('financialOtherOther').setAttribute('disabled', true); }"> <label class="form-check-label" for="financialOther">other</label></div>
+			<input type="text" class="form-control w-auto d-none" id="financialOtherOther" disabled>
+			<small>Select all that apply</small>
+		</div>
+		
+	</section>
+	
 <pre>
 
-
-\[`if adverse reaction`\]<br> How long before your symptoms started?
-* `0-5 minutes`
-* `6-30 minutes`
-* `31-59 minutes`
-* `1-12 hours`
-* `13-23 hours`
-* `1-7 days`
-* `8-14 days`
-* `15-30 days`
-* `1-3 months`
-* `4-12 months`
-* `more than 1 year`
-
----
-
-## Vaccination — 2<sup>nd</sup> dose
-
-\[`if had a prior vaccine dose`\]
-
-Did you experience an adverse reaction to your 2<sup>nd</sup> dose?<br>
-○ `yes`<br> ○ `no`
-
-Vaccine brand
-* `Pfizer (Comirnaty)`
-* `Moderna (Spikevax)`
-* `AstraZeneca (Vaxzevria)`
-* `Novavax (Nuvaxovid)`
-* `other`
-
-Date of vaccination (if known) `          `<br>
-<small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
-
-\[`if adverse reaction`\]<br> How long before your symptoms started?
-* `0-5 minutes`
-* `6-30 minutes`
-* `31-59 minutes`
-* `1-12 hours`
-* `13-23 hours`
-* `1-7 days`
-* `8-14 days`
-* `15-30 days`
-* `1-3 months`
-* `4-12 months`
-* `more than 1 year`
-
----
-
-## Vaccination — 3<sup>rd</sup> dose
-
-\[`if had a prior vaccine dose`\]
-
-Did you experience an adverse reaction to your 3<sup>rd</sup> (or booster) dose?<br>
-○ `yes`<br> ○ `no`
-
-Vaccine brand
-* `Pfizer (Comirnaty)`
-* `Moderna (Spikevax)`
-* `AstraZeneca (Vaxzevria)`
-* `Novavax (Nuvaxovid)`
-* `other`
-
-Date of vaccination (if known) `          `<br>
-<small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
-
-\[`if adverse reaction`\]<br> How long before your symptoms started?
-* `0-5 minutes`
-* `6-30 minutes`
-* `31-59 minutes`
-* `1-12 hours`
-* `13-23 hours`
-* `1-7 days`
-* `8-14 days`
-* `15-30 days`
-* `1-3 months`
-* `4-12 months`
-* `more than 1 year`
-
----
-
-## Vaccination — 4<sup>th</sup> dose
-
-\[`if had a prior vaccine dose`\]
-
-Did you experience an adverse reaction to your 4<sup>th</sup> (or booster) dose?<br>
-○ `yes`<br> ○ `no`
-
-Vaccine brand
-* `Pfizer (Comirnaty)`
-* `Moderna (Spikevax)`
-* `AstraZeneca (Vaxzevria)`
-* `Novavax (Nuvaxovid)`
-* `other`
-
-Date of vaccination (if known) `          `<br>
-<small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
-
-\[`if adverse reaction`\]<br> How long before your symptoms started?
-* `0-5 minutes`
-* `6-30 minutes`
-* `31-59 minutes`
-* `1-12 hours`
-* `13-23 hours`
-* `1-7 days`
-* `8-14 days`
-* `15-30 days`
-* `1-3 months`
-* `4-12 months`
-* `more than 1 year`
-
----
-
-## Vaccination — 5<sup>th</sup>+ dose
-
-\[`if had a prior vaccine dose`\]
-
-Did you experience an adverse reaction to your 5<sup>th</sup> (or any additional)  dose?<br>
-○ `yes`<br> ○ `no`
-
-Vaccine brand
-* `Pfizer (Comirnaty)`
-* `Moderna (Spikevax)`
-* `AstraZeneca (Vaxzevria)`
-* `Novavax (Nuvaxovid)`
-* `other`
-
-Date of vaccination (if known) `          `<br>
-<small>If exact date unknown, enter 1<sup>st</sup> of the month</small>
-
-\[`if adverse reaction`\]<br> How long before your symptoms started?
-* `0-5 minutes`
-* `6-30 minutes`
-* `31-59 minutes`
-* `1-12 hours`
-* `13-23 hours`
-* `1-7 days`
-* `8-14 days`
-* `15-30 days`
-* `1-3 months`
-* `4-12 months`
-* `more than 1 year`
-
----
-
-## Subsequent reactions
-
-If you had a COVID-19 vaccination after you’d already had an adverse reaction, what was your later experience?<br>
-○ `I felt better` &nbsp; ○ `I got worse` &nbsp; ○ `No change in my symptoms` &nbsp; ○ `N/A`
-
----
-
-## Vaccine mandates
-
-For the vaccine dose(s) that injured you, were you subject to a workplace vaccine mandate at the time?<br>
-○ `yes`<br>
-○ `no`<br>
-○ `no (but bullied/coerced by workplace)`
-
----
-
-## Adverse reaction / symptom details
-
-<small>How bad were the following symptoms when they were **_at their worst_**?<br>
-Note that this list is long. You may wish to complete part of it now, then scroll to the very bottom to save a draft, and return another day to complete it.</small>
-
-|      | minimal | mild  | moderate | moderately severe | severe |  N/A  |
-| :--- |  :---:  | :---: |  :---:   |       :---:       | :---:  | :---: |
-| fatigue | ○ | ○ | ○ | ○ | ○ | ○ |
-| exercise intolerance | ○ | ○ | ○ | ○ | ○ | ○ |
-| brain fog | ○ | ○ | ○ | ○ | ○ | ○ |
-| dizziness | ○ | ○ | ○ | ○ | ○ | ○ |
-| insomnia | ○ | ○ | ○ | ○ | ○ | ○ |
-| sleep disturbances | ○ | ○ | ○ | ○ | ○ | ○ |
-| excessive sleep | ○ | ○ | ○ | ○ | ○ | ○ |
-| paralysis | ○ | ○ | ○ | ○ | ○ | ○ |
-| seizures | ○ | ○ | ○ | ○ | ○ | ○ |
-| head pressure | ○ | ○ | ○ | ○ | ○ | ○ |
-| new headaches | ○ | ○ | ○ | ○ | ○ | ○ |
-| memory loss | ○ | ○ | ○ | ○ | ○ | ○ |
-| new severe anxiety | ○ | ○ | ○ | ○ | ○ | ○ |
-| feeling off-balance, or in motion while at rest | ○ | ○ | ○ | ○ | ○ | ○ |
-| tinnitus | ○ | ○ | ○ | ○ | ○ | ○ |
-| sensitivity to sound | ○ | ○ | ○ | ○ | ○ | ○ |
-| sensitivity to light | ○ | ○ | ○ | ○ | ○ | ○ |
-| visual disturbances | ○ | ○ | ○ | ○ | ○ | ○ |
-| temporary blindness | ○ | ○ | ○ | ○ | ○ | ○ |
-| glaucoma | ○ | ○ | ○ | ○ | ○ | ○ |
-| dry eyes | ○ | ○ | ○ | ○ | ○ | ○ |
-| nerve pain | ○ | ○ | ○ | ○ | ○ | ○ |
-| tremors | ○ | ○ | ○ | ○ | ○ | ○ |
-| muscle twitching | ○ | ○ | ○ | ○ | ○ | ○ |
-| internal vibrations | ○ | ○ | ○ | ○ | ○ | ○ |
-| tingling / numbness in extremities | ○ | ○ | ○ | ○ | ○ | ○ |
-| burning sensation on skin | ○ | ○ | ○ | ○ | ○ | ○ |
-| joint pain / arthritis | ○ | ○ | ○ | ○ | ○ | ○ |
-| muscle aches | ○ | ○ | ○ | ○ | ○ | ○ |
-| muscle weakness | ○ | ○ | ○ | ○ | ○ | ○ |
-| unstable joints | ○ | ○ | ○ | ○ | ○ | ○ |
-| muscle loss | ○ | ○ | ○ | ○ | ○ | ○ |
-| heaviness in legs | ○ | ○ | ○ | ○ | ○ | ○ |
-| adrenaline surges | ○ | ○ | ○ | ○ | ○ | ○ |
-| chest pain | ○ | ○ | ○ | ○ | ○ | ○ |
-| myocarditis | ○ | ○ | ○ | ○ | ○ | ○ |
-| pericarditis | ○ | ○ | ○ | ○ | ○ | ○ |
-| heart palpitations | ○ | ○ | ○ | ○ | ○ | ○ |
-| shortness of breath | ○ | ○ | ○ | ○ | ○ | ○ |
-| high heart rate | ○ | ○ | ○ | ○ | ○ | ○ |
-| low blood pressure | ○ | ○ | ○ | ○ | ○ | ○ |
-| high blood pressure | ○ | ○ | ○ | ○ | ○ | ○ |
-| persistent cough | ○ | ○ | ○ | ○ | ○ | ○ |
-| heartburn / indigestion | ○ | ○ | ○ | ○ | ○ | ○ |
-| dry mouth | ○ | ○ | ○ | ○ | ○ | ○ |
-| abdominal / stomach pain | ○ | ○ | ○ | ○ | ○ | ○ |
-| nausea | ○ | ○ | ○ | ○ | ○ | ○ |
-| diarrhoea | ○ | ○ | ○ | ○ | ○ | ○ |
-| loss of bowel control | ○ | ○ | ○ | ○ | ○ | ○ |
-| constipation | ○ | ○ | ○ | ○ | ○ | ○ |
-| bloody or black tar-like stool | ○ | ○ | ○ | ○ | ○ | ○ |
-| excessive gas | ○ | ○ | ○ | ○ | ○ | ○ |
-| increased thirst | ○ | ○ | ○ | ○ | ○ | ○ |
-| frequent urination | ○ | ○ | ○ | ○ | ○ | ○ |
-| loss of bladder control | ○ | ○ | ○ | ○ | ○ | ○ |
-| abnormal glucose levels | ○ | ○ | ○ | ○ | ○ | ○ |
-| discolouring of skin / eyes | ○ | ○ | ○ | ○ | ○ | ○ |
-| discolouration in fingertips / toes | ○ | ○ | ○ | ○ | ○ | ○ |
-| bulging veins | ○ | ○ | ○ | ○ | ○ | ○ |
-| poor circulation | ○ | ○ | ○ | ○ | ○ | ○ |
-| swelling of extremities | ○ | ○ | ○ | ○ | ○ | ○ |
-| swollen lymph nodes | ○ | ○ | ○ | ○ | ○ | ○ |
-| persistent sore throat | ○ | ○ | ○ | ○ | ○ | ○ |
-| heat intolerance | ○ | ○ | ○ | ○ | ○ | ○ |
-| skin redness, hives, petechia or rashes | ○ | ○ | ○ | ○ | ○ | ○ |
-| new food allergies / intolerances | ○ | ○ | ○ | ○ | ○ | ○ |
-| anaphylaxis | ○ | ○ | ○ | ○ | ○ | ○ |
-| hair loss | ○ | ○ | ○ | ○ | ○ | ○ |
-| chills | ○ | ○ | ○ | ○ | ○ | ○ |
-| irregular menstrual cycle | ○ | ○ | ○ | ○ | ○ | ○ |
-| resurgence of latent disease (e.g. shingles, EBV, cancer, autoimmune disease, etc.) | ○ | ○ | ○ | ○ | ○ | ○ |
-
-List any other symptoms not mentioned above (separated by a comma)<br>
-`                         `
-
-Are your symptoms more often on one side of your body? **<sup style="color:#c11717;">\*</sup>**<br>
-○ `left` &nbsp; ○ `right` &nbsp; ○ `varies` &nbsp; ○ `no difference` &nbsp; ○ `N/A`
-
-Overall, do you feel you are getting better? **<sup style="color:#c11717;">\*</sup>**
-* `yes`
-* `slowly improving`
-* `no`
-* `getting worse`
-* `fluctuating`
-
-\[`if yes, slowly improving, or fluctuating`\]<br> In what month did your symptoms begin to improve? `  `<br> <small>i.e. how many months until you began to notice any improvement?</small>
-
----
-
-## Healthcare access, diagnostics and treatment
-
-Has your usual GP recognised your vaccine injury? **<sup style="color:#c11717;">\*</sup>**<br>
-○ `yes`<br> ○ `no`
-
-Has your injury been reported to the TGA? **<sup style="color:#c11717;">\*</sup>**<br>
-○ `yes (self-reported)`<br>
-○ `yes (reported by GP / specialist)`<br>
-○ `yes (reported by hospital)`<br>
-○ `no`<br>
-○ `unsure`
-
-\[`if reported to the TGA`\]<br> Has the TGA been in contact with you about your case?<br>
-○ `yes`<br> ○ `no`<br>
-<small>Only tick ‘yes’ if the TGA contacted you for further information and/or to arrange further medical investigations. If you were called back only to check the validity of your report, click ‘no’.</small>
-
-Have you been referred to any specialists? **<sup style="color:#c11717;">\*</sup>**<br>
-○ `yes`<br> ○ `no`
-
-\[`if referred to specialists`\]<br> What specialists have you been referred to?<br>
-□ `cardiologist`<br>
-□ `dermatologist`<br>
-□ `endocrinologist`<br>
-□ `gastrologist`<br>
-□ `gynecologist`<br>
-□ `haematologist`<br>
-□ `immunologist`<br>
-□ `neurologist`<br>
-□ `opthamologist`<br>
-□ `respiratory physician`<br>
-□ `rheumatologist`<br>
-□ `otolaryngologist`<br>
-□ `psychologist`<br>
-□ other `          `
-
-Have you received a formal diagnosis from a doctor?<br>
-○ `yes`<br> ○ `no`
-
-\[`if given formal diagnosis`\]<br>
-Please list official diagnosis given (separated by a comma)<br>
-`                         `
-
-How long after your reaction were you investigated and diagnosed?<br>
-* `0-1 day`
-* `2-30 days`
-* `1-3 months`
-* `4-6 months`
-* `7-12 months`
-* `more than 1 year`
-* `still waiting`
-
-Have you received a diagnosis that later proved to be incorrect?<br>
-○ `yes` &nbsp; ○ `no`
-
-Which test results, diagnosis or symptoms seem of particular significance or rare / unique (if any)<br>
-`                         `
-
-List any prescribed medications or treatments provided by your GP or specialist (separated by comma)<br>
-`                         `
-
-List any alternative health expertise or treatments you’ve tried (separated by a comma)<br>
-`                         `
-
-List any supplements you’ve been taking (separated by a comma)<br>
-`                         `
-
-From all of the above, which treatments and supplements have you found most helpful (list in order, separated by comma)<br>
-`                         `<br>
-<small>Order from most helpful to least helpful</small>
-
-From all of the above, which treatments and supplements have you found to be least helpful (list in order, separated by comma)<br>
-`                         `<br>
-<small>Order from most helpful to least helpful</small>
-
----
-
-## Injury impacts
-
-Were you able to undertake _any_ work (including domestic work) at the peak of your reaction? **<sup style="color:#c11717;">\*</sup>**
-* `yes`
-* `no`
-
-\[`if unable to undertake work`\]<br> As a percentage, at what capacity were you able to work?<br>
-0%─────────────────────────100%
-
-For how long were you unable to pursue your normal activities and workload?
-* `1-3 weeks`
-* `1-3 months`
-* `4-6 months`
-* `6-9 months`
-* `9-12 months`
-* `1-2 years`
-* `more than 2 years`
-* `ongoing`
-
-Have you been able to undertake _any_ work (including domestic work) during the past month? **<sup style="color:#c11717;">\*</sup>**
-* `yes`
-* `no`
-
-\[`if unable to undertake work`\]<br> As a percentage, at what capacity were you able to work?<br>
-0%─────────────────────────100%
-
-What do you most need assistance with?<br>
-□ `access to appropriate medical care / tests / treatment`<br>
-□ `mental health support`<br>
-□ `financial support due to loss of work`<br>
-□ `financial support due to medical expenses`<br>
-□ other `          `
-
----
-
-## Financial issues
-
-Have you been able to access financial assistance? **<sup style="color:#c11717;">\*</sup>**<br>
-□ `no`<br>
-□ `paid leave entitlements`<br>
-□ `workers’ compensation`<br>
-□ `income protection insurance`<br>
-□ `superannuation (early withdrawal)`<br>
-□ `jobseeker`<br>
-□ `new loan`<br>
-□ `extension of existing loan`<br>
-□ `friend or family`<br>
-□ `disability support pension`<br>
-□ `NDIS`<br>
-□ `COVID-19 vaccine claims scheme`<br>
-□ `not required`<br>
-□ other `          `<br>
-<small>Select all that apply</small>
 
 If you qualify for workers’ compensation, have you had issues with your claim? **<sup style="color:#c11717;">\*</sup>**<br>
 ○ `yes` &nbsp; ○ `no` &nbsp; ○ `N/A`
@@ -529,7 +1283,7 @@ If you qualify for workers’ compensation, have you had issues with your claim?
 
 ---
 
-# COVID-19 infection history
+## COVID-19 infection history
 
 Have you had COVID-19?<br>
 ○ `yes`<br> ○ `no`
@@ -585,3 +1339,9 @@ Is there anything else you’d like us to know?
 						 
 ```
 </pre>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
