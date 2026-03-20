@@ -23,9 +23,12 @@ function drawStates(id, states) {
 			}]
 		};
 		Object.keys(states).forEach(state => {
-			data.labels.push(state);
-			(data.datasets)[0].data.push(100.0 * states[state]);
+			if (state != 'N') {
+				data.labels.push(state);
+				(data.datasets)[0].data.push(states[state]);
+			}
 		});
+		window.alert(JSON.stringify(data));
 		new Chart(
 			container,
 			{
