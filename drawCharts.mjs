@@ -1,12 +1,14 @@
 
-import { Chart, ArcElement, PieController } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
+import { Chart, ArcElement, Legend, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
 import summaryData from './data.mjs';
 
 document.addEventListener("DOMContentLoaded", async () => {
-	Chart.register(
+	Chart.register([
 		ArcElement,
-		PieController
-	);
+		Legend,
+		PieController,
+		Tooltip
+	]);
 	drawStates('figure_states', summaryData.demographics.state);
 });
 
