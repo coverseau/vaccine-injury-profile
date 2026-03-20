@@ -1,19 +1,20 @@
 
-import { Chart, ArcElement, Colors, Legend, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
-import ChartDataLabels from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels/+esm';
-import chartjsPluginAutocolors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+esm';
+import { Chart, ArcElement, Legend, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
+import DataLabels from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels/+esm';
+import AutoColors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+esm';
 
 import summaryData from './data.mjs';
 
 document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
 		ArcElement,
-		ChartDataLabels,
-		chartjsPluginAutocolors,
+		AutoColors,
+		DataLabels,
 		Legend,
 		PieController,
 		Tooltip
 	]);
+	Chart.defaults.plugins.autocolors.enabled = true;
 	Chart.defaults.plugins.tooltip.enabled = true;
 	drawStates('figure_states', summaryData.demographics.state);
 });
@@ -42,9 +43,9 @@ function drawStates(id, states) {
 				options: {
 					plugins: {
 						datalabels: {
-							formatter: (value, context) => {
+							//formatter: (value, context) => {
 								//return (100.0 * value).toFixed(1) + '%';
-							}
+							//}
 						}
 					}
 				}
