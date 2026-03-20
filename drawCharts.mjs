@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	Chart.defaults.plugins.legend.display = false;
 	Chart.defaults.plugins.legend.labels.color = textColour;
 	Chart.defaults.plugins.tooltip.enabled = false;
-	Chart.defaults.plugins.datalabels.labels.value.color: textColour;
+	Chart.defaults.plugins.datalabels.labels.value.color = textColour;
 	drawStates('figure_states', summaryData.demographics.state);
 });
 
