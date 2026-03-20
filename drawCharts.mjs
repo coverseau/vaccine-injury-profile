@@ -1,13 +1,15 @@
 
 import { Chart, ArcElement, Colors, Legend, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
 import ChartDataLabels from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels/+esm';
+import chartjsPluginAutocolors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+esm';
+
 import summaryData from './data.mjs';
 
 document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
 		ArcElement,
 		ChartDataLabels,
-		Colors,
+		chartjsPluginAutocolors,
 		Legend,
 		PieController,
 		Tooltip
@@ -41,7 +43,7 @@ function drawStates(id, states) {
 					plugins: {
 						datalabels: {
 							formatter: (value, context) => {
-								return (100.0 * value).toFixed(1) + '%';
+								//return (100.0 * value).toFixed(1) + '%';
 							}
 						}
 					}
