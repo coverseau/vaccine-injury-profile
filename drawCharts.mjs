@@ -76,7 +76,7 @@ function drawStates(id, states) {
 						tooltip: {
 							enabled: true,
 							callbacks: {
-								title: () => { return 'WHAAA' + this.title; }
+								title: (context) => { return 'WHAAA ' + context.chart.data.labels[context.dataIndex]; }
 							}
 						}
 					}
