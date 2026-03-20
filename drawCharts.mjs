@@ -22,7 +22,7 @@ function drawStates(id, states) {
 		});
 		new Chart(
 			container,
-			{ type: 'pie', data: sate }
+			{ type: 'pie', data: data }
 		);
 	}
 }
