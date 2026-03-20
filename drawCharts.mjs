@@ -1,11 +1,13 @@
 
+import colourScheme from './colourScheme.mjs';
+import summaryData from './data.mjs';
+
 import { Chart, ArcElement, Legend, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
 import ChartDataLabels from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels/+esm';
 import AutoColors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+esm';
 
-import summaryData from './data.mjs';
-
 document.addEventListener("DOMContentLoaded", async () => {
+	colourScheme();
 	Chart.register([
 		ArcElement,
 		Legend,

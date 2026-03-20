@@ -1,5 +1,5 @@
 
-document.addEventListener("DOMContentLoaded", async () => {
+function colourScheme() {
 	const colourTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'auto');
 	
 	document.documentElement.setAttribute('data-bs-theme', colourTheme);
@@ -25,4 +25,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 		}
 		
 	}
-});
+}
+
+export default colourScheme;
