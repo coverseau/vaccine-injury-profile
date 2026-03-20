@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 function drawStates(id, states) {
-	const container = document.GetElementById(id);
+	const container = document.getElementById(id);
 	if (!!container) {
 		const data = {
 			labels: [ ],
