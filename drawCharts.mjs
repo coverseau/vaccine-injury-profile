@@ -10,10 +10,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 		ArcElement,
 		ChartDataLabels,
 		Legend,
-		PieController,
-		Tooltip
+		PieController
 	]);
-	Chart.defaults.plugins.tooltip.enabled = true;
+	//Chart.defaults.plugins.tooltip.enabled = true;
 	drawStates('figure_states', summaryData.demographics.state);
 });
 
