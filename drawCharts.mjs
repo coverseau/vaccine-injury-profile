@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	Chart.defaults.plugins.legend.labels.color = textColour;
 	Chart.defaults.plugins.tooltip.enabled = false;
 	
-	drawStates('figure_states', summaryData.demographics.state);
+	drawStates('draw_figure_states', summaryData.demographics.state);
 });
 
 function drawStates(id, states) {
