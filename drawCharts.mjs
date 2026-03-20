@@ -1,6 +1,6 @@
 
 import { Chart, ArcElement, Legend, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
-//import DataLabels from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels/+esm';
+import DataLabels from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels/+esm';
 import AutoColors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+esm';
 
 import summaryData from './data.mjs';
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
 		ArcElement,
 		AutoColors,
-		//DataLabels,
+		DataLabels,
 		Legend,
 		PieController,
 		Tooltip
