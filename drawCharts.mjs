@@ -77,8 +77,10 @@ function drawStates(id, states) {
 							enabled: true,
 							callbacks: {
 								title: (context) => {
-									console.log(context);
-									return 'WHAAA ' + context[0].label;
+									return null;
+								},
+								label: (context) => {
+									return context[0].label + ': ' + ( 100.0 * context[0].raw ).toFixed(1) + '%';
 								}
 							}
 						}
