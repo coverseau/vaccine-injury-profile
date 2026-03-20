@@ -73,7 +73,7 @@ function drawStates(id, states) {
 						},
 						datalabels: {
 							display: true,
-							formatter: (value, context) => { return (100.0 * value).toFixed(1) + '%'; }
+							formatter: (value) => ( (100.0 * value) + '%' )
 						}
 					}
 				}
