@@ -14,7 +14,7 @@ function drawStates(id, states) {
 			datasets: [{
 				label: 'State',
 				data: []
-			}];
+			}]
 		};
 		Object.keys(states).forEach(state => {
 			data.labels.push(state);
