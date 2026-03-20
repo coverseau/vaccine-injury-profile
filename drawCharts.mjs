@@ -77,7 +77,7 @@ function drawStates(id, states) {
 							enabled: true,
 							callbacks: {
 								title: (context) => {
-									window.alert(JSON.stringify(context));
+									console.log(context);
 									return 'WHAAA ' + context[0].label;
 								}
 							}
