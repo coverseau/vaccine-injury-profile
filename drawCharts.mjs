@@ -8,8 +8,6 @@ import summaryData from './data.mjs';
 document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
 		ArcElement,
-		AutoColors,
-		ChartDataLabels,
 		Legend,
 		PieController,
 		Tooltip
@@ -85,7 +83,8 @@ function drawStates(id, states) {
 							}
 						}
 					}
-				}
+				},
+				plugins: [ ChartDataLabels ]
 			}
 		);
 	}
