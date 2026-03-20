@@ -68,14 +68,13 @@ function drawStates(id, states) {
 				options: {
 					plugins: {
 						legend: {
-							display: true
+							display: true,
+							color: 'var(--bs-body-color)'
 						},
 						datalabels: {
-							anchor: 'end',
-							align: 'end',
 							labels: {
 								value: {
-									color: '#ffffff'
+									color: 'var(--bs-body-color)'
 								}
 							},
 							formatter: (value, context) => {
