@@ -1,5 +1,5 @@
 
-import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/+esm';
+import { Chart } from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/+esm';
 import summaryData from './data.mjs';
 
 document.addEventListener("DOMContentLoaded", async () => {
