@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 		PieController,
 		Tooltip
 	]);
-	Chart.defaults.plugins.autocolors.enabled = true;
-	Chart.defaults.plugins.tooltip.enabled = true;
+	Chart.defaults.plugins.AutoColors.enabled = true;
+	Chart.defaults.plugins.Tooltip.enabled = true;
 	drawStates('figure_states', summaryData.demographics.state);
 });
 
@@ -42,10 +42,10 @@ function drawStates(id, states) {
 				data: data,
 				options: {
 					plugins: {
-						datalabels: {
-							//formatter: (value, context) => {
-								//return (100.0 * value).toFixed(1) + '%';
-							//}
+						DataLabels: {
+							formatter: (value, context) => {
+								return (100.0 * value).toFixed(1) + '%';
+							}
 						}
 					}
 				}
