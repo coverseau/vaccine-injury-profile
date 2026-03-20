@@ -8,11 +8,11 @@ import summaryData from './data.mjs';
 document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
 		ArcElement,
-		ChartDataLabels,
 		Legend,
-		PieController
+		PieController,
+		Tooltip
 	]);
-	//Chart.defaults.plugins.tooltip.enabled = true;
+	Chart.defaults.plugins.tooltip.enabled = true;
 	drawStates('figure_states', summaryData.demographics.state);
 });
 
@@ -75,7 +75,8 @@ function drawStates(id, states) {
 							}
 						}
 					}
-				}
+				},
+				plugins: [ ChartDataLabels ]
 			}
 		);
 	}
