@@ -70,6 +70,13 @@ function drawStates(id, states) {
 							display: true
 						},
 						datalabels: {
+							anchor: 'end',
+							align: 'end',
+							labels: {
+								value: {
+									color: '#ffffff'
+								}
+							},
 							formatter: (value, context) => {
 								return ( 100.0 * Number(value) + '%' );
 							}
