@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	Chart.defaults.plugins.legend.display = false;
 	Chart.defaults.plugins.legend.labels.color = textColour;
 	Chart.defaults.plugins.tooltip.enabled = false;
+	Chart.defaults.plugins.datalabels.color = textColour;
 	
 	drawStates('figure_states', summaryData.demographics.state);
 });
@@ -78,11 +79,6 @@ function drawStates(id, states) {
 							//display: true
 						},
 						datalabels: {
-							labels: {
-								value: {
-									color: textColour
-								}
-							},
 							formatter: (value, context) => {
 								return context.chart.data.labels[context.dataIndex] + '\n' + ( (100.0 * value).toFixed(1) + '%' );
 							}
