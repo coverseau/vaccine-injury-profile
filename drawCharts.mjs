@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 		PieController,
 		Tooltip
 	]);
-	Chart.options.tooltops.enabled = true;
+	Chart.defaults.plugins.tooltip.enabled = true;
 	drawStates('figure_states', summaryData.demographics.state);
 });
 
@@ -40,7 +40,7 @@ function drawStates(id, states) {
 				options: {
 					plugins: {
 						datalabels: {
-							formatter: (value, ctx) => {
+							formatter: (value, context) => {
 								return (100.0 * value).toFixed(1) + '%';
 							}
 						}
