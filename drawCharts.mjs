@@ -1,6 +1,6 @@
 
 import { Chart, ArcElement, Legend, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
-import DataLabels from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels/+esm';
+//import DataLabels from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels/+esm';
 import AutoColors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+esm';
 
 import summaryData from './data.mjs';
@@ -9,13 +9,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
 		ArcElement,
 		AutoColors,
-		DataLabels,
+		//DataLabels,
 		Legend,
 		PieController,
 		Tooltip
 	]);
-	Chart.defaults.plugins.AutoColors.enabled = true;
-	Chart.defaults.plugins.Tooltip.enabled = true;
+	Chart.defaults.plugins.autocolors.enabled = true;
+	Chart.defaults.plugins.legend.display = true;
+	Chart.defaults.plugins.tooltip.enabled = true;
 	drawStates('figure_states', summaryData.demographics.state);
 });
 
@@ -42,11 +43,14 @@ function drawStates(id, states) {
 				data: data,
 				options: {
 					plugins: {
-						DataLabels: {
+						autocolors: {
+							mode: 'data'
+						}/*,
+						datalabels: {
 							formatter: (value, context) => {
 								return (100.0 * value).toFixed(1) + '%';
 							}
-						}
+						}*/
 					}
 				}
 			}
