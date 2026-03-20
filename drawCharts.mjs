@@ -80,7 +80,7 @@ function drawStates(id, states) {
 									return null;
 								},
 								label: (context) => {
-									return context[0].label + ': ' + ( 100.0 * context[0].raw ).toFixed(1) + '%';
+									return context.label + ': ' + ( 100.0 * context.raw ).toFixed(1) + '%';
 								}
 							}
 						}
