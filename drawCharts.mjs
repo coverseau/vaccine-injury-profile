@@ -10,7 +10,7 @@ function drawStates(id, states) {
 	const container = document.getElementById(id);
 	if (!!container) {
 		const data = {
-			labels: [ ],
+			labels: [],
 			datasets: [{
 				label: 'State',
 				data: []
@@ -18,7 +18,7 @@ function drawStates(id, states) {
 		};
 		Object.keys(states).forEach(state => {
 			data.labels.push(state);
-			data.datasets.data.push(100.0 * states[state]);
+			(data.datasets)[0].data.push(100.0 * states[state]);
 		});
 		new Chart(
 			container,
