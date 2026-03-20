@@ -79,7 +79,7 @@ function drawStates(id, states) {
 						},
 						datalabels: {
 							formatter: (value, context) => {
-								return context.chart.data.labels[context.dataIndex] + '\n' + ( context.(100.0 * Number(value)).toFixed(1) + '%' );
+								return context.chart.data.labels[context.dataIndex] + '\n' + ( (100.0 * value).toFixed(1) + '%' );
 							}
 						}
 					}
