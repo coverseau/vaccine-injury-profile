@@ -3,6 +3,10 @@ import { Chart, ArcElement, PieController } from 'https://cdn.jsdelivr.net/npm/c
 import summaryData from './data.mjs';
 
 document.addEventListener("DOMContentLoaded", async () => {
+	Chart.register(
+		ArcElement,
+		PieController
+	);
 	drawStates('figure_states', summaryData.demographics.state);
 });
 
