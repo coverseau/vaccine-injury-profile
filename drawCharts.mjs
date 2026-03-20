@@ -74,7 +74,10 @@ function drawStates(id, states) {
 							display: true
 						},
 						tooltip: {
-							enabled: true
+							enabled: true,
+							callbacks: {
+								title: () => { return 'WHAAA' + this.title; }
+							}
 						}
 					}
 				}
