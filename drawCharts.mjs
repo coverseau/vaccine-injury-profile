@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 		Tooltip
 	]);
 	Chart.defaults.plugins.legend.display = false;
+	Chart.defaults.plugins.legend.labels.color = 'var(--bs-body-color)';
 	Chart.defaults.plugins.tooltip.enabled = false;
 	drawStates('figure_states', summaryData.demographics.state);
 });
@@ -68,8 +69,7 @@ function drawStates(id, states) {
 				options: {
 					plugins: {
 						legend: {
-							display: true,
-							color: 'var(--bs-body-color)'
+							display: true
 						},
 						datalabels: {
 							labels: {
