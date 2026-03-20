@@ -1,10 +1,11 @@
 
-import { Chart, ArcElement, Legend, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
+import { Chart, ArcElement, Colors, Legend, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
 import summaryData from './data.mjs';
 
 document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
 		ArcElement,
+		Colors,
 		Legend,
 		PieController,
 		Tooltip
@@ -28,7 +29,6 @@ function drawStates(id, states) {
 				(data.datasets)[0].data.push(states[state]);
 			}
 		});
-		window.alert(JSON.stringify(data));
 		new Chart(
 			container,
 			{
