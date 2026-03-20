@@ -1,13 +1,11 @@
 
-import colourScheme from './colourScheme.mjs';
-import summaryData from './data.mjs';
-
 import { Chart, ArcElement, Legend, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
 import ChartDataLabels from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels/+esm';
 import AutoColors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+esm';
 
+import summaryData from './data.mjs';
+
 document.addEventListener("DOMContentLoaded", async () => {
-	colourScheme();
 	Chart.register([
 		ArcElement,
 		Legend,
@@ -15,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 		Tooltip
 	]);
 	Chart.defaults.plugins.legend.display = false;
-	Chart.defaults.plugins.legend.labels.color = 'var(--bs-body-color)';
+	Chart.defaults.plugins.legend.labels.color = window.getComputedStyle(document.body).getPropertyValue('--bs-body-color');
 	Chart.defaults.plugins.tooltip.enabled = false;
 	drawStates('figure_states', summaryData.demographics.state);
 });
@@ -76,7 +74,7 @@ function drawStates(id, states) {
 						datalabels: {
 							labels: {
 								value: {
-									color: 'var(--bs-body-color)'
+									color: '#ffffff'
 								}
 							},
 							formatter: (value, context) => {
