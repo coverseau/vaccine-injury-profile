@@ -1,27 +1,22 @@
+
 const summaryData = {
 	demographics: {
-		total: 594,
-		completed: 525,
+		N: 594,
+		required: 525,
 		sex: {
 			female: 386,
-			male: 208
-		},
-		age: {
-			average: 50,
-			median: 51,
-			min: 12,
-			max: 89,
-			stdDev: 14
+			male: 208,
 		},
 		state: {
-			ACT: 18,
-			NSW: 170,
-			NT: 7,
-			QLD: 121,
-			SA: 45,
-			TAS: 12,
-			VIC: 155,
-			WA: 66
+			N: 594,
+			ACT: 0.0303,
+			NSW: 0.286,
+			NT: 0.0118,
+			QLD: 0.204,
+			SA: 0.0758,
+			TAS: 0.0202,
+			VIC: 0.261,
+			WA: 0.111
 		},
 		research: 497
 	},
@@ -185,3 +180,4 @@ const summaryData = {
 	}
 }
 
+export default summaryData;

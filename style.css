@@ -9,14 +9,58 @@
 	--coverse-purple: #a017c1;
 	
 	--bs-primary: var(--coverse-ochre);
+	--bs-success: var(--coverse-green);
 	--bs-danger: var(--coverse-red);
+	--bs-warning: var(--coverse-yellow);
+	--bs-info: var(--coverse-light-blue);
+}
+
+html {
+	background-color: var(--coverse-ochre);
+}
+
+section {
+	padding-top: 1.5rem !important;
+}
+
+footer {
+	padding-top: 1.5rem !important;
+	font-size: smaller;
+}
+
+h2 {
+	text-decoration: underline;
 }
 
 a {
-	color: var(--bs-primary);
+	color: var(--coverse-ochre);
+}
+
+mark, .mark {
+	background-color: transparent;
 }
 
 sup.required {
 	font-weight: bolder;
-	color: var(--bs-danger);
+	color: var(--coverse-red);
+}
+
+.text-bg-primary {
+	background-color: var(--coverse-ochre) !important;
+}
+
+.btn-primary {
+	color: var(--bs-white);
+	background-color: var(--coverse-ochre);
+	border-color: var(--coverse-ochre);
+}
+
+.btn-primary:hover, .btn-primary:active {
+	background-color: var(--coverse-red) !important;
+	border-color: var(--coverse-red) !important;
+}
+
+.form-check-input:checked {
+	background-color: var(--coverse-ochre);
+	border-color: var(--coverse-ochre);
 }
