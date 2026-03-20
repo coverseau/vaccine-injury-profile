@@ -5,8 +5,9 @@ import AutoColors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+
 
 import summaryData from './data.mjs';
 
+const textColour = window.getComputedStyle(document.body).getPropertyValue('--bs-body-color');
+
 document.addEventListener("DOMContentLoaded", async () => {
-	const textColour = window.getComputedStyle(document.body).getPropertyValue('--bs-body-color');
 	Chart.register([
 		ArcElement,
 		BarController,
@@ -20,7 +21,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 	Chart.defaults.plugins.legend.display = false;
 	Chart.defaults.plugins.legend.labels.color = textColour;
 	Chart.defaults.plugins.tooltip.enabled = false;
-	Chart.defaults.plugins.datalabels.color = textColour;
 	
 	drawStates('figure_states', summaryData.demographics.state);
 });
@@ -79,6 +79,7 @@ function drawStates(id, states) {
 							//display: true
 						},
 						datalabels: {
+							color: textColour,
 							formatter: (value, context) => {
 								return context.chart.data.labels[context.dataIndex] + '\n' + ( (100.0 * value).toFixed(1) + '%' );
 							}
