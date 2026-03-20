@@ -72,7 +72,7 @@ function drawStates(id, states) {
 						},
 						datalabels: {
 							formatter: (value, context) => {
-								return ( 100.0 * context.chart.data.datasets[0].data[context.dataIndex] + '%' );
+								return ( 100.0 * Number(value) + '%' );
 							}
 						}
 					}
