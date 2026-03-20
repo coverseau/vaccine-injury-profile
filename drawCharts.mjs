@@ -1,5 +1,5 @@
 
-import { Chart } from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/+esm';
+import { Chart, PieController } from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/+esm';
 import summaryData from './data.mjs';
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -22,7 +22,10 @@ function drawStates(id, states) {
 		});
 		new Chart(
 			container,
-			{ type: 'pie', data: data }
+			{
+				type: 'pie',
+				data: data
+			}
 		);
 	}
 }
