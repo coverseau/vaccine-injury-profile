@@ -71,7 +71,7 @@ function drawStates(id, states) {
 		new Chart(
 			container,
 			{
-				type: 'bar',
+				type: 'pie',
 				data: data,
 				options: {
 					plugins: {
@@ -80,6 +80,7 @@ function drawStates(id, states) {
 						},
 						datalabels: {
 							color: textColour,
+							textAlign: 'center',
 							formatter: (value, context) => {
 								return context.chart.data.labels[context.dataIndex] + '\n' + ( (100.0 * value).toFixed(1) + '%' );
 							}
