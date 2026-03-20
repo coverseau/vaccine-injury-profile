@@ -69,12 +69,10 @@ function drawStates(id, states) {
 				options: {
 					plugins: {
 						legend: {
-							display: true;
+							display: true
 						},
 						datalabels: {
-							formatter: (value, context) => {
-								return (100.0 * value).toFixed(1) + '%';
-							}
+							formatter: (value, context) => { return (100.0 * value).toFixed(1) + '%'; }
 						}
 					}
 				}
