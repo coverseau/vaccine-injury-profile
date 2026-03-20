@@ -8,7 +8,6 @@ import summaryData from './data.mjs';
 document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
 		ArcElement,
-		AutoColors,
 		DataLabels,
 		Legend,
 		PieController,
@@ -35,7 +34,7 @@ function drawStates(id, states) {
 				(data.datasets)[0].data.push(states[state]);
 				switch (state) {
 					case 'ACT':
-						(data.datasets)[0].backgroundColor.push('#003dA5');
+						(data.datasets)[0].backgroundColor.push('#003da5');
 						break;
 					case 'NSW':
 						(data.datasets)[0].backgroundColor.push('#9bcbeb');
