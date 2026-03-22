@@ -42,6 +42,7 @@ function drawStates(figureID, tableID, states) {
 				rowState.appendChild(document.createTextNode(state));
 				row.appendChild(rowState);
 				const rowPercentage = document.createElement('td');
+				rowPercentage.className = 'text-end';
 				rowPercentage.appendChild(document.createTextNode(( 100.0 * states[state] ).toFixed(1) + '%'));
 				row.appendChild(rowPercentage);
 				tableContainer.appendChild(row);
