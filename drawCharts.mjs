@@ -40,10 +40,11 @@ function drawStates(figureID, tableID, states) {
 				const rowState = document.createElement('th');
 				rowState.setAttribute('scope', 'row');
 				rowState.appendChild(document.createTextNode(state));
-				const rowPercentage = document.createElement('td');
-				rowState.appendChild(document.createTextNode(( 100.0 * states[state] ).toFixed(1) + '%'));
 				row.appendChild(rowState);
+				const rowPercentage = document.createElement('td');
+				rowPercentage.appendChild(document.createTextNode(( 100.0 * states[state] ).toFixed(1) + '%'));
 				row.appendChild(rowPercentage);
+				tableContainer.appendChild(row);
 				switch (state) {
 					case 'ACT':
 						data.datasets[0].backgroundColor.push('#003da5');
