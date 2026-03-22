@@ -66,5 +66,5 @@ sup.required {
 }
 
 .minw-50 {
-	min: 50% !important;
+	min-width: 50% !important;
 }
