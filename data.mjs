@@ -17,8 +17,7 @@ const summaryData = {
 			TAS: 0.0202,
 			VIC: 0.261,
 			WA: 0.111
-		},
-		research: 497
+		}
 	},
 	doses: {
 		dose1: {
