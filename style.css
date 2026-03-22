@@ -64,3 +64,7 @@ sup.required {
 	background-color: var(--coverse-ochre);
 	border-color: var(--coverse-ochre);
 }
+
+.minw-50 {
+	min: 50% !important;
+}
