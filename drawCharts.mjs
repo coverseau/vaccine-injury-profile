@@ -17,12 +17,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 	Chart.defaults.plugins.legend.labels.color = textColour;
 	Chart.defaults.plugins.tooltip.enabled = false;
 	
-	drawStates('draw_figure_states', summaryData.demographics.state);
+	drawStates('draw_figure_states', 'draw_table_states', summaryData.demographics.state);
 });
 
-function drawStates(id, states) {
-	const container = document.getElementById(id);
-	if (!!container) {
+function drawStates(figureID, tableID, states) {
+	const figureContainer = document.getElementById(figureID);
+	const tableContainer = document.getElementById(tableID);
+	if (!!figureContainer && !!tableContainer) {
 		const data = {
 			labels: [],
 			datasets: [{
@@ -35,6 +36,14 @@ function drawStates(id, states) {
 			if (state != 'N') {
 				data.labels.push(state);
 				data.datasets[0].data.push(states[state]);
+				const row = document.createElement('tr');
+				const rowState = document.createElement('th');
+				rowState.setAttribute('scope', 'row');
+				rowState.appendChild(document.createTextNode(state));
+				const rowPercentage = document.createElement('td');
+				rowState.appendChild(document.createTextNode(( 100.0 * states[state] ).toFixed(1) + '%'));
+				row.appendChild(rowState);
+				row.appendChild(rowPercentage);
 				switch (state) {
 					case 'ACT':
 						data.datasets[0].backgroundColor.push('#003da5');
@@ -64,7 +73,7 @@ function drawStates(id, states) {
 			}
 		});
 		new Chart(
-			container,
+			figureContainer,
 			{
 				type: 'pie',
 				data: data,
