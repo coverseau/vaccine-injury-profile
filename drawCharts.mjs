@@ -6,8 +6,8 @@ import summaryData from './data.mjs';
 
 const textColour = window.getComputedStyle(document.body).getPropertyValue('--bs-body-color');
 const backgroundColour = 'rgba(' + window.getComputedStyle(document.body).getPropertyValue('--bs-body-bg-rgb') + ', 0.1)';
-window.alert('rgba(' + window.getComputedStyle(document.body).getPropertyValue('--bs-body-bg-rgb') + ', 0.1)');
 const coverseColour = window.getComputedStyle(document.body).getPropertyValue('--coverse-ochre');
+
 
 document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
@@ -20,9 +20,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 		PieController,
 		Tooltip
 	]);
-	Chart.defaults.color = textColour;
-	Chart.defaults.backgroundColor = backgroundColour;
-	Chart.defaults.borderColor = backgroundColour;
+	
+	window.alert('bg: ' + Chart.defaults.backgroundColor);
+	window.alert('bd: ' + Chart.defaults.borderColor);
+	window.alert('c: ' + Chart.defaults.color);
+	//Chart.defaults.color = textColour;
+	//Chart.defaults.backgroundColor = backgroundColour;
+	//Chart.defaults.borderColor = backgroundColour;
 	Chart.defaults.plugins.legend.display = false;
 	//Chart.defaults.plugins.legend.labels.color = textColour;
 	Chart.defaults.plugins.tooltip.enabled = false;
