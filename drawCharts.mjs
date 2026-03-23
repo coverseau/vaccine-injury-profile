@@ -33,6 +33,7 @@ function drawAges(figureID, ages) {
 			labels: [],
 			datasets: [{
 				label: 'Age',
+				yAxisID: 'percentage',
 				data: [],
 				backgroundColor: coverseColour
 			}]
@@ -55,6 +56,7 @@ function drawAges(figureID, ages) {
 							axis: 'y',
 							beginAtZero: true,
 							ticks: {
+								stepSize: 10,
 								callback: function(value, index, ticks) {
 										return value + '%';
 								}
