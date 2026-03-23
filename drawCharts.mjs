@@ -52,6 +52,7 @@ function drawAges(figureID, ages) {
 					scales: {
 						percentage: {
 							type: 'linear',
+							axis: 'y',
 							beginAtZero: true,
 							ticks: {
 								callback: function(value, index, ticks) {
