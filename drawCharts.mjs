@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 	drawStates('draw_figure_states', 'draw_table_states', summaryData.demographics.state);
 });
 
-function drawAges(agesId, ages) {
-	const agesContainer = document.getElementById(figureID);
-	if (!!agesContainer) {
+function drawAges(figureID, ages) {
+	const figureContainer = document.getElementById(figureID);
+	if (!!figureContainer) {
 		const data = {
 			labels: [],
 			datasets: [{
@@ -38,7 +38,7 @@ function drawAges(agesId, ages) {
 			}
 		});
 		new Chart(
-			agesContainer,
+			figureContainer,
 			{
 				type: 'bar',
 				data: data
