@@ -6,6 +6,7 @@ import summaryData from './data.mjs';
 
 const textColour = window.getComputedStyle(document.body).getPropertyValue('--bs-body-color');
 const backgroundColour = 'rgba(' + window.getComputedStyle(document.body).getPropertyValue('--bs-body-bg-rgb') + ', 0.1)';
+window.alert('rgba(' + window.getComputedStyle(document.body).getPropertyValue('--bs-body-bg-rgb') + ', 0.1)');
 const coverseColour = window.getComputedStyle(document.body).getPropertyValue('--coverse-ochre');
 
 document.addEventListener("DOMContentLoaded", async () => {
