@@ -5,6 +5,7 @@ import AutoColors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+
 import summaryData from './data.mjs';
 
 const textColour = window.getComputedStyle(document.body).getPropertyValue('--bs-body-color');
+const coverseColour = window.getComputedStyle(document.body).getPropertyValue('--coverse-ochre');
 
 document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
@@ -32,7 +33,8 @@ function drawAges(figureID, ages) {
 			labels: [],
 			datasets: [{
 				label: 'Age',
-				data: []
+				data: [],
+				backgroundColor: coverseColour
 			}]
 		};
 		Object.keys(ages).forEach(age => {
@@ -45,7 +47,20 @@ function drawAges(figureID, ages) {
 			figureContainer,
 			{
 				type: 'bar',
-				data: data
+				data: data,
+				options: {
+					scales: {
+						percentage: {
+							type: 'linear',
+							beginAtZero: true,
+							ticks: {
+								callback: function(value, index, ticks) {
+										return value + '%';
+								}
+							}
+						}
+					}
+				}
 			}
 		);
 	}
