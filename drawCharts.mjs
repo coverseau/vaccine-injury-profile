@@ -5,7 +5,7 @@ import AutoColors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+
 import summaryData from './data.mjs';
 
 const textColour = window.getComputedStyle(document.body).getPropertyValue('--bs-body-color');
-const backgroundColour = 'rgba(' + window.getComputedStyle(document.body).getPropertyValue('--bs-body-bg-rgb') + ', 0.1)';
+const elementColour = 'rgba(' + window.getComputedStyle(document.body).getPropertyValue('--bs-body-color-rgb') + ',0.1)';
 const coverseColour = window.getComputedStyle(document.body).getPropertyValue('--coverse-ochre');
 
 
@@ -20,15 +20,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 		PieController,
 		Tooltip
 	]);
-	
-	window.alert('bg: ' + Chart.defaults.backgroundColor);
-	window.alert('bd: ' + Chart.defaults.borderColor);
-	window.alert('c: ' + Chart.defaults.color);
-	//Chart.defaults.color = textColour;
-	//Chart.defaults.backgroundColor = backgroundColour;
-	//Chart.defaults.borderColor = backgroundColour;
+	Chart.defaults.color = textColour;
+	Chart.defaults.backgroundColor = elementColour;
+	Chart.defaults.borderColor = elementColour;
 	Chart.defaults.plugins.legend.display = false;
-	//Chart.defaults.plugins.legend.labels.color = textColour;
 	Chart.defaults.plugins.tooltip.enabled = false;
 	
 	drawAges('draw_figure_ages', summaryData.demographics.age);
