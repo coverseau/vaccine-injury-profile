@@ -17,8 +17,35 @@ document.addEventListener("DOMContentLoaded", async () => {
 	Chart.defaults.plugins.legend.labels.color = textColour;
 	Chart.defaults.plugins.tooltip.enabled = false;
 	
+	drawAges('draw_figure_ages', summaryData.demographics.age);
 	drawStates('draw_figure_states', 'draw_table_states', summaryData.demographics.state);
 });
+
+function drawAges(agesId, ages) {
+	const agesContainer = document.getElementById(figureID);
+	if (!!agesContainer) {
+		const data = {
+			labels: [],
+			datasets: [{
+				label: 'Age',
+				data: []
+			}]
+		};
+		Object.keys(ages).forEach(age => {
+			if (age != 'N') {
+				data.labels.push(age);
+				data.datasets[0].data.push(ages[age]);
+			}
+		});
+		new Chart(
+			agesContainer,
+			{
+				type: 'bar',
+				data: data
+			}
+		);
+	}
+}
 
 function drawStates(figureID, tableID, states) {
 	const figureContainer = document.getElementById(figureID);
@@ -43,7 +70,7 @@ function drawStates(figureID, tableID, states) {
 				row.appendChild(rowState);
 				const rowPercentage = document.createElement('td');
 				rowPercentage.className = 'text-end';
-				rowPercentage.appendChild(document.createTextNode(( 100.0 * states[state] ).toFixed(1) + '%'));
+				rowPercentage.appendChild(document.createTextNode(states[state] + '%'));
 				row.appendChild(rowPercentage);
 				tableContainer.appendChild(row);
 				switch (state) {
@@ -91,7 +118,7 @@ function drawStates(figureID, tableID, states) {
 									return null;
 								},
 								label: (context) => {
-									return context.label + ': ' + ( 100.0 * context.raw ).toFixed(1) + '%';
+									return context.label + ': ' + context.raw + '%';
 								}
 							}
 						}
