@@ -45,6 +45,11 @@ sup.required {
 	color: var(--coverse-red);
 }
 
+figure {
+	margin-left: 1.5rem;
+	right: 1.5rem;
+}
+
 .text-bg-primary {
 	background-color: var(--coverse-ochre) !important;
 }
