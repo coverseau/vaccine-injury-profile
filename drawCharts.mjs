@@ -5,7 +5,7 @@ import AutoColors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+
 import summaryData from './data.mjs';
 
 const textColour = window.getComputedStyle(document.body).getPropertyValue('--bs-body-color');
-const backgroundColour = window.getComputedStyle(document.body).getPropertyValue('--bs-body-bg');
+const backgroundColour = 'rgba(' + window.getComputedStyle(document.body).getPropertyValue('--bs-body-bg-rgb') + ', 0.1)';
 const coverseColour = window.getComputedStyle(document.body).getPropertyValue('--coverse-ochre');
 
 document.addEventListener("DOMContentLoaded", async () => {
