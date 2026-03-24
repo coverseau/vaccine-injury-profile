@@ -346,7 +346,7 @@ function drawDates(figureID, doses) {
 							enabled: true,
 							callbacks: {
 								label: (context) => {
-									return context.label + '%';
+									return context.dataset.label + ': ' + context.raw + '%';
 								}
 							}
 						}
