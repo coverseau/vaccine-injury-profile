@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	Chart.defaults.color = textColour;
 	Chart.defaults.backgroundColor = elementColour;
 	Chart.defaults.borderColor = elementColour;
-	Chart.defaults.plugins.colors.enabled = false;
+	Chart.defaults.plugins.color.enabled = false;
 	Chart.defaults.plugins.legend.display = false;
 	Chart.defaults.plugins.tooltip.enabled = false;
 	
