@@ -344,13 +344,10 @@ function drawDates(figureID, doses) {
 						},
 						tooltip: {
 							enabled: true,
-							callbacks: {/*
-								title: (context) => {
-									return context.label;
-								},
+							callbacks: {
 								label: (context) => {
-									return context.dataset.label + ': ' + context.raw + '%';
-								}*/
+									return context.label + '%';
+								}
 							}
 						}
 					},
@@ -358,6 +355,7 @@ function drawDates(figureID, doses) {
 						x: {
 							stacked: true,
 							ticks: {
+								minRotation: 90,
 								maxRotation: 90
 							}
 						},
