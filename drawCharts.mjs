@@ -355,10 +355,14 @@ function drawDates(figureID, doses) {
 						}
 					},
 					scales: {
+						x: {
+							stacked: true
+						},
 						percentage: {
 							type: 'linear',
 							axis: 'y',
 							beginAtZero: true,
+							stacked: true,
 							ticks: {
 								maxRotation: 90,
 								stepSize: 10,
