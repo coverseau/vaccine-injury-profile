@@ -165,10 +165,10 @@ function drawBrands(figureID, doses) {
 	const figureContainer = document.getElementById(figureID);
 	if (!!figureContainer) {
 		const brands = [];
-		const doses = [];
+		const doseNs = [];
 		Object.keys(doses).forEach(dose => {
 			if (dose != 'N') {
-				doses.push(Number(dose.slice(4)));
+				doseNs.push(Number(dose.slice(4)));
 				Object.keys(doses[dose].product).forEach(brand => {
 					if (brand != 'N' && !brands.includes(brand)) {
 						brands.push(brand);
@@ -176,11 +176,13 @@ function drawBrands(figureID, doses) {
 				});
 			}
 		});
+		console.log(brands);
+		console.log(doses);
 		const data = {
 			labels: [],
 			datasets: []
 		};
-		doses.forEach(dose => {
+		doseNs.forEach(dose => {
 			let postfix = 'th';
 			switch (dose) {
 				case 1:
@@ -201,7 +203,7 @@ function drawBrands(figureID, doses) {
 				yAxisID: 'percentage',
 				data: []
 			};
-			doses.forEach(dose => {
+			doseNs.forEach(dose => {
 				dataset.data.push(doses['dose' + dose].product[brand]);
 			});
 			data.datasets.push(dataset);
