@@ -12,6 +12,7 @@ const coverseColour = window.getComputedStyle(document.body).getPropertyValue('-
 document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
 		ArcElement,
+		AutoColors,
 		BarController,
 		BarElement,
 		CategoryScale,
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	Chart.defaults.color = textColour;
 	Chart.defaults.backgroundColor = elementColour;
 	Chart.defaults.borderColor = elementColour;
+	Chart.defaults.plugins.colors.enabled = false;
 	Chart.defaults.plugins.legend.display = false;
 	Chart.defaults.plugins.tooltip.enabled = false;
 	
@@ -190,16 +192,16 @@ function drawBrands(figureID, doses) {
 			datasets: []
 		};
 		doseNs.forEach(dose => {
-			let postfix = '<sup>th</sup>';
+			let postfix = 'th';
 			switch (dose) {
 				case 1:
-					postfix = '<sup>st</sup>';
+					postfix = 'st';
 					break;
 				case 2:
-					postfix = '<sup>nd</sup>';
+					postfix = 'nd';
 					break;
 				case 3:
-					postfix = '<sup>rd</sup>';
+					postfix = 'rd';
 					break;
 				case 5:
 					postfix += '+';
@@ -289,7 +291,23 @@ function drawDates(figureID, doses) {
 			if (dose != 'N') {
 				Object.keys(doses[dose].date).forEach(d => {
 					if (d != 'N' && !dates.includes(d)) {
-						dates.push(d);
+						const dN = Number(dose.slice(4));
+						let postfix = 'th';
+						switch (dN) {
+							case 1:
+								postfix = 'st';
+								break;
+							case 2:
+								postfix = 'nd';
+								break;
+							case 3:
+								postfix = 'rd';
+								break;
+							case 5:
+								postfix += '+';
+								break;
+						}
+						dates.push(dN + postfix + ' dose');
 					}
 				});
 			}
@@ -299,23 +317,24 @@ function drawDates(figureID, doses) {
 			datasets: []
 		};
 		Object.keys(doses).forEach(dose => {
-			let postfix = '<sup>th</sup>';
-			switch (dose) {
+			const dN = Number(dose.slice(4));
+			let postfix = 'th';
+			switch (dN) {
 				case 1:
-					postfix = '<sup>st</sup>';
+					postfix = 'st';
 					break;
 				case 2:
-					postfix = '<sup>nd</sup>';
+					postfix = 'nd';
 					break;
 				case 3:
-					postfix = '<sup>rd</sup>';
+					postfix = 'rd';
 					break;
 				case 5:
 					postfix += '+';
 					break;
 			}
 			const dataset = {
-				label: dose + postfix + ' dose',
+				label: dN + postfix + ' dose',
 				yAxisID: 'percentage',
 				data: []
 			};
@@ -334,6 +353,9 @@ function drawDates(figureID, doses) {
 				data: data,
 				options: {
 					plugins: {
+						color: {
+							enabled: true
+						},
 						legend: {
 							display: true
 						},
@@ -355,6 +377,7 @@ function drawDates(figureID, doses) {
 							axis: 'y',
 							beginAtZero: true,
 							ticks: {
+								maxRotation: 90,
 								stepSize: 10,
 								callback: function(value, index, ticks) {
 										return value + '%';
