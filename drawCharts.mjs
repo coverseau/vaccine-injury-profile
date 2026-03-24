@@ -329,6 +329,8 @@ function drawDates(figureID, doses) {
 			data.datasets.push(dataset);
 		});
 		
+		console.log(data);
+		
 		new Chart(
 			figureContainer,
 			{
