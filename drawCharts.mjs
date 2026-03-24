@@ -55,7 +55,7 @@ function drawAges(figureID, ages) {
 				type: 'bar',
 				data: data,
 				options: {
-					plugins: {,
+					plugins: {
 						tooltip: {
 							enabled: true,
 							callbacks: {
