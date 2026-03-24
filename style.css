@@ -73,3 +73,7 @@ figure {
 .minw-50 {
 	min-width: 50% !important;
 }
+
+.minw-75 {
+	min-width: 75% !important;
+}

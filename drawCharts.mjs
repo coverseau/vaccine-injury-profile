@@ -1,7 +1,6 @@
 
 import { Chart, ArcElement, BarController, BarElement, CategoryScale, Legend, LinearScale, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
 import AutoColors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+esm';
-import chartjsPluginZoom from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom/+esm';
 
 import summaryData from './data.mjs';
 
@@ -19,8 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 		Legend,
 		LinearScale,
 		PieController,
-		Tooltip,
-		chartjsPluginZoom
+		Tooltip
 	]);
 	Chart.defaults.color = textColour;
 	Chart.defaults.backgroundColor = elementColour;
@@ -257,17 +255,6 @@ function drawBrands(figureID, doses) {
 								label: (context) => {
 									return context.dataset.label + ': ' + context.raw + '%';
 								}
-							}
-						},
-						zoom: {
-							zoom: {
-								wheel: {
-									enabled: true,
-								},
-								pinch: {
-									enabled: true
-								},
-								mode: 'xy'
 							}
 						}
 					},
