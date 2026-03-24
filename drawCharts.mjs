@@ -290,7 +290,7 @@ function drawDates(figureID, doses) {
 			if (dose != 'N') {
 				Object.keys(doses[dose].date).forEach(d => {
 					if (d != 'N' && !dates.includes(d)) {
-						dates.push(doses[dose].date[d]);
+						dates.push(d);
 					}
 				});
 			}
@@ -328,8 +328,6 @@ function drawDates(figureID, doses) {
 			});
 			data.datasets.push(dataset);
 		});
-		
-		console.log(data);
 		
 		new Chart(
 			figureContainer,
