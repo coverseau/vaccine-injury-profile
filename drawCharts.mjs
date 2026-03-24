@@ -386,7 +386,7 @@ function drawOnset(figureID, doses) {
 		Object.keys(doses).forEach(dose => {
 			if (dose != 'N') {
 				Object.keys(doses[dose].onset).forEach(time => {
-					if (d != 'N' && !times.includes(time)) {
+					if (time != 'N' && !times.includes(time)) {
 						times.push(time);
 					}
 				});
@@ -419,7 +419,7 @@ function drawOnset(figureID, doses) {
 				data: []
 			};
 			Object.keys(doses[dose].onset).forEach(time => {
-				if (d != 'N') {
+				if (time != 'N') {
 					dataset.data.push(doses[dose].onset[time]);
 				}
 			});
