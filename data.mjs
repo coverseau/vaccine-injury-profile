@@ -60,7 +60,7 @@ const summaryData = {
 				'April-June 2024': 0.0,
 				'July-September 2024': 0.0,
 				'October-December 2024': 0.168
-			}
+			},
 			onset: {
 				N: 354,
 				"0-5 minutes": 3.70,
@@ -104,7 +104,7 @@ const summaryData = {
 				'April-June 2024': 0.0,
 				'July-September 2024': 0.0,
 				'October-December 2024': 0.168
-			}
+			},
 			onset: {
 				N: 331,
 				"0-5 minutes": 2.02,
@@ -148,7 +148,7 @@ const summaryData = {
 				'April-June 2024': 0.0,
 				'July-September 2024': 0.0,
 				'October-December 2024': 0.168
-			}
+			},
 			onset: {
 				N: 156,
 				"0-5 minutes": 1.52,
@@ -192,7 +192,7 @@ const summaryData = {
 				'April-June 2024': 0.0,
 				'July-September 2024': 0.0,
 				'October-December 2024': 0.0
-			}
+			},
 			onset: {
 				N: 35,
 				"0-5 minutes": 0.0,
@@ -236,7 +236,7 @@ const summaryData = {
 				'April-June 2024': 0.2,
 				'July-September 2024': 0.0,
 				'October-December 2024': 0.0
-			}
+			},
 			onset: {
 				N: 4,
 				"0-5 minutes": 0.0,
