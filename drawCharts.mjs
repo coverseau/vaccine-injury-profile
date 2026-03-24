@@ -1,5 +1,5 @@
 
-import { Chart, ArcElement, BarController, BarElement, CategoryScale, Legend, LinearScale, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
+import { Chart, ArcElement, BarController, BarElement, CategoryScale, Colors, Legend, LinearScale, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
 import AutoColors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+esm';
 
 import summaryData from './data.mjs';
@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 		BarController,
 		BarElement,
 		CategoryScale,
+		Colors,
 		Legend,
 		LinearScale,
 		PieController,
@@ -24,6 +25,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 	Chart.defaults.color = textColour;
 	Chart.defaults.backgroundColor = elementColour;
 	Chart.defaults.borderColor = elementColour;
+	Chart.defaults.plugins.colors.enabled = false;
+	Chart.defaults.plugins.autocolors.enabled = false;
 	Chart.defaults.plugins.legend.display = false;
 	Chart.defaults.plugins.tooltip.enabled = false;
 	
