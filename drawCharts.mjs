@@ -252,8 +252,8 @@ function drawBrands(figureID, doses) {
 						}
 					},
 					scales: {
-						x {
-							stacked: true,
+						x: {
+							stacked: true
 						},
 						percentage: {
 							type: 'linear',
