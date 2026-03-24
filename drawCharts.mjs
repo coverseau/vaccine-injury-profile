@@ -364,6 +364,7 @@ function drawDates(figureID, doses) {
 							beginAtZero: true,
 							stacked: true,
 							ticks: {
+								minRotation: 90,
 								maxRotation: 90,
 								stepSize: 10,
 								callback: function(value, index, ticks) {
