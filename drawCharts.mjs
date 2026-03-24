@@ -1,5 +1,5 @@
 
-import { Chart, ArcElement, BarController, BarElement, CategoryScale, Colors, Legend, LinearScale, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
+import { Chart, ArcElement, BarController, BarElement, CategoryScale, Legend, LinearScale, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
 import AutoColors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+esm';
 
 import summaryData from './data.mjs';
@@ -8,7 +8,6 @@ const textColour = window.getComputedStyle(document.body).getPropertyValue('--bs
 const elementColour = 'rgba(' + window.getComputedStyle(document.body).getPropertyValue('--bs-body-color-rgb') + ',0.1)';
 const coverseColour = window.getComputedStyle(document.body).getPropertyValue('--coverse-ochre');
 
-
 document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
 		ArcElement,
@@ -16,7 +15,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 		BarController,
 		BarElement,
 		CategoryScale,
-		Colors,
 		Legend,
 		LinearScale,
 		PieController,
@@ -25,7 +23,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 	Chart.defaults.color = textColour;
 	Chart.defaults.backgroundColor = elementColour;
 	Chart.defaults.borderColor = elementColour;
-	Chart.defaults.plugins.colors.enabled = false;
 	Chart.defaults.plugins.autocolors.enabled = false;
 	Chart.defaults.plugins.legend.display = false;
 	Chart.defaults.plugins.tooltip.enabled = false;
@@ -34,6 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	drawStates('draw_figure_states', 'draw_table_states', summaryData.demographics.state);
 	drawBrands('draw_figure_brands', summaryData.doses);
 	drawDates('draw_figure_dates', summaryData.doses);
+	drawOnset('draw_figure_onset', summaryData.doses);
 });
 
 function drawAges(figureID, ages) {
@@ -339,7 +337,103 @@ function drawDates(figureID, doses) {
 				data: data,
 				options: {
 					plugins: {
-						colors: {
+						autocolors: {
+							enabled: true
+						},
+						legend: {
+							display: true
+						},
+						tooltip: {
+							enabled: true,
+							callbacks: {
+								label: (context) => {
+									return context.dataset.label + ': ' + context.raw + '%';
+								}
+							}
+						}
+					},
+					scales: {
+						x: {
+							stacked: true,
+							ticks: {
+								minRotation: 90,
+								maxRotation: 90
+							}
+						},
+						percentage: {
+							type: 'linear',
+							axis: 'y',
+							beginAtZero: true,
+							stacked: true,
+							ticks: {
+								stepSize: 10,
+								callback: function(value, index, ticks) {
+										return value + '%';
+								}
+							}
+						}
+					}
+				}
+			}
+		);
+	}
+}
+
+function drawOnset(figureID, doses) {
+	const figureContainer = document.getElementById(figureID);
+	if (!!figureContainer) {
+		const times = [];
+		Object.keys(doses).forEach(dose => {
+			if (dose != 'N') {
+				Object.keys(doses[dose].onset).forEach(time => {
+					if (d != 'N' && !times.includes(time)) {
+						times.push(time);
+					}
+				});
+			}
+		});
+		const data = {
+			labels: times,
+			datasets: []
+		};
+		Object.keys(doses).forEach(dose => {
+			const dN = Number(dose.slice(4));
+			let postfix = 'th';
+			switch (dN) {
+				case 1:
+					postfix = 'st';
+					break;
+				case 2:
+					postfix = 'nd';
+					break;
+				case 3:
+					postfix = 'rd';
+					break;
+				case 5:
+					postfix += '+';
+					break;
+			}
+			const dataset = {
+				label: dN + postfix + ' dose',
+				yAxisID: 'percentage',
+				data: []
+			};
+			Object.keys(doses[dose].onset).forEach(time => {
+				if (d != 'N') {
+					dataset.data.push(doses[dose].onset[time]);
+				}
+			});
+			data.datasets.push(dataset);
+		});
+		
+		new Chart(
+			figureContainer,
+			{
+				type: 'bar',
+				data: data,
+				options: {
+					plugins: {
+						autocolors: {
 							enabled: true
 						},
 						legend: {
