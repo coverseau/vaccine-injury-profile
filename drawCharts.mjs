@@ -220,7 +220,7 @@ function drawBrands(figureID, doses) {
 					dataset.backgroundColor = '#e51937';
 					break;
 				case 'AstraZeneca':
-					dataset.backgroundColor = '#8a0051';
+					dataset.backgroundColor = '#efab00';
 					break;
 				case 'Novavax':
 					dataset.backgroundColor = '#172959';
@@ -239,14 +239,17 @@ function drawBrands(figureID, doses) {
 				data: data,
 				options: {
 					plugins: {
+						legend: {
+							display: true
+						},
 						tooltip: {
 							enabled: true,
 							callbacks: {
 								title: (context) => {
-									return null;
+									//return context.label;
 								},
 								label: (context) => {
-									return context.label + ': ' + context.raw + '%';
+									//return context.dataset.label + ': ' + context.raw + '%';
 								}
 							}
 						}
