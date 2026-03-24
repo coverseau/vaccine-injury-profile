@@ -290,23 +290,7 @@ function drawDates(figureID, doses) {
 			if (dose != 'N') {
 				Object.keys(doses[dose].date).forEach(d => {
 					if (d != 'N' && !dates.includes(d)) {
-						const dN = Number(dose.slice(4));
-						let postfix = 'th';
-						switch (dN) {
-							case 1:
-								postfix = 'st';
-								break;
-							case 2:
-								postfix = 'nd';
-								break;
-							case 3:
-								postfix = 'rd';
-								break;
-							case 5:
-								postfix += '+';
-								break;
-						}
-						dates.push(dN + postfix + ' dose');
+						dates.push(doses[dose].date[d]);
 					}
 				});
 			}
@@ -360,13 +344,13 @@ function drawDates(figureID, doses) {
 						},
 						tooltip: {
 							enabled: true,
-							callbacks: {
+							callbacks: {/*
 								title: (context) => {
 									return context.label;
 								},
 								label: (context) => {
 									return context.dataset.label + ': ' + context.raw + '%';
-								}
+								}*/
 							}
 						}
 					},
