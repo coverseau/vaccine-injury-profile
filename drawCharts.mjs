@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	drawAges('draw_figure_ages', summaryData.demographics.age);
 	drawStates('draw_figure_states', 'draw_table_states', summaryData.demographics.state);
 	drawBrands('draw_figure_brands', summaryData.doses);
+	drawDates('draw_figure_dates', summaryData.doses);
 });
 
 function drawAges(figureID, ages) {
@@ -189,16 +190,16 @@ function drawBrands(figureID, doses) {
 			datasets: []
 		};
 		doseNs.forEach(dose => {
-			let postfix = 'th';
+			let postfix = '<sup>th</sup>';
 			switch (dose) {
 				case 1:
-					postfix = 'st';
+					postfix = '<sup>st</sup>';
 					break;
 				case 2:
-					postfix = 'nd';
+					postfix = '<sup>nd</sup>';
 					break;
 				case 3:
-					postfix = 'rd';
+					postfix = '<sup>rd</sup>';
 					break;
 				case 5:
 					postfix += '+';
@@ -228,7 +229,6 @@ function drawBrands(figureID, doses) {
 				case 'other':
 					dataset.backgroundColor = '#c9cbcf';
 					break;
-					
 			}
 			doseNs.forEach(dose => {
 				dataset.data.push(doses['dose' + dose].product[brand]);
@@ -266,6 +266,93 @@ function drawBrands(figureID, doses) {
 							type: 'linear',
 							axis: 'y',
 							stacked: true,
+							beginAtZero: true,
+							ticks: {
+								stepSize: 10,
+								callback: function(value, index, ticks) {
+										return value + '%';
+								}
+							}
+						}
+					}
+				}
+			}
+		);
+	}
+}
+
+function drawDates(figureID, doses) {
+	const figureContainer = document.getElementById(figureID);
+	if (!!figureContainer) {
+		const dates = [];
+		Object.keys(doses).forEach(dose => {
+			if (dose != 'N') {
+				Object.keys(doses[dose].date).forEach(d => {
+					if (d != 'N' && !dates.includes(d)) {
+						dates.push(d);
+					}
+				});
+			}
+		});
+		const data = {
+			labels: dates,
+			datasets: []
+		};
+		Object.keys(doses).forEach(dose => {
+			let postfix = '<sup>th</sup>';
+			switch (dose) {
+				case 1:
+					postfix = '<sup>st</sup>';
+					break;
+				case 2:
+					postfix = '<sup>nd</sup>';
+					break;
+				case 3:
+					postfix = '<sup>rd</sup>';
+					break;
+				case 5:
+					postfix += '+';
+					break;
+			}
+			const dataset = {
+				label: dose + postfix + ' dose',
+				yAxisID: 'percentage',
+				data: []
+			};
+			Object.keys(doses[dose].date).forEach(d => {
+				if (d != 'N') {
+					dataset.data.push(doses[dose].date[d]);
+				}
+			});
+			data.datasets.push(dataset);
+		});
+		
+		new Chart(
+			figureContainer,
+			{
+				type: 'bar',
+				data: data,
+				options: {
+					plugins: {
+						legend: {
+							display: true
+						},
+						tooltip: {
+							enabled: true,
+							callbacks: {
+								title: (context) => {
+									return context.label;
+								},
+								label: (context) => {
+									return context.dataset.label + ': ' + context.raw + '%';
+								}
+							}
+						}
+					},
+					scales: {
+						percentage: {
+							type: 'linear',
+							axis: 'y',
 							beginAtZero: true,
 							ticks: {
 								stepSize: 10,

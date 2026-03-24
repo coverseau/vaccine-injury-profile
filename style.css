@@ -74,6 +74,10 @@ figure {
 	min-width: 50% !important;
 }
 
+.minw-66 {
+	min-width: 66% !important;
+}
+
 .minw-75 {
 	min-width: 75% !important;
 }
