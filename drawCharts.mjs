@@ -212,6 +212,20 @@ function drawBrands(figureID, doses) {
 				yAxisID: 'percentage',
 				data: []
 			};
+			switch (brand) {
+				case 'Pfizer':
+					dataset.backgroundColor = '#2b01be';
+					break;
+				case 'Moderna':
+					dataset.backgroundColor = '#e51937';
+					break;
+				case 'AstraZeneca':
+					dataset.backgroundColor = '#8a0051';
+					break;
+				case 'Novavax':
+					dataset.backgroundColor = '#172959';
+					break;
+			}
 			doseNs.forEach(dose => {
 				dataset.data.push(doses['dose' + dose].product[brand]);
 			});
@@ -238,6 +252,9 @@ function drawBrands(figureID, doses) {
 						}
 					},
 					scales: {
+						x {
+							stacked: true,
+						},
 						percentage: {
 							type: 'linear',
 							axis: 'y',
