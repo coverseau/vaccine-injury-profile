@@ -55,9 +55,17 @@ function drawAges(figureID, ages) {
 				type: 'bar',
 				data: data,
 				options: {
-					plugins: {
+					plugins: {,
 						tooltip: {
-							enabled: true
+							enabled: true,
+							callbacks: {
+								title: (context) => {
+									return null;
+								},
+								label: (context) => {
+									return context.label + ': ' + context.raw + '%';
+								}
+							}
 						}
 					},
 					scales: {
@@ -176,8 +184,6 @@ function drawBrands(figureID, doses) {
 				});
 			}
 		});
-		console.log(brands);
-		console.log(doses);
 		const data = {
 			labels: [],
 			datasets: []
@@ -194,6 +200,9 @@ function drawBrands(figureID, doses) {
 				case 3:
 					postfix = 'rd';
 					break;
+				case 5:
+					postfix += '+';
+					break;
 			}
 			data.labels.push(dose + postfix + ' dose');
 		});
@@ -208,9 +217,7 @@ function drawBrands(figureID, doses) {
 			});
 			data.datasets.push(dataset);
 		});
-		console.log(data);
 		
-	/*
 		new Chart(
 			figureContainer,
 			{
@@ -219,13 +226,22 @@ function drawBrands(figureID, doses) {
 				options: {
 					plugins: {
 						tooltip: {
-							enabled: true
+							enabled: true,
+							callbacks: {
+								title: (context) => {
+									return null;
+								},
+								label: (context) => {
+									return context.label + ': ' + context.raw + '%';
+								}
+							}
 						}
 					},
 					scales: {
 						percentage: {
 							type: 'linear',
 							axis: 'y',
+							stacked: true,
 							beginAtZero: true,
 							ticks: {
 								stepSize: 10,
@@ -237,6 +253,6 @@ function drawBrands(figureID, doses) {
 					}
 				}
 			}
-		);*/
+		);
 	}
 }
