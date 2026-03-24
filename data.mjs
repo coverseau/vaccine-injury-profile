@@ -34,160 +34,224 @@ const summaryData = {
 	doses: {
 		dose1: {
 			N: 594,
-			reacted: 368,
 			product: {
 				N: 593,
-				Pfizer: 396,
-				Moderna: 28,
-				AstraZeneca: 164,
-				Novavax: 5,
-				other: 0
+				Pfizer: 66.7,
+				Moderna: 4.71,
+				AstraZeneca: 27.6,
+				Novavax: 0.842,
+				other: 0.0
 			},
-			averageDate: new Date(2021, 7, 23),
+			date: {
+				N: 468,
+				'January-March 2021': 3.03,
+				'April-June 2021': 17.3,
+				'July-September 2021': 33.7,
+				'October-December 2021': 19.5,
+				'January-March 2022': 2.19,
+				'April-June 2022': 0.505,
+				'July-September 2022': 1.68,
+				'October-December 2022': 0.505,
+				'January-March 2023': 0.0,
+				'April-June 2023': 0.168,
+				'July-September 2023': 0.0,
+				'October-December 2023': 0.0,
+				'January-March 2024': 0.0,
+				'April-June 2024': 0.0,
+				'July-September 2024': 0.0,
+				'October-December 2024': 0.168
+			}
 			onset: {
 				N: 354,
-				"0-5 minutes": 22,
-				"6-30 minutes": 24,
-				"31-59 minutes": 4,
-				"1-12 hours": 96,
-				"13-23 hours": 14,
-				"1-7 days": 142,
-				"8-14 days": 34,
-				"15-30 days": 10,
-				"1-3 months": 7,
-				"4-12 months": 1,
-				"more than 1 year": 0
+				"0-5 minutes": 3.70,
+				"6-30 minutes": 4.04,
+				"31-59 minutes": 0.673,
+				"1-12 hours": 16.16,
+				"13-23 hours": 2.36,
+				"1-7 days": 23.9,
+				"8-14 days": 5.72,
+				"15-30 days": 1.68,
+				"1-3 months": 1.18,
+				"4-12 months": 0.168,
+				"more than 1 year": 0.0
 			}
 		},
 		dose2: {
 			N: 505,
-			reacted: 362,
 			product: {
-				N: 476,
-				Pfizer: 323,
-				Moderna: 21,
-				AstraZeneca: 122,
-				Novavax: 9,
-				other: 1
+				N: 496,
+				Pfizer: 54.4,
+				Moderna: 3.54,
+				AstraZeneca: 20.5,
+				Novavax: 1.52,
+				other: 0.168
 			},
-			averageDate: new Date(2021, 9, 2),
+			date: {
+				N: 381,
+				'January-March 2021': 0.505,
+				'April-June 2021': 5.22,
+				'July-September 2021': 29.3,
+				'October-December 2021': 21.7,
+				'January-March 2022': 4.55,
+				'April-June 2022': 1.01,
+				'July-September 2022': 0.673,
+				'October-December 2022': 0.673,
+				'January-March 2023': 0.168,
+				'April-June 2023': 0.0,
+				'July-September 2023': 0.0,
+				'October-December 2023': 0.168,
+				'January-March 2024': 0.0,
+				'April-June 2024': 0.0,
+				'July-September 2024': 0.0,
+				'October-December 2024': 0.168
+			}
 			onset: {
 				N: 331,
-				"0-5 minutes": 12,
-				"6-30 minutes": 16,
-				"31-59 minutes": 5,
-				"1-12 hours": 74,
-				"13-23 hours": 19,
-				"1-7 days": 140,
-				"8-14 days": 25,
-				"15-30 days": 11,
-				"1-3 months": 22,
-				"4-12 months": 6,
-				"more than 1 year": 2
+				"0-5 minutes": 2.02,
+				"6-30 minutes": 2.69,
+				"31-59 minutes": 0.842,
+				"1-12 hours": 12.29,
+				"13-23 hours": 3.20,
+				"1-7 days": 23.6,
+				"8-14 days": 4.21,
+				"15-30 days": 1.85,
+				"1-3 months": 3.70,
+				"4-12 months": 1.01,
+				"more than 1 year": 0.337
 			}
 		},
 		dose3: {
 			N: 273,
-			reacted: 178,
 			product: {
 				N: 237,
-				Pfizer: 158,
-				Moderna: 55,
-				AstraZeneca: 8,
-				Novavax: 15,
-				other: 1
+				Pfizer: 26.6,
+				Moderna: 9.26,
+				AstraZeneca: 1.35,
+				Novavax: 2.53,
+				other: 0.168
 			},
-			averageDate: new Date(2022, 1, 6),
+			date: {
+				N: 185,
+				'January-March 2021': 0.0,
+				'April-June 2021': 0.0,
+				'July-September 2021': 0.0,
+				'October-December 2021': 7.74,
+				'January-March 2022': 19.0,
+				'April-June 2022': 1.85,
+				'July-September 2022': 1.52,
+				'October-December 2022': 0.505,
+				'January-March 2023': 0.168,
+				'April-June 2023': 0.0,
+				'July-September 2023': 0.0,
+				'October-December 2023': 0.0,
+				'January-March 2024': 0.168,
+				'April-June 2024': 0.0,
+				'July-September 2024': 0.0,
+				'October-December 2024': 0.168
+			}
 			onset: {
 				N: 156,
-				"0-5 minutes": 9,
-				"6-30 minutes": 8,
-				"31-59 minutes": 2,
-				"1-12 hours": 37,
-				"13-23 hours": 10,
-				"1-7 days": 54,
-				"8-14 days": 12,
-				"15-30 days": 8,
-				"1-3 months": 14,
-				"4-12 months": 1,
-				"more than 1 year": 1
+				"0-5 minutes": 1.52,
+				"6-30 minutes": 1.35,
+				"31-59 minutes": 0.337,
+				"1-12 hours": 6.23,
+				"13-23 hours": 1.68,
+				"1-7 days": 9.09,
+				"8-14 days": 2.02,
+				"15-30 days": 1.35,
+				"1-3 months": 2.36,
+				"4-12 months": 0.168,
+				"more than 1 year": 0.168
 			}
 		},
 		dose4: {
 			N: 117,
-			reacted: 41,
 			product: {
 				N: 73,
-				Pfizer: 43,
-				Moderna: 19,
-				AstraZeneca: 2,
-				Novavax: 7,
-				other: 2
+				Pfizer: 7.2,
+				Moderna: 3.2,
+				AstraZeneca: 0.34,
+				Novavax: 1.2,
+				other: 0.34
 			},
-			averageDate: new Date(2022, 6, 16),
+			date: {
+				N: 53,
+				'January-March 2021': 0.0,
+				'April-June 2021': 0.0,
+				'July-September 2021': 0.0,
+				'October-December 2021': 0.0,
+				'January-March 2022': 0.17,
+				'April-June 2022': 2.69,
+				'July-September 2022': 4.55,
+				'October-December 2022': 0.84,
+				'January-March 2023': 0.0,
+				'April-June 2023': 0.34,
+				'July-September 2023': 0.17,
+				'October-December 2023': 0.17,
+				'January-March 2024': 0.0,
+				'April-June 2024': 0.0,
+				'July-September 2024': 0.0,
+				'October-December 2024': 0.0
+			}
 			onset: {
 				N: 35,
-				"0-5 minutes": 0,
-				"6-30 minutes": 3,
-				"31-59 minutes": 0,
-				"1-12 hours": 6,
-				"13-23 hours": 4,
-				"1-7 days": 15,
-				"8-14 days": 0,
-				"15-30 days": 2,
-				"1-3 months": 4,
-				"4-12 months": 1,
-				"more than 1 year": 0
+				"0-5 minutes": 0.0,
+				"6-30 minutes": 0.51,
+				"31-59 minutes": 0.0,
+				"1-12 hours": 1.0,
+				"13-23 hours": 0.67,
+				"1-7 days": 2.53,
+				"8-14 days": 0.0,
+				"15-30 days": 0.34,
+				"1-3 months": 0.67,
+				"4-12 months": 0.17,
+				"more than 1 year": 0.0
 			}
 		},
 		dose5: {
 			N: 41,
-			reacted: 1,
 			product: {
 				N: 10,
-				Pfizer: 5,
-				Moderna: 4,
-				AstraZeneca: 0,
-				Novavax: 1,
-				other: 0
+				Pfizer: 0.84,
+				Moderna: 0.67,
+				AstraZeneca: 0.0,
+				Novavax: 0.17,
+				other: 0.0
 			},
-			averageDate: new Date(2023, 4, 25),
+			date: {
+				N: 9,
+				'January-March 2021': 0.0,
+				'April-June 2021': 0.0,
+				'July-September 2021': 0.0,
+				'October-December 2021': 0.0,
+				'January-March 2022': 0.0,
+				'April-June 2022': 0.0,
+				'July-September 2022': 0.0,
+				'October-December 2022': 0.0,
+				'January-March 2023': 0.5,
+				'April-June 2023': 0.8,
+				'July-September 2023': 0.0,
+				'October-December 2023': 0.0,
+				'January-March 2024': 0.0,
+				'April-June 2024': 0.2,
+				'July-September 2024': 0.0,
+				'October-December 2024': 0.0
+			}
 			onset: {
 				N: 4,
-				"0-5 minutes": 0,
-				"6-30 minutes": 0,
-				"31-59 minutes": 0,
-				"1-12 hours": 3,
-				"13-23 hours": 0,
-				"1-7 days": 1,
-				"8-14 days": 0,
-				"15-30 days": 0,
-				"1-3 months": 0,
-				"4-12 months": 0,
-				"more than 1 year": 0
+				"0-5 minutes": 0.0,
+				"6-30 minutes": 0.0,
+				"31-59 minutes": 0.0,
+				"1-12 hours": 0.5,
+				"13-23 hours": 0.0,
+				"1-7 days": 0.2,
+				"8-14 days": 0.0,
+				"15-30 days": 0.0,
+				"1-3 months": 0.0,
+				"4-12 months": 0.0,
+				"more than 1 year": 0.0
 			}
 		}
-	},
-	covid19AfterAdverseReaction: {
-		N: 536,
-		"I felt better": 8,
-		"I got worse": 249,
-		"No change in my symptoms": 61,
-		"N/A": 218
-	},
-	mandated: {
-		N: 263,
-		"yes": 134,
-		"no": 107,
-		"no (but bullied/coerced by workplace)": 22
-	},
-	covid19: {
-		N: 515,
-		yes: 314,
-		no: 201,
-		negativeSerology: 48,
-		priorToShots: 15,
-		betweenShots: 36
 	}
 }
 

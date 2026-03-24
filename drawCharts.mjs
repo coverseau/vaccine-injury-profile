@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	
 	drawAges('draw_figure_ages', summaryData.demographics.age);
 	drawStates('draw_figure_states', 'draw_table_states', summaryData.demographics.state);
+	drawBrands('draw_figure_brands', summaryData.doses);
 });
 
 function drawAges(figureID, ages) {
@@ -54,6 +55,11 @@ function drawAges(figureID, ages) {
 				type: 'bar',
 				data: data,
 				options: {
+					plugins: {
+						tooltip: {
+							enabled: true
+						}
+					},
 					scales: {
 						percentage: {
 							type: 'linear',
@@ -152,5 +158,83 @@ function drawStates(figureID, tableID, states) {
 				}
 			}
 		);
+	}
+}
+
+function drawBrands(figureID, doses) {
+	const figureContainer = document.getElementById(figureID);
+	if (!!figureContainer) {
+		const brands = [];
+		const doses = [];
+		Object.keys(doses).forEach(dose => {
+			if (dose != 'N') {
+				doses.push(Number(dose.slice(4)));
+				Object.keys(doses[dose].product).forEach(brand => {
+					if (brand != 'N' && !brands.includes(brand)) {
+						brands.push(brand);
+					}
+				});
+			}
+		});
+		const data = {
+			labels: [],
+			datasets: []
+		};
+		doses.forEach(dose => {
+			let postfix = 'th';
+			switch (dose) {
+				case 1:
+					postfix = 'st';
+					break;
+				case 2:
+					postfix = 'nd';
+					break;
+				case 3:
+					postfix = 'rd';
+					break;
+			}
+			data.labels.push(dose + postfix + ' dose');
+		});
+		brands.forEach(brand => {
+			const dataset = {
+				label: brand,
+				yAxisID: 'percentage',
+				data: []
+			};
+			doses.forEach(dose => {
+				dataset.data.push(doses['dose' + dose].product[brand]);
+			});
+			data.datasets.push(dataset);
+		});
+		console.log(data);
+		
+	/*
+		new Chart(
+			figureContainer,
+			{
+				type: 'bar',
+				data: data,
+				options: {
+					plugins: {
+						tooltip: {
+							enabled: true
+						}
+					},
+					scales: {
+						percentage: {
+							type: 'linear',
+							axis: 'y',
+							beginAtZero: true,
+							ticks: {
+								stepSize: 10,
+								callback: function(value, index, ticks) {
+										return value + '%';
+								}
+							}
+						}
+					}
+				}
+			}
+		);*/
 	}
 }
