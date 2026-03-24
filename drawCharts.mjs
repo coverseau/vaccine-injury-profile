@@ -246,10 +246,10 @@ function drawBrands(figureID, doses) {
 							enabled: true,
 							callbacks: {
 								title: (context) => {
-									//return context.label;
+									return context.label;
 								},
 								label: (context) => {
-									//return context.dataset.label + ': ' + context.raw + '%';
+									return context.dataset.label + ': ' + context.raw + '%';
 								}
 							}
 						}
