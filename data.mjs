@@ -339,30 +339,30 @@ const summaryData = {
 			},
 			"head pressure": {
 				"N": 505,
-				"minimal": 5.54592720970537,
-				"mild": 9.7053726169844,
-				"moderate": 14.7313691507799,
-				"moderately severe": 12.4783362218371,
-				"severe": 19.7573656845754,
-				"N/A": 25.3032928942808
+				"minimal": 5.55,
+				"mild": 9.71,
+				"moderate": 14.7,
+				"moderately severe": 12.5,
+				"severe": 19.8,
+				"N/A": 25.3
 			},
 			"new headaches": {
 				"N": 510,
-				"minimal": 6.75909878682842,
-				"mild": 8.49220103986135,
-				"moderate": 17.157712305026,
-				"moderately severe": 14.9046793760832,
-				"severe": 22.1837088388215,
-				"N/A": 18.8908145580589
+				"minimal": 6.76,
+				"mild": 8.49,
+				"moderate": 17.2,
+				"moderately severe": 14.9,
+				"severe": 22.2,
+				"N/A": 18.9
 			},
 			"memory loss": {
 				"N": 508,
-				"minimal": 7.62564991334489,
-				"mild": 14.0381282495667,
-				"moderate": 16.9844020797227,
-				"moderately severe": 15.4246100519931,
-				"severe": 14.5580589254766,
-				"N/A": 19.4107452339688
+				"minimal": 7.63,
+				"mild": 14.0,
+				"moderate": 17.0,
+				"moderately severe": 15.4,
+				"severe": 14.6,
+				"N/A": 19.4
 			},
 			"new severe anxiety": {
 				"N": 499,
