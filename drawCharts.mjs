@@ -528,7 +528,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 				type: 'bar',
 				data: data,
 				options: {
-					indexAxis: 'y',
+					//indexAxis: 'y',
 					plugins: {
 						legend: {
 							display: true
