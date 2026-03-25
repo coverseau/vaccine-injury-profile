@@ -510,6 +510,8 @@ function drawSymptoms(figureID, symptoms) {
 			data.datasets.push(dataset);
 		});
 		
+		console.log(data);
+		
 		new Chart(
 			figureContainer,
 			{
@@ -534,12 +536,12 @@ function drawSymptoms(figureID, symptoms) {
 						}
 					},
 					scales: {
-						x: {
+						y: {
 							stacked: true
 						},
 						percentage: {
 							type: 'linear',
-							axis: 'y',
+							axis: 'x',
 							stacked: true,
 							beginAtZero: true,
 							ticks: {
