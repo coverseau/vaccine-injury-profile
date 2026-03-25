@@ -491,6 +491,8 @@ function drawSymptoms(figureID, symptomSeverities) {
 				});
 			}
 		});
+		console.log(symptoms);
+		console.log(severities);
 		const data = {
 			labels: [],
 			datasets: []
@@ -505,8 +507,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 				data: []
 			};
 			severities.forEach(severity => {
-				const symptomSeverity = symptomSeverities[symptom];
-				dataset.data.push(symptomSeverity[severity]);
+				dataset.data.push(symptomSeverities[symptom][severity]);
 			});
 			data.datasets.push(dataset);
 		});
