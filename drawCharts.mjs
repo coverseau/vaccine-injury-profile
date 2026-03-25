@@ -476,15 +476,15 @@ function drawOnset(figureID, doses) {
 	}
 }
 
-function drawSymptoms(figureID, symptoms) {
+function drawSymptoms(figureID, symptomSeverities) {
 	const figureContainer = document.getElementById(figureID);
 	if (!!figureContainer) {
 		const symptoms = [];
 		const severities = [];
-		Object.keys(symptoms).forEach(symptom => {
+		Object.keys(symptomSeverities).forEach(symptom => {
 			if (symptom != 'N') {
 				symptoms.push(Number(symptom));
-				Object.keys(symptoms[symptom]).forEach(severity => {
+				Object.keys(symptomSeverities[symptom]).forEach(severity => {
 					if (severity != 'N' && !severities.includes(severity)) {
 						severities.push(severity);
 					}
@@ -505,7 +505,7 @@ function drawSymptoms(figureID, symptoms) {
 				data: []
 			};
 			severities.forEach(severity => {
-				dataset.data.push(symptoms[symptom][severity]);
+				dataset.data.push(symptomSeverities[symptom][severity]);
 			});
 			data.datasets.push(dataset);
 		});
