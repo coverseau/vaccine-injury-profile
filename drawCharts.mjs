@@ -536,12 +536,12 @@ function drawSymptoms(figureID, symptomSeverities) {
 						}
 					},
 					scales: {
-						y: {
+						x: {
 							stacked: true
 						},
 						percentage: {
 							type: 'linear',
-							axis: 'x',
+							axis: 'y',
 							stacked: true,
 							beginAtZero: true,
 							ticks: {
