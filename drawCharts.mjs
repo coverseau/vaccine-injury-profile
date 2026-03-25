@@ -13,6 +13,7 @@ const coverseYellow = window.getComputedStyle(document.body).getPropertyValue('-
 const coverseLightBlue = window.getComputedStyle(document.body).getPropertyValue('--coverse-light-blue');
 const coverseGreen = window.getComputedStyle(document.body).getPropertyValue('--coverse-green');
 const colourGray = '#c9cbcf';
+window.alert(coverseColour);
 
 document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
@@ -520,7 +521,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 				//xAxisID: 'percentage',
 				data: []
 			};
-			switch (severity) {
+			switch (severity.toLowerCase()) {
 				case 'severe':
 					dataset.backgroundColor = coverseRed;
 					break;
