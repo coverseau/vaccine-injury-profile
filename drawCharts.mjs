@@ -501,7 +501,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 		severities.forEach(severity => {
 			const dataset = {
 				label: severity,
-				yAxisID: 'percentage',
+				xAxisID: 'percentage',
 				data: []
 			};
 			symptoms.forEach(symptom => {
@@ -518,7 +518,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 				type: 'bar',
 				data: data,
 				options: {
-					//indexAxis: 'y',
+					indexAxis: 'y',
 					plugins: {
 						legend: {
 							display: true
