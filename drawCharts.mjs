@@ -493,7 +493,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 		});
 		if (severities.length) {
 			const s = [...severities];
-			for (const i=0; i<s.length; i++) {
+			for (let i=0; i<s.length; i++) {
 				if (s[i] == 'N/A/') {
 					severities[severities.length - 1] = s[i];
 				} else {
