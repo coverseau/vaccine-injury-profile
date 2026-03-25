@@ -258,12 +258,12 @@ const summaryData = {
 			N: 577,
 			'fatigue': {
 				N: 531,
-				'minimal': 2.07972270363951,
-				'mild': 5.19930675909879,
-				'moderate': 10.5719237435009,
-				'moderately severe': 19.9306759098787,
-				'severe': 49.9133448873484,
-				'N/A': 4.33275563258232
+				'minimal': 2.08,
+				'mild': 5.20,
+				'moderate': 10.6,
+				'moderately severe': 19.9,
+				'severe': 49.9,
+				'N/A': 4.33
 			},
 			'exercise intolerance': {
 				N: 522,
