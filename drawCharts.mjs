@@ -491,6 +491,16 @@ function drawSymptoms(figureID, symptomSeverities) {
 				});
 			}
 		});
+		if (severities.length) {
+			const s = [...severities];
+			for (i=0; i<s.length; i++) {
+				if (s[i] == 'N/A/') {
+					severities[severities.length - 1] = s[i];
+				} else {
+					severities[i] = s[s.length - 2 - i];
+				}
+			}
+		}
 		const data = {
 			labels: [],
 			datasets: []
