@@ -505,7 +505,8 @@ function drawSymptoms(figureID, symptomSeverities) {
 				data: []
 			};
 			severities.forEach(severity => {
-				dataset.data.push((symptomSeverities[symptom])[severity]);
+				const symptomSeverity = symptomSeverities[symptom];
+				dataset.data.push(symptomSeverity[severity]);
 			});
 			data.datasets.push(dataset);
 		});
