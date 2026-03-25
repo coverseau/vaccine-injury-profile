@@ -483,7 +483,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 		const severities = [];
 		Object.keys(symptomSeverities).forEach(symptom => {
 			if (symptom != 'N') {
-				symptoms.push(Number(symptom));
+				symptoms.push(symptom);
 				Object.keys(symptomSeverities[symptom]).forEach(severity => {
 					if (severity != 'N' && !severities.includes(severity)) {
 						severities.push(severity);
@@ -491,8 +491,6 @@ function drawSymptoms(figureID, symptomSeverities) {
 				});
 			}
 		});
-		console.log(symptoms);
-		console.log(severities);
 		const data = {
 			labels: [],
 			datasets: []
