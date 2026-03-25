@@ -511,7 +511,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 		severities.forEach(severity => {
 			const dataset = {
 				label: severity,
-				yAxisID: 'percentage',
+				//xAxisID: 'percentage',
 				data: []
 			};
 			symptoms.forEach(symptom => {
@@ -547,8 +547,15 @@ function drawSymptoms(figureID, symptomSeverities) {
 					},
 					scales: {
 						x: {
-							stacked: true
+							type: 'category',
+							stacked: true,
+							ticks: {
+								autoSkip: false
+							}
 						},
+						y: {
+							stacked: true
+						}/*,
 						percentage: {
 							type: 'linear',
 							axis: 'y',
@@ -560,7 +567,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 										return value + '%';
 								}
 							}
-						}
+						}*/
 					}
 				}
 			}
