@@ -508,6 +508,9 @@ function drawSymptoms(figureID, symptomSeverities) {
 				}
 			}
 		}
+		console.log(symptoms);
+		console.log(severities);
+		
 		const data = {
 			labels: [],
 			datasets: []
@@ -521,23 +524,23 @@ function drawSymptoms(figureID, symptomSeverities) {
 				//xAxisID: 'percentage',
 				data: []
 			};
-			switch (severity.toLowerCase()) {
-				case 'severe':
+			switch (severity) {
+				case "severe":
 					dataset.backgroundColor = coverseRed;
 					break;
-				case 'moderately severe':
+				case "moderately severe":
 					dataset.backgroundColor = coverseColour;
 					break;
-				case 'moderate':
+				case "moderate":
 					dataset.backgroundColor = coverseYellow;
 					break;
-				case 'mild':
+				case "mild":
 					dataset.backgroundColor = coverseLightBlue;
 					break;
-				case 'minimal':
+				case "minimal":
 					dataset.backgroundColor = coverseGreen;
 					break;
-				case 'N/A':
+				case "N/A":
 					dataset.backgroundColor = colourGray;
 					break;
 			}
