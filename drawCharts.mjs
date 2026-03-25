@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	drawBrands('draw_figure_brands', summaryData.doses);
 	drawDates('draw_figure_dates', summaryData.doses);
 	drawOnset('draw_figure_onset', summaryData.doses);
+	drawSymptoms('draw_figure_symptoms', summaryData.symptoms.severity);
 });
 
 function drawAges(figureID, ages) {
@@ -461,6 +462,85 @@ function drawOnset(figureID, doses) {
 							axis: 'y',
 							beginAtZero: true,
 							stacked: true,
+							ticks: {
+								stepSize: 10,
+								callback: function(value, index, ticks) {
+										return value + '%';
+								}
+							}
+						}
+					}
+				}
+			}
+		);
+	}
+}
+
+function drawSymptoms(figureID, symptoms) {
+	const figureContainer = document.getElementById(figureID);
+	if (!!figureContainer) {
+		const symptoms = [];
+		const severities = [];
+		Object.keys(symptoms).forEach(symptom => {
+			if (symptom != 'N') {
+				symptoms.push(Number(symptom));
+				Object.keys(symptoms[symptom]).forEach(severity => {
+					if (severity != 'N' && !severities.includes(severity)) {
+						severities.push(severity);
+					}
+				});
+			}
+		});
+		const data = {
+			labels: [],
+			datasets: []
+		};
+		severities.forEach(severity => {
+			data.labels.push(severity);
+		});
+		symptoms.forEach(symptom => {
+			const dataset = {
+				label: symptom,
+				yAxisID: 'percentage',
+				data: []
+			};
+			severities.forEach(severity => {
+				dataset.data.push(symptoms[symptom][severity]);
+			});
+			data.datasets.push(dataset);
+		});
+		
+		new Chart(
+			figureContainer,
+			{
+				type: 'bar',
+				data: data,
+				options: {
+					plugins: {
+						legend: {
+							display: true
+						},
+						tooltip: {
+							enabled: true,
+							callbacks: {
+								title: (context) => {
+									return context.label;
+								},
+								label: (context) => {
+									return context.dataset.label + ': ' + context.raw + '%';
+								}
+							}
+						}
+					},
+					scales: {
+						x: {
+							stacked: true
+						},
+						percentage: {
+							type: 'linear',
+							axis: 'y',
+							stacked: true,
+							beginAtZero: true,
 							ticks: {
 								stepSize: 10,
 								callback: function(value, index, ticks) {
