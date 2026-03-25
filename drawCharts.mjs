@@ -516,6 +516,7 @@ function drawSymptoms(figureID, symptoms) {
 				type: 'bar',
 				data: data,
 				options: {
+					indexAxis: 'y',
 					plugins: {
 						legend: {
 							display: true
