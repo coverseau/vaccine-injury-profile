@@ -321,21 +321,21 @@ const summaryData = {
 			},
 			"paralysis": {
 				"N": 493,
-				"minimal": 7.97227036395147,
-				"mild": 6.06585788561525,
-				"moderate": 4.8526863084922,
-				"moderately severe": 5.54592720970537,
-				"severe": 5.19930675909879,
-				"N/A": 55.8058925476603
+				"minimal": 7.97,
+				"mild": 6.07,
+				"moderate": 4.86,
+				"moderately severe": 5.55,
+				"severe": 5.20,
+				"N/A": 55.8
 			},
 			"seizures": {
 				"N": 491,
-				"minimal": 9.8786828422877,
-				"mild": 2.77296360485269,
-				"moderate": 1.55979202772964,
-				"moderately severe": 2.4263431542461,
-				"severe": 2.94627383015598,
-				"N/A": 65.5112651646447
+				"minimal": 9.88,
+				"mild": 2.77,
+				"moderate": 1.56,
+				"moderately severe": 2.43,
+				"severe": 2.95,
+				"N/A": 65.5
 			},
 			"head pressure": {
 				"N": 505,

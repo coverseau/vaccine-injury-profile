@@ -13,7 +13,6 @@ const coverseYellow = window.getComputedStyle(document.body).getPropertyValue('-
 const coverseLightBlue = window.getComputedStyle(document.body).getPropertyValue('--coverse-light-blue');
 const coverseGreen = window.getComputedStyle(document.body).getPropertyValue('--coverse-green');
 const colourGray = '#c9cbcf';
-window.alert(coverseColour);
 
 document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
@@ -501,15 +500,13 @@ function drawSymptoms(figureID, symptomSeverities) {
 		if (severities.length) {
 			const s = [...severities];
 			for (let i=0; i<s.length; i++) {
-				if (s[i] == 'N/A/') {
+				if (s[i] == "N/A") {
 					severities[severities.length - 1] = s[i];
 				} else {
 					severities[i] = s[s.length - 2 - i];
 				}
 			}
 		}
-		console.log(symptoms);
-		console.log(severities);
 		
 		const data = {
 			labels: [],
