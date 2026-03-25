@@ -267,30 +267,30 @@ const summaryData = {
 			},
 			'exercise intolerance': {
 				N: 522,
-				'minimal': 1.90641247833622,
-				'mild': 3.81282495667244,
-				'moderate': 9.35875216637782,
-				'moderately severe': 18.0242634315425,
-				'severe': 52.3396880415945,
-				'N/A': 5.02599653379549
+				'minimal': 1.91,
+				'mild': 3.81,
+				'moderate': 9.36,
+				'moderately severe': 18.0,
+				'severe': 52.3,
+				'N/A': 5.03
 			},
 			'brain fog': {
 				N: 518,
-				'minimal': 3.29289428076257,
-				'mild': 5.71923743500867,
-				'moderate': 19.9306759098787,
-				'moderately severe': 20.7972270363951,
-				'severe': 32.9289428076257,
-				'N/A': 7.10571923743501
+				'minimal': 3.29,
+				'mild': 5.72,
+				'moderate': 19.9,
+				'moderately severe': 20.8,
+				'severe': 32.9,
+				'N/A': 7.11
 			},
 			'dizziness': {
 				N: 519,
-				'minimal': 5.71923743500867,
-				'mild': 14.3847487001733,
-				'moderate': 18.5441941074523,
-				'moderately severe': 16.9844020797227,
-				'severe': 23.7435008665511,
-				'N/A': 10.5719237435009
+				'minimal': 5.72,
+				'mild': 14.3,
+				'moderate': 18.5,
+				'moderately severe': 17.0,
+				'severe': 23.7,
+				'N/A': 10.6
 			},
 			'insomnia': {
 				N: 513,

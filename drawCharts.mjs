@@ -6,7 +6,13 @@ import summaryData from './data.mjs';
 
 const textColour = window.getComputedStyle(document.body).getPropertyValue('--bs-body-color');
 const elementColour = 'rgba(' + window.getComputedStyle(document.body).getPropertyValue('--bs-body-color-rgb') + ',0.1)';
+
 const coverseColour = window.getComputedStyle(document.body).getPropertyValue('--coverse-ochre');
+const coverseRed = window.getComputedStyle(document.body).getPropertyValue('--coverse-red');
+const coverseYellow = window.getComputedStyle(document.body).getPropertyValue('--coverse-yellow');
+const coverseLightBlue = window.getComputedStyle(document.body).getPropertyValue('--coverse-light-blue');
+const coverseGreen = window.getComputedStyle(document.body).getPropertyValue('--coverse-green');
+const colourGray = '#c9cbcf';
 
 document.addEventListener("DOMContentLoaded", async () => {
 	Chart.register([
@@ -230,7 +236,7 @@ function drawBrands(figureID, doses) {
 					dataset.backgroundColor = '#172959';
 					break;
 				case 'other':
-					dataset.backgroundColor = '#c9cbcf';
+					dataset.backgroundColor = colourGray;
 					break;
 			}
 			doseNs.forEach(dose => {
@@ -514,6 +520,26 @@ function drawSymptoms(figureID, symptomSeverities) {
 				//xAxisID: 'percentage',
 				data: []
 			};
+			switch (severity) {
+				case 'severe':
+					dataset.backgroundColor = coverseRed;
+					break;
+				case 'moderately severe':
+					dataset.backgroundColor = coverseColour;
+					break;
+				case 'moderate':
+					dataset.backgroundColor = coverseYellow;
+					break;
+				case 'mild':
+					dataset.backgroundColor = coverseLightBlue;
+					break;
+				case 'minimal':
+					dataset.backgroundColor = coverseGreen;
+					break;
+				case 'N/A':
+					dataset.backgroundColor = colourGray;
+					break;
+			}
 			symptoms.forEach(symptom => {
 				dataset.data.push(symptomSeverities[symptom][severity]);
 			});
