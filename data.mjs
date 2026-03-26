@@ -451,8 +451,8 @@ const summaryData = {
 				"mild": 5.20,
 				"moderate": 11.1,
 				"moderately severe": 13.9,
-				"severe": 28.2495667244367,
-				"N/A": 25.1299826689775
+				"severe": 28.2,
+				"N/A": 25.1
 			},
 			"tremors": {
 				"N": 498,
@@ -465,426 +465,426 @@ const summaryData = {
 			},
 			"muscle twitching": {
 				"N": 511,
-				"minimal": 8.14558058925477,
-				"mild": 11.0918544194107,
-				"moderate": 14.5580589254766,
-				"moderately severe": 12.8249566724437,
-				"severe": 13.5181975736568,
-				"N/A": 28.42287694974
+				"minimal": 8.15,
+				"mild": 11.1,
+				"moderate": 14.6,
+				"moderately severe": 12.8,
+				"severe": 13.5,
+				"N/A": 28.4
 			},
 			"internal vibrations": {
 				"N": 501,
-				"minimal": 6.93240901213172,
-				"mild": 8.14558058925477,
-				"moderate": 10.7452339688042,
-				"moderately severe": 9.53206239168111,
-				"severe": 12.8249566724437,
-				"N/A": 38.6481802426343
+				"minimal": 6.93,
+				"mild": 8.15,
+				"moderate": 10.7,
+				"moderately severe": 9.53,
+				"severe": 12.8,
+				"N/A": 38.6
 			},
 			"tingling / numbness in extremities": {
 				"N": 518,
-				"minimal": 5.37261698440208,
-				"mild": 7.97227036395147,
-				"moderate": 14.9046793760832,
-				"moderately severe": 15.5979202772964,
-				"severe": 26.1698440207972,
-				"N/A": 19.7573656845754
+				"minimal": 5.37,
+				"mild": 7.97,
+				"moderate": 14.9,
+				"moderately severe": 15.6,
+				"severe": 26.2,
+				"N/A": 19.8
 			},
 			"burning sensation on skin": {
 				"N": 510,
-				"minimal": 7.97227036395147,
-				"mild": 6.93240901213172,
-				"moderate": 9.53206239168111,
-				"moderately severe": 7.62564991334489,
-				"severe": 18.0242634315425,
-				"N/A": 38.3015597920277
+				"minimal": 7.97,
+				"mild": 6.93,
+				"moderate": 9.53,
+				"moderately severe": 7.63,
+				"severe": 18.0,
+				"N/A": 38.3
 			},
 			"joint pain / arthritis": {
 				"N": 510,
-				"minimal": 3.98613518197574,
-				"mild": 7.79896013864818,
-				"moderate": 14.7313691507799,
-				"moderately severe": 15.5979202772964,
-				"severe": 22.5303292894281,
-				"N/A": 23.7435008665511
+				"minimal": 3.99,
+				"mild": 7.80,
+				"moderate": 14.7,
+				"moderately severe": 15.6,
+				"severe": 22.5,
+				"N/A": 23.7
 			},
 			"muscle aches": {
 				"N": 510,
-				"minimal": 3.81282495667244,
-				"mild": 7.2790294627383,
-				"moderate": 18.7175043327556,
-				"moderately severe": 18.1975736568458,
-				"severe": 25.3032928942808,
-				"N/A": 15.0779896013865
+				"minimal": 3.81,
+				"mild": 7.28,
+				"moderate": 18.7,
+				"moderately severe": 18.2,
+				"severe": 25.3,
+				"N/A": 15.1
 			},
 			"muscle weakness": {
 				"N": 511,
-				"minimal": 4.8526863084922,
-				"mild": 8.31889081455806,
-				"moderate": 15.9445407279029,
-				"moderately severe": 17.3310225303293,
-				"severe": 27.0363951473137,
-				"N/A": 15.0779896013865
+				"minimal": 4.85,
+				"mild": 8.32,
+				"moderate": 15.9,
+				"moderately severe": 17.3,
+				"severe": 27.0,
+				"N/A": 15.1
 			},
 			"unstable joints": {
 				"N": 495,
-				"minimal": 7.2790294627383,
-				"mild": 7.45233968804159,
-				"moderate": 10.2253032928943,
-				"moderately severe": 9.8786828422877,
-				"severe": 12.4783362218371,
-				"N/A": 38.474870017331
+				"minimal": 7.28,
+				"mild": 7.45,
+				"moderate": 10.2,
+				"moderately severe": 9.88,
+				"severe": 12.5,
+				"N/A": 38.5
 			},
 			"muscle loss": {
 				"N": 500,
-				"minimal": 7.10571923743501,
-				"mild": 8.66551126516464,
-				"moderate": 15.5979202772964,
-				"moderately severe": 11.9584055459272,
-				"severe": 15.4246100519931,
-				"N/A": 27.9029462738302
+				"minimal": 7.11,
+				"mild": 8.67,
+				"moderate": 15.6,
+				"moderately severe": 12.0,
+				"severe": 15.4,
+				"N/A": 27.9
 			},
 			"heaviness in legs": {
 				"N": 507,
-				"minimal": 7.10571923743501,
-				"mild": 7.62564991334489,
-				"moderate": 14.9046793760832,
-				"moderately severe": 10.051993067591,
-				"severe": 21.8370883882149,
-				"N/A": 26.3431542461005
+				"minimal": 7.11,
+				"mild": 7.63,
+				"moderate": 14.9,
+				"moderately severe": 10.1,
+				"severe": 21.8,
+				"N/A": 26.3
 			},
 			"adrenaline surges": {
 				"N": 494,
-				"minimal": 6.58578856152513,
-				"mild": 6.93240901213172,
-				"moderate": 9.7053726169844,
-				"moderately severe": 12.1317157712305,
-				"severe": 11.265164644714,
-				"N/A": 38.9948006932409
+				"minimal": 6.59,
+				"mild": 6.93,
+				"moderate": 9.71,
+				"moderately severe": 12.1,
+				"severe": 11.3,
+				"N/A": 39.0
 			},
 			"chest pain": {
 				"N": 511,
-				"minimal": 4.67937608318891,
-				"mild": 7.62564991334489,
-				"moderate": 14.5580589254766,
-				"moderately severe": 16.2911611785095,
-				"severe": 27.5563258232236,
-				"N/A": 17.8509532062392
+				"minimal": 4.68,
+				"mild": 7.63,
+				"moderate": 14.6,
+				"moderately severe": 16.3,
+				"severe": 27.6,
+				"N/A": 17.9
 			},
 			"myocarditis": {
 				"N": 480,
-				"minimal": 5.54592720970537,
-				"mild": 3.81282495667244,
-				"moderate": 2.4263431542461,
-				"moderately severe": 5.02599653379549,
-				"severe": 7.2790294627383,
-				"N/A": 59.0987868284229
+				"minimal": 5.55,
+				"mild": 3.81,
+				"moderate": 2.43,
+				"moderately severe": 5.03,
+				"severe": 7.28,
+				"N/A": 59.1
 			},
 			"pericarditis": {
 				"N": 485,
-				"minimal": 5.37261698440208,
-				"mild": 2.4263431542461,
-				"moderate": 4.33275563258232,
-				"moderately severe": 5.37261698440208,
-				"severe": 13.8648180242634,
-				"N/A": 52.686308492201
+				"minimal": 5.37,
+				"mild": 2.43,
+				"moderate": 4.33,
+				"moderately severe": 5.37,
+				"severe": 13.9,
+				"N/A": 52.7
 			},
 			"heart palpitations": {
 				"N": 510,
-				"minimal": 3.63951473136915,
-				"mild": 6.75909878682842,
-				"moderate": 14.7313691507799,
-				"moderately severe": 19.0641247833622,
-				"severe": 27.5563258232236,
-				"N/A": 16.6377816291161
+				"minimal": 3.64,
+				"mild": 6.76,
+				"moderate": 14.7,
+				"moderately severe": 19.1,
+				"severe": 27.6,
+				"N/A": 16.6
 			},
 			"shortness of breath": {
 				"N": 512,
-				"minimal": 4.33275563258232,
-				"mild": 9.18544194107452,
-				"moderate": 15.2512998266898,
-				"moderately severe": 18.8908145580589,
-				"severe": 28.0762564991335,
-				"N/A": 12.998266897747
+				"minimal": 4.33,
+				"mild": 9.19,
+				"moderate": 15.3,
+				"moderately severe": 18.9,
+				"severe": 28.1,
+				"N/A": 13.0
 			},
 			"high heart rate": {
 				"N": 507,
-				"minimal": 5.19930675909879,
-				"mild": 7.10571923743501,
-				"moderate": 13.6915077989601,
-				"moderately severe": 17.6776429809359,
-				"severe": 24.9566724436742,
-				"N/A": 19.2374350086655
+				"minimal": 5.20,
+				"mild": 7.11,
+				"moderate": 13.7,
+				"moderately severe": 17.7,
+				"severe": 25.0,
+				"N/A": 19.2
 			},
 			"low blood pressure": {
 				"N": 484,
-				"minimal": 8.14558058925477,
-				"mild": 6.23916811091854,
-				"moderate": 8.31889081455806,
-				"moderately severe": 5.71923743500867,
-				"severe": 7.62564991334489,
-				"N/A": 47.8336221837088
+				"minimal": 8.15,
+				"mild": 6.24,
+				"moderate": 8.32,
+				"moderately severe": 5.72,
+				"severe": 7.63,
+				"N/A": 47.8
 			},
 			"high blood pressure": {
 				"N": 477,
-				"minimal": 5.19930675909879,
-				"mild": 5.71923743500867,
-				"moderate": 10.3986135181976,
-				"moderately severe": 10.9185441941075,
-				"severe": 9.01213171577123,
-				"N/A": 41.421143847487
+				"minimal": 5.20,
+				"mild": 5.72,
+				"moderate": 10.4,
+				"moderately severe": 10.9,
+				"severe": 9.01,
+				"N/A": 41.4
 			},
 			"persistent cough": {
 				"N": 484,
-				"minimal": 9.7053726169844,
-				"mild": 7.2790294627383,
-				"moderate": 9.53206239168111,
-				"moderately severe": 5.19930675909879,
-				"severe": 6.41247833622184,
-				"N/A": 45.7538994800693
+				"minimal": 9.71,
+				"mild": 7.28,
+				"moderate": 9.53,
+				"moderately severe": 5.20,
+				"severe": 6.41,
+				"N/A": 45.8
 			},
 			"heartburn / indigestion": {
 				"N": 483,
-				"minimal": 7.97227036395147,
-				"mild": 8.49220103986135,
-				"moderate": 13.3448873483536,
-				"moderately severe": 9.35875216637782,
-				"severe": 9.53206239168111,
-				"N/A": 35.0086655112652
+				"minimal": 7.97,
+				"mild": 8.49,
+				"moderate": 13.3,
+				"moderately severe": 9.36,
+				"severe": 9.53,
+				"N/A": 35.0
 			},
 			"dry mouth": {
 				"N": 479,
-				"minimal": 6.58578856152513,
-				"mild": 8.14558058925477,
-				"moderate": 12.4783362218371,
-				"moderately severe": 5.37261698440208,
-				"severe": 9.53206239168111,
-				"N/A": 40.9012131715771
+				"minimal": 6.59,
+				"mild": 8.15,
+				"moderate": 12.5,
+				"moderately severe": 5.37,
+				"severe": 9.53,
+				"N/A": 40.9
 			},
 			"abdominal / stomach pain": {
 				"N": 483,
-				"minimal": 6.75909878682842,
-				"mild": 10.5719237435009,
-				"moderate": 13.3448873483536,
-				"moderately severe": 9.18544194107452,
-				"severe": 12.3050259965338,
-				"N/A": 31.5424610051993
+				"minimal": 6.76,
+				"mild": 10.6,
+				"moderate": 13.3,
+				"moderately severe": 9.19,
+				"severe": 12.3,
+				"N/A": 31.5
 			},
 			"nausea": {
 				"N": 479,
-				"minimal": 8.31889081455806,
-				"mild": 9.18544194107452,
-				"moderate": 13.3448873483536,
-				"moderately severe": 11.0918544194107,
-				"severe": 11.6117850953206,
-				"N/A": 29.4627383015598
+				"minimal": 8.32,
+				"mild": 9.19,
+				"moderate": 13.3,
+				"moderately severe": 11.1,
+				"severe": 11.6,
+				"N/A": 29.5
 			},
 			"diarrhoea": {
 				"N": 487,
-				"minimal": 8.49220103986135,
-				"mild": 9.53206239168111,
-				"moderate": 10.7452339688042,
-				"moderately severe": 7.10571923743501,
-				"severe": 8.49220103986135,
-				"N/A": 40.0346620450607
+				"minimal": 8.49,
+				"mild": 9.53,
+				"moderate": 10.7,
+				"moderately severe": 7.11,
+				"severe": 8.49,
+				"N/A": 40.0
 			},
 			"loss of bowel control": {
 				"N": 481,
-				"minimal": 9.53206239168111,
-				"mild": 4.67937608318891,
-				"moderate": 2.25303292894281,
-				"moderately severe": 3.63951473136915,
-				"severe": 4.67937608318891,
-				"N/A": 58.578856152513
+				"minimal": 9.53,
+				"mild": 4.68,
+				"moderate": 2.25,
+				"moderately severe": 3.64,
+				"severe": 4.68,
+				"N/A": 58.6
 			},
 			"constipation": {
 				"N": 491,
-				"minimal": 8.31889081455806,
-				"mild": 5.02599653379549,
-				"moderate": 9.35875216637782,
-				"moderately severe": 6.93240901213172,
-				"severe": 7.10571923743501,
-				"N/A": 48.3535528596187
+				"minimal": 8.32,
+				"mild": 5.03,
+				"moderate": 9.36,
+				"moderately severe": 6.93,
+				"severe": 7.11,
+				"N/A": 48.4
 			},
 			"bloody or black tar-like stool": {
 				"N": 490,
-				"minimal": 8.49220103986135,
-				"mild": 3.11958405545927,
-				"moderate": 3.11958405545927,
-				"moderately severe": 1.73310225303293,
-				"severe": 3.63951473136915,
-				"N/A": 64.8180242634315
+				"minimal": 8.49,
+				"mild": 3.12,
+				"moderate": 3.12,
+				"moderately severe": 1.73,
+				"severe": 3.64,
+				"N/A": 64.8
 			},
 			"excessive gas": {
 				"N": 416,
-				"minimal": 8.31889081455806,
-				"mild": 6.75909878682842,
-				"moderate": 10.5719237435009,
-				"moderately severe": 4.67937608318891,
-				"severe": 4.15944540727903,
-				"N/A": 37.6083188908146
+				"minimal": 8.32,
+				"mild": 6.76,
+				"moderate": 10.6,
+				"moderately severe": 4.68,
+				"severe": 4.16,
+				"N/A": 37.6
 			},
 			"increased thirst": {
 				"N": 415,
-				"minimal": 6.23916811091854,
-				"mild": 6.58578856152513,
-				"moderate": 11.9584055459272,
-				"moderately severe": 7.2790294627383,
-				"severe": 5.89254766031196,
-				"N/A": 33.9688041594454
+				"minimal": 6.24,
+				"mild": 6.59,
+				"moderate": 12.0,
+				"moderately severe": 7.28,
+				"severe": 5.89,
+				"N/A": 34.0
 			},
 			"frequent urination": {
 				"N": 416,
-				"minimal": 5.37261698440208,
-				"mild": 5.89254766031196,
-				"moderate": 13.3448873483536,
-				"moderately severe": 8.66551126516464,
-				"severe": 7.62564991334489,
-				"N/A": 31.1958405545927
+				"minimal": 5.37,
+				"mild": 5.89,
+				"moderate": 13.3,
+				"moderately severe": 8.67,
+				"severe": 7.63,
+				"N/A": 31.2
 			},
 			"loss of bladder control": {
 				"N": 415,
-				"minimal": 7.79896013864818,
-				"mild": 3.98613518197574,
-				"moderate": 5.71923743500867,
-				"moderately severe": 2.4263431542461,
-				"severe": 3.98613518197574,
-				"N/A": 48.0069324090121
+				"minimal": 7.80,
+				"mild": 3.99,
+				"moderate": 5.72,
+				"moderately severe": 2.43,
+				"severe": 3.99,
+				"N/A": 48.0
 			},
 			"abnormal glucose levels": {
 				"N": 407,
-				"minimal": 5.89254766031196,
-				"mild": 2.77296360485269,
-				"moderate": 2.94627383015598,
-				"moderately severe": 2.25303292894281,
-				"severe": 2.4263431542461,
-				"N/A": 54.2461005199307
+				"minimal": 5.89,
+				"mild": 2.77,
+				"moderate": 2.95,
+				"moderately severe": 2.25,
+				"severe": 2.43,
+				"N/A": 54.2
 			},
 			"discolouring of skin / eyes": {
 				"N": 413,
-				"minimal": 7.2790294627383,
-				"mild": 5.02599653379549,
-				"moderate": 4.67937608318891,
-				"moderately severe": 3.46620450606586,
-				"severe": 2.59965337954939,
-				"N/A": 48.526863084922
+				"minimal": 7.28,
+				"mild": 5.03,
+				"moderate": 4.68,
+				"moderately severe": 3.47,
+				"severe": 2.60,
+				"N/A": 48.5
 			},
 			"discolouration in fingertips / toes": {
 				"N": 410,
-				"minimal": 6.93240901213172,
-				"mild": 5.19930675909879,
-				"moderate": 5.71923743500867,
-				"moderately severe": 3.98613518197574,
-				"severe": 3.11958405545927,
-				"N/A": 46.1005199306759
+				"minimal": 6.93,
+				"mild": 5.20,
+				"moderate": 5.72,
+				"moderately severe": 3.99,
+				"severe": 3.12,
+				"N/A": 46.1
 			},
 			"bulging veins": {
 				"N": 413,
-				"minimal": 7.2790294627383,
-				"mild": 4.67937608318891,
-				"moderate": 5.71923743500867,
-				"moderately severe": 4.50606585788562,
-				"severe": 3.11958405545927,
-				"N/A": 46.2738301559792
+				"minimal": 7.28,
+				"mild": 4.68,
+				"moderate": 5.72,
+				"moderately severe": 4.51,
+				"severe": 3.12,
+				"N/A": 46.3
 			},
 			"poor circulation": {
 				"N": 490,
-				"minimal": 8.31889081455806,
-				"mild": 5.37261698440208,
-				"moderate": 11.4384748700173,
-				"moderately severe": 10.051993067591,
-				"severe": 11.9584055459272,
-				"N/A": 37.7816291161178
+				"minimal": 8.32,
+				"mild": 5.37,
+				"moderate": 11.4,
+				"moderately severe": 10.1,
+				"severe": 12.0,
+				"N/A": 37.8
 			},
 			"swelling of extremities": {
 				"N": 486,
-				"minimal": 10.051993067591,
-				"mild": 7.45233968804159,
-				"moderate": 6.75909878682842,
-				"moderately severe": 6.23916811091854,
-				"severe": 8.31889081455806,
-				"N/A": 45.4072790294627
+				"minimal": 10.1,
+				"mild": 7.45,
+				"moderate": 6.76,
+				"moderately severe": 6.24,
+				"severe": 8.32,
+				"N/A": 45.4
 			},
 			"swollen lymph nodes": {
 				"N": 355,
-				"minimal": 5.89254766031196,
-				"mild": 4.67937608318891,
-				"moderate": 10.7452339688042,
-				"moderately severe": 5.19930675909879,
-				"severe": 5.19930675909879,
-				"N/A": 29.8093587521664
+				"minimal": 5.89,
+				"mild": 4.68,
+				"moderate": 10.7,
+				"moderately severe": 5.20,
+				"severe": 5.20,
+				"N/A": 29.8
 			},
 			"persistent sore throat": {
 				"N": 357,
-				"minimal": 7.97227036395147,
-				"mild": 6.06585788561525,
-				"moderate": 4.8526863084922,
-				"moderately severe": 3.29289428076257,
-				"severe": 2.94627383015598,
-				"N/A": 36.7417677642981
+				"minimal": 7.97,
+				"mild": 6.07,
+				"moderate": 4.85,
+				"moderately severe": 3.29,
+				"severe": 2.95,
+				"N/A": 36.7
 			},
 			"heat intolerance": {
 				"N": 353,
-				"minimal": 3.63951473136915,
-				"mild": 5.71923743500867,
-				"moderate": 9.53206239168111,
-				"moderately severe": 9.18544194107452,
-				"severe": 6.41247833622184,
-				"N/A": 26.6897746967071
+				"minimal": 3.64,
+				"mild": 5.72,
+				"moderate": 9.53,
+				"moderately severe": 9.19,
+				"severe": 6.41,
+				"N/A": 26.7
 			},
 			"skin redness, hives, petechia or rashes": {
 				"N": 363,
-				"minimal": 5.71923743500867,
-				"mild": 4.50606585788562,
-				"moderate": 7.79896013864818,
-				"moderately severe": 6.23916811091854,
-				"severe": 6.93240901213172,
-				"N/A": 31.7157712305026
+				"minimal": 5.72,
+				"mild": 4.51,
+				"moderate": 7.80,
+				"moderately severe": 6.24,
+				"severe": 6.93,
+				"N/A": 31.7
 			},
 			"new food allergies / intolerances": {
 				"N": 360,
-				"minimal": 4.50606585788562,
-				"mild": 4.15944540727903,
-				"moderate": 4.50606585788562,
-				"moderately severe": 4.33275563258232,
-				"severe": 8.66551126516464,
-				"N/A": 36.2218370883882
+				"minimal": 4.51,
+				"mild": 4.16,
+				"moderate": 4.51,
+				"moderately severe": 4.33,
+				"severe": 8.67,
+				"N/A": 36.2
 			},
 			"anaphylaxis": {
 				"N": 355,
-				"minimal": 4.8526863084922,
-				"mild": 2.4263431542461,
-				"moderate": 0.693240901213172,
-				"moderately severe": 0.519930675909879,
-				"severe": 1.21317157712305,
-				"N/A": 51.8197573656846
+				"minimal": 4.85,
+				"mild": 2.43,
+				"moderate": 0.693,
+				"moderately severe": 0.520,
+				"severe": 1.21,
+				"N/A": 51.8
 			},
 			"hair loss": {
 				"N": 359,
-				"minimal": 4.50606585788562,
-				"mild": 5.54592720970537,
-				"moderate": 9.18544194107452,
-				"moderately severe": 4.50606585788562,
-				"severe": 3.63951473136915,
-				"N/A": 34.8353552859619
+				"minimal": 4.51,
+				"mild": 5.55,
+				"moderate": 9.19,
+				"moderately severe": 4.51,
+				"severe": 3.64,
+				"N/A": 34.8
 			},
 			"chills": {
 				"N": 357,
-				"minimal": 5.89254766031196,
-				"mild": 5.71923743500867,
-				"moderate": 13.6915077989601,
-				"moderately severe": 5.89254766031196,
-				"severe": 3.81282495667244,
-				"N/A": 26.8630849220104
+				"minimal": 5.89,
+				"mild": 5.72,
+				"moderate": 13.7,
+				"moderately severe": 5.89,
+				"severe": 3.81,
+				"N/A": 26.9
 			},
 			"irregular menstrual cycle": {
 				"N": 480,
-				"minimal": 5.54592720970537,
-				"mild": 3.11958405545927,
-				"moderate": 5.54592720970537,
-				"moderately severe": 3.29289428076257,
-				"severe": 7.10571923743501,
-				"N/A": 58.578856152513
+				"minimal": 5.55,
+				"mild": 3.12,
+				"moderate": 5.55,
+				"moderately severe": 3.29,
+				"severe": 7.11,
+				"N/A": 58.6
 			},
 			"resurgence of latent disease (e.g. shingles, EBV, cancer, autoimmune disease, etc.)": {
 				"N": 472,

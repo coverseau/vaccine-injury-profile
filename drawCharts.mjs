@@ -582,7 +582,13 @@ function drawSymptoms(figureID, symptomSeverities) {
 					},
 					scales: {
 						x: {
-							stacked: true
+							stacked: true,
+							ticks: {
+								stepSize: 10,
+								callback: function(value, index, ticks) {
+										return value + '%';
+								}
+							}
 						},
 						y: {
 							stacked: true,
