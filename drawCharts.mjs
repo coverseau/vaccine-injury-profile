@@ -515,7 +515,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 		symptoms.forEach(symptom => {
 			data.labels.push(symptom);
 		});
-		severities.forEach(severity => {
+		symptoms.forEach(symptom => {
 			const dataset = {
 				label: severity,
 				//xAxisID: 'percentage',
@@ -541,7 +541,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 					dataset.backgroundColor = colourGray;
 					break;
 			}*/
-			symptoms.forEach(symptom => {
+			severities.forEach(severity => {
 				dataset.data.push(symptomSeverities[symptom][severity]);
 			});
 			data.datasets.push(dataset);
