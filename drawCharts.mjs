@@ -515,7 +515,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 		symptoms.forEach(symptom => {
 			data.labels.push(symptom);
 		});
-		symptoms.forEach(symptom => {
+		severities.forEach(severity => {
 			const dataset = {
 				label: severity,
 				//xAxisID: 'percentage',
@@ -541,7 +541,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 					dataset.backgroundColor = colourGray;
 					break;
 			}*/
-			severities.forEach(severity => {
+			symptoms.forEach(symptom => {
 				dataset.data.push(symptomSeverities[symptom][severity]);
 			});
 			data.datasets.push(dataset);
@@ -555,7 +555,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 				type: 'bar',
 				data: data,
 				options: {
-					indexAxis: 'y',
+					//indexAxis: 'y',
 					plugins: {
 						legend: {
 							display: true
