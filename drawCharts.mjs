@@ -484,7 +484,7 @@ function drawOnset(figureID, doses) {
 
 function drawSymptoms(figureID, symptomSeverities) {
 	const figureContainer = document.getElementById(figureID);
-	figureContainer.style.height = '90rem';
+	figureContainer.style.height = '120rem';
 	figureContainer.style.width = 'calc(100% - 3rem)';
 	if (!!figureContainer) {
 		const symptoms = [];
@@ -590,19 +590,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 								display: true,
 								autoSkip: false
 							}
-						}/*,
-						percentage: {
-							type: 'linear',
-							axis: 'y',
-							stacked: true,
-							beginAtZero: true,
-							ticks: {
-								stepSize: 10,
-								callback: function(value, index, ticks) {
-										return value + '%';
-								}
-							}
-						}*/
+						}
 					}
 				}
 			}

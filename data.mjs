@@ -447,21 +447,21 @@ const summaryData = {
 			},
 			"nerve pain": {
 				"N": 508,
-				"minimal": 4.50606585788562,
-				"mild": 5.19930675909879,
-				"moderate": 11.0918544194107,
-				"moderately severe": 13.8648180242634,
+				"minimal": 4.51,
+				"mild": 5.20,
+				"moderate": 11.1,
+				"moderately severe": 13.9,
 				"severe": 28.2495667244367,
 				"N/A": 25.1299826689775
 			},
 			"tremors": {
 				"N": 498,
-				"minimal": 9.53206239168111,
-				"mild": 8.14558058925477,
-				"moderate": 10.051993067591,
-				"moderately severe": 8.83882149046794,
-				"severe": 11.9584055459272,
-				"N/A": 37.7816291161178
+				"minimal": 9.53,
+				"mild": 8.15,
+				"moderate": 10.1,
+				"moderately severe": 8.84,
+				"severe": 12.0,
+				"N/A": 37.8
 			},
 			"muscle twitching": {
 				"N": 511,
