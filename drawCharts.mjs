@@ -512,39 +512,38 @@ function drawSymptoms(figureID, symptomSeverities) {
 			labels: [],
 			datasets: []
 		};
-		severities.forEach(severity => {
-			data.labels.push(severity);
-		});
 		symptoms.forEach(symptom => {
+			data.labels.push(symptom);
+		});
+		severities.forEach(severity => {
 			const dataset = {
-				label: symptom,
-				axis: 'y',
+				label: severity,
+				axis: 'x',
 				//xAxisID: 'percentage',
-				data: [],
-				backgroundColor: []
+				data: []
 			};
-			severities.forEach(severity => {
+			switch (severity) {
+				   case "severe":
+					   dataset.backgroundColor = coverseRed;
+					   break;
+				   case "moderately severe":
+					   dataset.backgroundColor = coverseColour;
+					   break;
+				   case "moderate":
+					   dataset.backgroundColor = coverseYellow;
+					   break;
+				   case "mild":
+					   dataset.backgroundColor = coverseLightBlue;
+					   break;
+				   case "minimal":
+					   dataset.backgroundColor = coverseGreen;
+					   break;
+				   case "N/A":
+					   dataset.backgroundColor = colourGray;
+					   break;
+			   }
+			symptoms.forEach(symptom => {
 				dataset.data.push(symptomSeverities[symptom][severity]);
-				switch (severity) {
-					case "severe":
-						dataset.backgroundColor.push(coverseRed);
-						break;
-					case "moderately severe":
-						dataset.backgroundColor.push(coverseColour);
-						break;
-					case "moderate":
-						dataset.backgroundColor.push(coverseYellow);
-						break;
-					case "mild":
-						dataset.backgroundColor.push(coverseLightBlue);
-						break;
-					case "minimal":
-						dataset.backgroundColor.push(coverseGreen);
-						break;
-					case "N/A":
-						dataset.backgroundColor.push(colourGray);
-						break;
-				}
 			});
 			data.datasets.push(dataset);
 		});
