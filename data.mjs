@@ -886,7 +886,7 @@ const summaryData = {
 				"severe": 7.10571923743501,
 				"N/A": 58.578856152513
 			},
-			"resurgence of latent disease (e.g. shingles,\nEBV, cancer, autoimmune disease, etc.)": {
+			"resurgence of latent disease (e.g. shingles, EBV, cancer, autoimmune disease, etc.)": {
 				"N": 472,
 				"minimal": 5.03,
 				"mild": 2.60,

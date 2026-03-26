@@ -514,7 +514,12 @@ function drawSymptoms(figureID, symptomSeverities) {
 			datasets: []
 		};
 		symptoms.forEach(symptom => {
-			data.labels.push(symptom);
+			if (symptom == "resurgence of latent disease (e.g. shingles, EBV, cancer, autoimmune disease, etc.)") {
+				const symptomArray = [ "resurgence of latent disease (e.g. shingles,", "EBV, cancer, autoimmune disease, etc.)" ];
+				data.labels.push(symptomArray);
+			} else {
+				data.labels.push(symptom);
+			}
 		});
 		severities.forEach(severity => {
 			const dataset = {
