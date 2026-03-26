@@ -411,21 +411,21 @@ const summaryData = {
 			},
 			"visual disturbances": {
 				"N": 501,
-				"minimal": 8.14558058925477,
-				"mild": 11.0918544194107,
-				"moderate": 14.21143847487,
-				"moderately severe": 10.5719237435009,
-				"severe": 11.7850953206239,
-				"N/A": 31.0225303292894
+				"minimal": 8.15,
+				"mild": 11.1,
+				"moderate": 14.2,
+				"moderately severe": 10.6,
+				"severe": 11.8,
+				"N/A": 31.0
 			},
 			"temporary blindness": {
 				"N": 492,
-				"minimal": 10.3986135181976,
-				"mild": 3.29289428076257,
-				"moderate": 1.55979202772964,
-				"moderately severe": 1.38648180242634,
-				"severe": 1.21317157712305,
-				"N/A": 67.4176776429809
+				"minimal": 10.4,
+				"mild": 3.29,
+				"moderate": 1.56,
+				"moderately severe": 1.39,
+				"severe": 1.21,
+				"N/A": 67.4
 			},
 			"glaucoma": {
 				"N": 485,

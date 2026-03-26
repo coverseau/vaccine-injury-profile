@@ -47,7 +47,8 @@ sup.required {
 
 figure {
 	margin-left: 1.5rem;
-	right: 1.5rem;
+	margin-right: 1.5rem;
+	max-width: calc(100% - 3rem);
 }
 
 .text-bg-primary {
