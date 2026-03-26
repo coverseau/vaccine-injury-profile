@@ -555,7 +555,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 				type: 'bar',
 				data: data,
 				options: {
-					//indexAxis: 'y',
+					indexAxis: 'y',
 					plugins: {
 						legend: {
 							display: true
@@ -581,7 +581,11 @@ function drawSymptoms(figureID, symptomSeverities) {
 							}
 						},
 						y: {
-							stacked: true
+							type: 'category',
+							stacked: true,
+							ticks: {
+								autoSkip: false
+							}
 						}/*,
 						percentage: {
 							type: 'linear',
