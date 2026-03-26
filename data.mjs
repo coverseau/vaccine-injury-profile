@@ -366,48 +366,48 @@ const summaryData = {
 			},
 			"new severe anxiety": {
 				"N": 499,
-				"minimal": 6.23916811091854,
-				"mild": 5.54592720970537,
-				"moderate": 15.9445407279029,
-				"moderately severe": 15.9445407279029,
-				"severe": 21.317157712305,
-				"N/A": 21.4904679376083
+				"minimal": 6.24,
+				"mild": 5.55,
+				"moderate": 15.9,
+				"moderately severe": 15.9,
+				"severe": 21.3,
+				"N/A": 21.5
 			},
 			"feeling off-balance, or in motion while at rest": {
 				"N": 515,
-				"minimal": 6.58578856152513,
-				"mild": 8.83882149046794,
-				"moderate": 18.0242634315425,
-				"moderately severe": 14.3847487001733,
-				"severe": 20.7972270363951,
-				"N/A": 20.6239168110919
+				"minimal": 6.59,
+				"mild": 8.84,
+				"moderate": 18.0,
+				"moderately severe": 14.4,
+				"severe": 20.8,
+				"N/A": 20.6
 			},
 			"tinnitus": {
 				"N": 504,
-				"minimal": 6.58578856152513,
-				"mild": 8.49220103986135,
-				"moderate": 12.1317157712305,
-				"moderately severe": 10.051993067591,
-				"severe": 14.7313691507799,
-				"N/A": 35.3552859618718
+				"minimal": 6.59,
+				"mild": 8.49,
+				"moderate": 12.1,
+				"moderately severe": 10.1,
+				"severe": 14.7,
+				"N/A": 35.4
 			},
 			"sensitivity to sound": {
 				"N": 502,
-				"minimal": 6.58578856152513,
-				"mild": 9.53206239168111,
-				"moderate": 13.8648180242634,
-				"moderately severe": 10.7452339688042,
-				"severe": 15.0779896013865,
-				"N/A": 31.1958405545927
+				"minimal": 6.59,
+				"mild": 9.53,
+				"moderate": 13.9,
+				"moderately severe": 10.7,
+				"severe": 15.1,
+				"N/A": 31.2
 			},
 			"sensitivity to light": {
 				"N": 502,
-				"minimal": 7.2790294627383,
-				"mild": 9.01213171577123,
-				"moderate": 14.0381282495667,
-				"moderately severe": 11.265164644714,
-				"severe": 13.1715771230503,
-				"N/A": 32.2357019064125
+				"minimal": 7.28,
+				"mild": 9.01,
+				"moderate": 14.0,
+				"moderately severe": 11.3,
+				"severe": 13.2,
+				"N/A": 32.2
 			},
 			"visual disturbances": {
 				"N": 501,
