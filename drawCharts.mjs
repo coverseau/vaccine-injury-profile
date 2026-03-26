@@ -484,7 +484,8 @@ function drawOnset(figureID, doses) {
 
 function drawSymptoms(figureID, symptomSeverities) {
 	const figureContainer = document.getElementById(figureID);
-	figureContainer.style.minHeight = '90rem';
+	figureContainer.style.height = '90rem';
+	figureContainer.style.width = 'calc(100% - 3rem)';
 	if (!!figureContainer) {
 		const symptoms = [];
 		const severities = [];

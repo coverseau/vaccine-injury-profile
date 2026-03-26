@@ -429,21 +429,21 @@ const summaryData = {
 			},
 			"glaucoma": {
 				"N": 485,
-				"minimal": 8.66551126516464,
-				"mild": 1.38648180242634,
-				"moderate": 1.03986135181976,
-				"moderately severe": 0.866551126516464,
-				"severe": 0.866551126516464,
-				"N/A": 71.2305025996534
+				"minimal": 8.67,
+				"mild": 1.39,
+				"moderate": 1.04,
+				"moderately severe": 0.867,
+				"severe": 0.867,
+				"N/A": 71.2
 			},
 			"dry eyes": {
 				"N": 501,
-				"minimal": 8.31889081455806,
-				"mild": 8.14558058925477,
-				"moderate": 10.5719237435009,
-				"moderately severe": 7.45233968804159,
-				"severe": 6.93240901213172,
-				"N/A": 45.4072790294627
+				"minimal": 8.32,
+				"mild": 8.15,
+				"moderate": 10.6,
+				"moderately severe": 7.45,
+				"severe": 6.93,
+				"N/A": 45.4
 			},
 			"nerve pain": {
 				"N": 508,
