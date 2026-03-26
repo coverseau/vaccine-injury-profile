@@ -518,7 +518,7 @@ function drawSymptoms(figureID, symptomSeverities) {
 		symptoms.forEach(symptom => {
 			const dataset = {
 				label: symptom,
-				axis: 'y',
+				axis: 'x',
 				//xAxisID: 'percentage',
 				data: [],
 				backgroundColor: []
