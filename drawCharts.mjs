@@ -520,7 +520,9 @@ function drawSymptoms(figureID, symptomSeverities) {
 				label: symptom,
 				//xAxisID: 'percentage',
 				data: []
-			};/*
+			};
+			dataset.backgroundColor = [ coverseRed, coverseColour, coverseYellow, coverseLightBlue, coverseGreen, colourGray ];
+			/*
 			switch (severity) {
 				case "severe":
 					dataset.backgroundColor = coverseRed;
@@ -540,7 +542,8 @@ function drawSymptoms(figureID, symptomSeverities) {
 				case "N/A":
 					dataset.backgroundColor = colourGray;
 					break;
-			}*/
+			}
+			*/
 			severities.forEach(severity => {
 				dataset.data.push(symptomSeverities[symptom][severity]);
 			});
