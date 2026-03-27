@@ -86,3 +86,8 @@ figure {
 .copilot {
 	padding-left: 2rem;
 }
+
+.figureLink {
+	color: inherit;
+	text-decoration: inherit;
+}

@@ -630,7 +630,7 @@ function drawImprovement(figureID, months) {
 									return null;
 								},
 								label: (context) => {
-									return context.label + ' months: ' + context.raw + '%';
+									return context.label + ( (context.label == '1') ? ' month: ' : ' months: ' ) + context.raw + '%';
 								}
 							}
 						}
