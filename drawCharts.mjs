@@ -630,7 +630,7 @@ function drawImprovement(figureID, months) {
 									return null;
 								},
 								label: (context) => {
-									return context.label + ': ' + context.raw + '%';
+									return context.label + ' months: ' + context.raw + '%';
 								}
 							}
 						}
@@ -641,7 +641,7 @@ function drawImprovement(figureID, months) {
 							axis: 'y',
 							beginAtZero: true,
 							ticks: {
-								stepSize: 10,
+								stepSize: 5,
 								callback: function(value, index, ticks) {
 										return value + '%';
 								}
