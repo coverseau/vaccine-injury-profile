@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	drawDates('draw_figure_dates', summaryData.doses);
 	drawOnset('draw_figure_onset', summaryData.doses);
 	drawSymptoms('draw_figure_symptoms', summaryData.symptoms.severity);
-	drawImprovement('draw_figure_improvement', summaryData.improvement.month);
+	drawImprovement('draw_figure_improvement', summaryData.symptoms.improvement.month);
 });
 
 function drawAges(figureID, ages) {
