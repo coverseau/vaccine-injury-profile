@@ -65,6 +65,7 @@
 		<p>Not all individuals who started the Profile completed all required questions, and not all of those individuals completed all of the non-required questions. In order to make the Profile as easy as possible to complete, <b>CO</b>VERSE designed the Profile with many of the questions (especially the qualitative ones) not being required to be completed.</p>
 		<p>Note that the underlying demoninator, <mark>N</mark>, we used for statistical analysis varied from question to question, depending on whether the question was compulsory, how many people answered the question, whether the people who answered the question had completed all other required questions, and demographic specificities (e.g. biological sex). This allowed us to utilise larger or more appropriate data in the analysis of each question. Throughout the analysis the relevant <mark>N</mark> used for each calculation will be provided as well as a basic descriptor to understand the choice of <mark>N</mark>. Where we utilised all responses we depict the denominator as <mark>N<sub>all</sub></mark>. Where we incorporate only those responses from individuals who answered a particular question, we depict, for example, <mark>N<sub>138</sub></mark> to indicate we only used <mark>138</mark> responses. We appreciate that this is not a usual methodology for statistical analysis of this type, however our aim was to extract as much useful information as we could from the data we have, within reason, to guide our advocacy.</p>
 		<p>Most summary data is presented as a percentage of the given <mark>N</mark>, and where appropriate we also provide calculated values such as mean, median, standard deviation (σ), confidence interval (CI), etc.</p>
+		<p>For the open-ended and qualitative questions we utilised the <a href="https://m365.cloud.microsoft/">Microsoft 365 Copilot</a> chatbot to analyse responses.</p>
 	</section>
 	
 	<hr>
@@ -75,16 +76,16 @@
 		<section id="demographics">
 			<h3>Demographics</h3>
 			<p>A total of <mark>594</mark> individuals begun answering the Vaccine Injury Profile (<mark>N<sub>all</sub></mark>), with <mark>525</mark> having completed all required questions. Within <mark>N<sub>all</sub></mark> responses, <mark>65.0%</mark> indicated being female, and <mark>35.0%</mark> being male.</p>
-			<p>Age values were calculated by subtracting the year of birth from the date the respondant begun completing the Profile. The average age of <mark>N<sub>535</sub></mark> respondents was <mark>50.4±14.0 (95% CI 49.2-51.6)</mark>. The average age of females was <mark>51.4±13.4 (95% CI 50.3-52.5)</mark>, and average age of males was <mark>48.3±15.0 (95% CI 47.0-49.6)</mark>. The age distribution is presented in <a href="figure_ages">Figure 1</a>.</p>
+			<p>Age values were calculated by subtracting the year of birth from the date the respondant begun completing the Profile. The average age of <mark>N<sub>535</sub></mark> respondents was <mark>50.4±14.0 (95% CI 49.2-51.6)</mark>. The average age of females was <mark>51.4±13.4 (95% CI 50.3-52.5)</mark>, and average age of males was <mark>48.3±15.0 (95% CI 47.0-49.6)</mark>. The age distribution is presented in <a href="# class="figureLink"figure_ages" class="figureLink">Figure 1</a>.</p>
 			<figure class="figure minw-50" id="figure_ages">
 				<canvas id="draw_figure_ages"></canvas>
 				<figcaption class="figure-caption">Figure 1. Age distribution of respondents.</figcaption>
 			</figure>
-			<p>All of Australia’s State and Territories were representated amongst the respondants, with the proportion from each region displayed in <a href="#figure_states">Figure 2</a>.</p>
+			<p>All of Australia’s State and Territories were representated amongst the respondants, with the proportion from each region displayed in <a href="#figure_states" class="figureLink">Figure 2</a>.</p>
 			<figure class="figure minw-66" id="figure_states">
 				<div class="row">
 					<div class="col">
-						<table class="table table-sm table-hover align-middle small">
+						<table class="table table-sm table-striped table-hover align-middle small w-auto">
 							<thead><tr><th scope="col" class="align-bottom">state</th><th scope="col" class="align-bottom text-end">% respondents</th></tr></thead>
 							<tbody id="draw_table_states"></tbody>
 						</table>
@@ -100,22 +101,23 @@
 		
 		<section id="vaccinations">
 			<h3>COVID-19 vaccination history</h3>
+			<!-- PUT DOSE INFO INTO TABLE, each row has N_vaxed, %_reacted, N_date, median_date -->
 			<p><mark>62.0%</mark> of <mark>N<sub>all</sub></mark> respondents experienced an adverse reaction to their first COVID-19 vaccine dose, and the median date of receiving this dose (for <mark>N<sub>468</sub></mark> who could recall the exact date) was <mark>23<sup>rd</sup> August 2021</mark>. <mark>71.5%</span> of <mark>N<sub>505</sub></mark> respondents who indicated they had a second dose reacted to it, and the median date of <mark>N<sub>381</sub></mark> receiving this dose was <mark>19<sup>th</sup> September 2021</mark>. Of the <mark>N<sub>273</sub></mark> respondents who got a third dose, <mark>65.2%</mark> reacted to it, and the median date of <mark>N<sub>185</sub></mark> receiving this dose was <mark>19<sup>th</sup> January 2022</mark>. <mark>N<sub>117</sub></mark> got a fourth dose, <mark>35.0%</mark> indicated that they reacted to it, and the median date of <mark>N<sub>53</sub></mark> receiving this dose was <mark>15<sup>th</sup> July 2022</mark>. We also asked about fifth and subsequent doses, <mark>N<sub>41</sub></mark> indicating that they can gotten these doses of which <mark>12%</mark> had a reaction, and the median date of <mark>N<sub>9</sub></mark> receiving this dose was <mark>26<sup>th</sup> April 2023</mark>.</p>
-			<p>Figure 3 provides a percentage breakdown of the brands of COVID-19 vaccines that respondents received, and Figure 4 depicts the date distribution of doses reported by respondents. The percentages of both figures are out of <mark>N<sub>all</sub></mark> respondents.</p>
-			<figure class="figure minw-66" id="figure_brands">
-				<canvas id="draw_figure_brands"></canvas>
-				<figcaption class="figure-caption">Figure 3. Relative distribution of COVID-19 vaccine brands amongst respondents.</figcaption>
-			</figure>
+			<p><a href="#figure_dates" class="figureLink">Figure 3</a> depicts the date distribution of doses reported by respondents, and <a href="#figure_brands" class="figureLink">Figure 4</a> provides a percentage breakdown of the brands of COVID-19 vaccines that respondents received. The percentages of both figures are out of <mark>N<sub>all</sub></mark> respondents.</p>
 			<figure class="figure minw-75" id="figure_dates">
 				<canvas id="draw_figure_dates"></canvas>
-				<figcaption class="figure-caption">Figure 4. Date distribution (by quarters) of all doses reported by respondents. Note that not all respondents were able to indicate exact dates for each of their vaccination doses.</figcaption>
+				<figcaption class="figure-caption">Figure 3. Date distribution (by quarters) of all doses reported by respondents. Note that not all respondents were able to indicate exact dates for each of their vaccination doses.</figcaption>
+			</figure>
+			<figure class="figure minw-66" id="figure_brands">
+				<canvas id="draw_figure_brands"></canvas>
+				<figcaption class="figure-caption">Figure 4. Relative distribution of COVID-19 vaccine brands amongst respondents.</figcaption>
 			</figure>
 			
-			<p>Time to symptom onset varied, however the most commonly reported periods were within <mark>1-12 hours</mark> and <mark>1-7 days</marks>. <a href="figure_onset">Figure 5</a> shows the percentage of <mark>N<sub>all</sub></mark> respondents who reacted within each depicted time period.</p>
+			<p>Time to symptom onset varied, however the most commonly reported periods were within <mark>1-12 hours</mark> and <mark>1-7 days</marks>. <a href="#figure_onset" class="figureLink">Figure 5</a> shows the percentage of <mark>N<sub>all</sub></mark> respondents who reacted within each depicted time period.</p>
 			<figure class="figure minw-75" id="figure_onset">
 				<canvas id="draw_figure_onset"></canvas>
 				<figcaption class="figure-caption">Figure 5. Time to symptom onset.</figcaption>
-			 </figure>
+			</figure>
 			
 			<p>Of <mark>N<sub>318</sub></mark> respondents who specifically indicated that they got subsequent doses after reacting to an earlier dose, <mark>78.3%</mark> indicated that their health worsened, <mark>2.52%</mark> felt better, and <mark>19.2%</mark> had no change in their symptoms.</p>
 			<p><mark>N<sub>263</sub></mark> indicated whether or not they were subject to a workplace COVID-19 vaccine mandate for the dose that they became injured by, of which <mark>51.0%</mark> reported that they were formally mandated to recive that does while <mark>8.37%</mark> report that while they were not formalled mandated they were bullied or coerced by their workplace to receive the dose. Note that this particular question was added to the Profile some time after the Profile was initially opened for submissions, hence why we could not capture a greater proportion of all respondents.</p>
@@ -123,11 +125,62 @@
 		
 		<section id="symptoms">
 			<h3>Adverse reaction / symptom details</h3>
-			<p>For a collection of 71 symptoms, we asked respondents to indicate if they had experienced each as part of their post-vaccination symptoms, and how severe these symptoms were <em>at their worst</em> (minimal, mild, moderate, moderately severe, or severe). <a href="#figure_symptoms">Figure 6</a> presents an overview of these results, from the <mark>N<sub>577</sub></mark> people who completed this question. Note that <mark>N/A</mark> indicates that the respondent specifically indicated that the particular symptom was not applicable to them, however it is assumed that no choice of <mark>N/A</mark> or symptom severity also indicates that the symptom was not applicable.</p>
+			<p>For a collection of 71 symptoms, we asked respondents to indicate if they had experienced each as part of their post-vaccination symptoms, and how severe these symptoms were <em>at their worst</em> (minimal, mild, moderate, moderately severe, or severe). <a href="#figure_symptoms" class="figureLink">Figure 6</a> presents an overview of these results, from the <mark>N<sub>577</sub></mark> people who completed this question. Note that <mark>N/A</mark> indicates that the respondent specifically indicated that the particular symptom was not applicable to them, however it is assumed that no choice of <mark>N/A</mark> or symptom severity also indicates that the symptom was not applicable.</p>
 			<figure class="figure minw-75" id="figure_symptoms">
 				<canvas id="draw_figure_symptoms"></canvas>
 				<figcaption class="figure-caption">Figure 6. Post vaccination symptom severity at their worst.</figcaption>
 			 </figure>
+			
+			<p>In addition to the pre-defined symptoms, we also asked about any other symptoms that people experienced. There was a wide range of responses from <mark>N<sub>300</sub></mark> people, which included diagnoses and test results as well as symptom descriptions. We summarised these responses with assitance from Copilot:</p>
+			<div class="card ms-4 me-4 mb-4">
+				<div class="card-body">
+					<p>Many respondents describe multisystem illness, prolonged or progressive symptoms, relapsing–remitting courses, and significant functional decline. The key high‑level features include:</p>
+					<ul>
+						<li>Multiple organ systems affected simultaneously</li>
+						<li>Predominance of neurological, cardiovascular, immune, and autonomic symptoms</li>
+						<li>Frequent descriptions of chronicity, relapse, or deterioration rather than short‑lived effects</li>
+						<li>Marked loss of function, including inability to work, walk independently, or live without assistance</li>
+						<li>Psychological and cognitive changes often occurring alongside physical disease rather than in isolation</li>
+						<li>Use of both lay language and medical diagnoses, implying a mix of patient perception and clinician‑confirmed conditions</li>
+					</ul>
+					<p>Several dominant themes recur:</p>
+					<ul>
+						<li>Neurological symptoms (central, peripheral, autonomic)</li>
+						<li>Cardiac and vascular events</li>
+						<li>Immune dysregulation and autoimmune disease</li>
+						<li>Inflammatory and multisystem syndromes</li>
+						<li>Autonomic dysfunction (particularly orthostatic intolerance)</li>
+						<li>Severe fatigue and post‑exertional worsening</li>
+						<li>Pain syndromes (neuropathic, musculoskeletal, visceral)</li>
+						<li>Cognitive and neuropsychiatric disturbance</li>
+					</ul>
+					<p>Many respondents describe clusters of symptoms that appear internally consistent (e.g. POTS‑like symptoms, small‑fiber neuropathy–like burning, autoimmune overlap syndromes).</p>
+					<p>The strongest ocurring theme is around autonomic dysfunction, which also frequently appears alongside neuropathic symptoms and fatigue. While neuropsychiatric and cognitive symptoms are described, they almost always appear secondary to neurologic or systemic symptoms rather than being stand-alone.</p>
+					<p>The symptom patterns described resemble post‑infectious syndromes, immune‑mediated neurological disease, dysautonomia‑associated chronic illness, and severe inflammatory responses with secondary organ damage.</p>
+					<p>While, of course, data are all self-reported and we cannot confirm patient clinical diagnoses, pattern clustering is nevertheless strong and internally consistent.</p>
+				</div>
+			</div>
+			<p><a href="#figure_side" class="figureLink">Figure 7</a> provides the breakdown of <mark>N<sub>all</sub></mark> individuals who feel their symptoms dominated one side of their body more than the other.</p>
+			<figure class="figure minw-66" id="figure_side">
+				<table class="table table-sm table-striped table-hover align-middle small w-auto">
+					<thead><tr><th scope="col" class="align-bottom text-start">side</th><th scope="col" class="align-bottom text-center">% respondents</th></tr></thead>
+					<tbody>
+						<tr><td class="text-start">left</td><td class="text-center">21.5%</td></tr>
+						<tr><td class="text-start">right</td><td class="text-center">9.26%</td></tr>
+						<tr><td class="text-start">varies</td><td class="text-center">16.8%</td></tr>
+						<tr><td class="text-start">no difference</td><td class="text-center">29.6%</td></tr>
+						<tr><td class="text-start">N/A</td><td class="text-center">22.7%</td></tr>
+					</tbody>
+				</table>
+				<figcaption class="figure-caption">Figure 7. Dominant side of symptoms.</figcaption>
+			</figure>
+			<p>Of <mark>N<sub>564</sub></mark> respondents, only <mark>7.62%</mark> indicated that their health was definitely improving, with a further <mark>21.3%</mark> indicating that they were slowly improving. Contrasting these numbers, <mark>26.8%</mark> say they were not improving, <mark>17.6%</mark> were actually getting worse, and <mark>26.8%</mark> were experiencing ongoing fluctuation in their health.</p>
+			<p>Of those who were improving, slowly improving, or fluctuating, <mark>N<sub>192</sub></mark> indicated that the average time it took before they begun to experience symptom improvement was <mark>9.22±5.98 (95% CI 8.37-10.1)</mark> months. The distribution of responses is shown in <a href="#figure_improvement" class="figureLink">Figure 8</a>.</p>
+			<figure class="figure minw-75" id="figure_improvement">
+				<canvas id="draw_figure_improvement"></canvas>
+				<figcaption class="figure-caption">Figure 7. Months until improvement in symptoms.</figcaption>
+			 </figure>
+			
 			
 			<!-- symptoms -->
 

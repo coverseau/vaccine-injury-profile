@@ -82,3 +82,7 @@ figure {
 .minw-75 {
 	min-width: 75% !important;
 }
+
+.copilot {
+	padding-left: 2rem;
+}

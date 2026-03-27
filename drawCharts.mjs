@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	drawDates('draw_figure_dates', summaryData.doses);
 	drawOnset('draw_figure_onset', summaryData.doses);
 	drawSymptoms('draw_figure_symptoms', summaryData.symptoms.severity);
+	drawImprovement('draw_figure_improvement', summaryData.improvement.month);
 });
 
 function drawAges(figureID, ages) {
@@ -114,8 +115,7 @@ function drawStates(figureID, tableID, states) {
 				data.labels.push(state);
 				data.datasets[0].data.push(states[state]);
 				const row = document.createElement('tr');
-				const rowState = document.createElement('th');
-				rowState.setAttribute('scope', 'row');
+				const rowState = document.createElement('td');
 				rowState.appendChild(document.createTextNode(state));
 				row.appendChild(rowState);
 				const rowPercentage = document.createElement('td');
@@ -595,6 +595,56 @@ function drawSymptoms(figureID, symptomSeverities) {
 							ticks: {
 								display: true,
 								autoSkip: false
+							}
+						}
+					}
+				}
+			}
+		);
+	}
+}
+
+function drawImprovement(figureID, months) {
+	const figureContainer = document.getElementById(figureID);
+	if (!!figureContainer) {
+		const data = {
+			labels: [...Array(months.length).keys()],
+			datasets: [{
+				label: 'Month',
+				yAxisID: 'percentage',
+				data: months,
+				backgroundColor: coverseColour
+			}]
+		};
+		new Chart(
+			figureContainer,
+			{
+				type: 'bar',
+				data: data,
+				options: {
+					plugins: {
+						tooltip: {
+							enabled: true,
+							callbacks: {
+								title: (context) => {
+									return null;
+								},
+								label: (context) => {
+									return context.label + ': ' + context.raw + '%';
+								}
+							}
+						}
+					},
+					scales: {
+						percentage: {
+							type: 'linear',
+							axis: 'y',
+							beginAtZero: true,
+							ticks: {
+								stepSize: 10,
+								callback: function(value, index, ticks) {
+										return value + '%';
+								}
 							}
 						}
 					}
