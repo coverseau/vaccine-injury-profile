@@ -101,8 +101,29 @@
 		
 		<section id="vaccinations">
 			<h3>COVID-19 vaccination history</h3>
-			<!-- PUT DOSE INFO INTO TABLE, each row has N_vaxed, %_reacted, N_date, median_date -->
-			<p><mark>62.0%</mark> of <mark>N<sub>all</sub></mark> respondents experienced an adverse reaction to their first COVID-19 vaccine dose, and the median date of receiving this dose (for <mark>N<sub>468</sub></mark> who could recall the exact date) was <mark>23<sup>rd</sup> August 2021</mark>. <mark>71.5%</span> of <mark>N<sub>505</sub></mark> respondents who indicated they had a second dose reacted to it, and the median date of <mark>N<sub>381</sub></mark> receiving this dose was <mark>19<sup>th</sup> September 2021</mark>. Of the <mark>N<sub>273</sub></mark> respondents who got a third dose, <mark>65.2%</mark> reacted to it, and the median date of <mark>N<sub>185</sub></mark> receiving this dose was <mark>19<sup>th</sup> January 2022</mark>. <mark>N<sub>117</sub></mark> got a fourth dose, <mark>35.0%</mark> indicated that they reacted to it, and the median date of <mark>N<sub>53</sub></mark> receiving this dose was <mark>15<sup>th</sup> July 2022</mark>. We also asked about fifth and subsequent doses, <mark>N<sub>41</sub></mark> indicating that they can gotten these doses of which <mark>12%</mark> had a reaction, and the median date of <mark>N<sub>9</sub></mark> receiving this dose was <mark>26<sup>th</sup> April 2023</mark>.</p>
+			<p>Respondents were asked about the COVID-19 vaccine doses they received, including whether they experienced an adverse reaction to each. A total of <mark>1,530</mark> doses were recorded in the Profile, of which <mark>62.3%</mark> were followed by an adverse reaction. Results for each dose are summarised in <a href="#figure_doses" class="figureLink">Figure doses</a>.</p>
+			<figure class="figure w-100" id="figure_doses">
+				<table class="table table-sm table-striped table-hover align-middle small">
+					<thead>
+						<tr>
+							<th scope="col" class="align-bottom text-center">dose <i>n</i></th>
+							<th scope="col" class="align-bottom text-center">N (received dose <i>n</i>)</th>
+							<th scope="col" class="align-bottom text-center">% (reacted to dose <i>n</i>)</th>
+							<th scope="col" class="align-bottom text-center">N (could recall exact date of their dose <i>n</i>)</th>
+							<th scope="col" class="align-bottom text-start">median date of receiving dose <i>n</i></sub></th>
+						</tr>
+					</thead>
+						<tr><td class="text-center">1</td><td class="text-center">594</td><td class="text-center">62.0%</td><td class="text-center">468</td><td class="text-start">23<sup>rd</sup> August 2021</td></tr>
+						<tr><td class="text-center">2</td><td class="text-center">505</td><td class="text-center">71.5%</td><td class="text-center">381</td><td class="text-start">19<sup>th</sup> September 2021</td></tr>
+						<tr><td class="text-center">3</td><td class="text-center">273</td><td class="text-center">65.2%</td><td class="text-center">185</td><td class="text-start">19<sup>th</sup> January 2022</td></tr>
+						<tr><td class="text-center">4</td><td class="text-center">117</td><td class="text-center">35.0%</td><td class="text-center">53</td><td class="text-start">15<sup>th</sup> July 2022</td></tr>
+						<tr><td class="text-center">5+</td><td class="text-center">41</td><td class="text-center">12%</td><td class="text-center">9</td><td class="text-start">26<sup>th</sup> April 2023</td></tr>
+					<tbody>
+					</tbody>
+				</table>
+				<figcaption class="figure-caption">Information about COVID-19 vaccine doses received and reacted to.</figcaption>
+			</figure>
+			
 			<p><a href="#figure_dates" class="figureLink">Figure dates</a> depicts the date distribution of doses reported by respondents, and <a href="#figure_brands" class="figureLink">Figure brands</a> provides a percentage breakdown of the brands of COVID-19 vaccines that respondents received. The percentages of both figures are out of <mark>N<sub>all</sub></mark> respondents.</p>
 			<figure class="figure minw-75" id="figure_dates">
 				<canvas id="draw_figure_dates"></canvas>

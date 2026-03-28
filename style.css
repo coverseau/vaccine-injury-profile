@@ -76,6 +76,14 @@ figure {
 	border-color: var(--coverse-ochre);
 }
 
+.minw-25 {
+	min-width: 25% !important;
+}
+
+.minw-33 {
+	min-width: 33% !important;
+}
+
 .minw-50 {
 	min-width: 50% !important;
 }
@@ -86,8 +94,4 @@ figure {
 
 .minw-75 {
 	min-width: 75% !important;
-}
-
-.copilot {
-	padding-left: 2rem;
 }
