@@ -51,6 +51,11 @@ figure {
 	max-width: calc(100% - 3rem);
 }
 
+.figureLink {
+	color: inherit;
+	text-decoration: inherit;
+}
+
 .text-bg-primary {
 	background-color: var(--coverse-ochre) !important;
 }
@@ -85,9 +90,4 @@ figure {
 
 .copilot {
 	padding-left: 2rem;
-}
-
-.figureLink {
-	color: inherit;
-	text-decoration: inherit;
 }
