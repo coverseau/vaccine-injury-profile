@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 		const captions = document.querySelectorAll('#' + id + ' figcaption');
 		if (!!captions) {
 			const caption = captions[0];
-			caption.innerHTML = "Figure " + n '. ' + caption.innerHTML;
+			caption.innerHTML = "Figure " + n + '. ' + caption.innerHTML;
 			const links = document.querySelectorAll('a[href="#' + id + '"]');
 			links.forEach(link => {
 				link.innerHTML = "Figure " + n;
