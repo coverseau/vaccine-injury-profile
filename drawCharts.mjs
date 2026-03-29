@@ -665,8 +665,8 @@ function drawSpecialists(figureID, specialists) {
 				backgroundColor: coverseColour
 			}]
 		};
-		specialists.forEach(specialist => {
-			data.datasets[0].data.push(specialist);
+		Object.keys(specialists).forEach(specialist => {
+			data.datasets[0].data.push(specialists[specialist]);
 		});
 		
 		new Chart(
