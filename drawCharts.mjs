@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	drawOnset('draw_figure_onset', summaryData.doses);
 	drawSymptoms('draw_figure_symptoms', summaryData.symptoms.severity);
 	drawImprovement('draw_figure_improvement', summaryData.symptoms.improvement.month);
+	drawSpecialists('draw_figure_specialists', summaryData.health.specialists);
 });
 
 function drawAges(figureID, ages) {
@@ -555,8 +556,6 @@ function drawSymptoms(figureID, symptomSeverities) {
 			data.datasets.push(dataset);
 		});
 		
-		console.log(data);
-		
 		new Chart(
 			figureContainer,
 			{
@@ -645,6 +644,67 @@ function drawImprovement(figureID, months) {
 								callback: function(value, index, ticks) {
 										return value + '%';
 								}
+							}
+						}
+					}
+				}
+			}
+		);
+	}
+}
+
+function drawSpecialists(figureID, specialists) {
+	const figureContainer = document.getElementById(figureID);
+	if (!!figureContainer) {
+		const data = {
+			labels: Object.keys(specialists),
+			datasets: [{
+				label: 'specialist',
+				axis: 'x',
+				data: [],
+				backgroundColor: coverseColour
+			}]
+		};
+		specialists.forEach(specialist => {
+			data.datasets[0].data.push(specialist);
+		});
+		
+		new Chart(
+			figureContainer,
+			{
+				type: 'bar',
+				data: data,
+				options: {
+					indexAxis: 'y',
+					plugins: {
+						legend: {
+							display: true
+						},
+						tooltip: {
+							enabled: true,
+							callbacks: {
+								title: (context) => {
+									return context.label;
+								},
+								label: (context) => {
+									return context.dataset.label + ': ' + context.raw + '%';
+								}
+							}
+						}
+					},
+					scales: {
+						x: {
+							ticks: {
+								stepSize: 10,
+								callback: function(value, index, ticks) {
+										return value + '%';
+								}
+							}
+						},
+						y: {
+							ticks: {
+								display: true,
+								autoSkip: false
 							}
 						}
 					}
