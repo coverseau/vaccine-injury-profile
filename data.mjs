@@ -938,7 +938,7 @@ const summaryData = {
 				0.521
 			]
 		}
-	}
+	},
 	"health": {
 		"specialists": {
 			"cardiologist": 60.8,
@@ -997,7 +997,7 @@ const summaryData = {
 			"stomatologist": 0.222,
 			"surgeon": 0.222,
 			"thoracic specialist": 0.222,
-			"other": 1.77,
+			"other": 1.77
 		}
 	}
 }
