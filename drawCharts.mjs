@@ -655,6 +655,9 @@ function drawImprovement(figureID, months) {
 
 function drawSpecialists(figureID, specialists) {
 	const figureContainer = document.getElementById(figureID);
+	figureContainer.style.height = '75rem';
+	figureContainer.style.maxWidth = 'calc(100% - 3rem)';
+	figureContainer.style.min
 	if (!!figureContainer) {
 		const data = {
 			labels: Object.keys(specialists),
@@ -677,17 +680,14 @@ function drawSpecialists(figureID, specialists) {
 				options: {
 					indexAxis: 'y',
 					plugins: {
-						legend: {
-							display: true
-						},
 						tooltip: {
 							enabled: true,
 							callbacks: {
 								title: (context) => {
-									return context.label;
+									return null;
 								},
 								label: (context) => {
-									return context.dataset.label + ': ' + context.raw + '%';
+									return context.label + ': ' + context.raw + '%';
 								}
 							}
 						}
