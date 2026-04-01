@@ -51,6 +51,10 @@ figure {
 	max-width: calc(100% - 3rem);
 }
 
+figure canvas {
+	max-width: 100%;
+}
+
 .figureLink {
 	color: inherit;
 	text-decoration: inherit;
