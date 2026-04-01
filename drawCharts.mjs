@@ -680,7 +680,9 @@ function drawSpecialists(figureID, specialistsList) {
 	figureContainer.style.height = '75rem';
 	const specialists = [];
 	Object.keys(specialistsList).forEach(specialist => {
-		specialists.push(specialist);
+		if (specialist != 'N') {
+			specialists.push(specialist);
+		}
 	});
 	if (!!figureContainer) {
 		const data = {
@@ -693,9 +695,7 @@ function drawSpecialists(figureID, specialistsList) {
 			}]
 		};
 		specialists.forEach(specialist => {
-			if (specialist != 'N') {
-				data.datasets[0].data.push(specialistsList[specialist]);
-			}
+			data.datasets[0].data.push(specialistsList[specialist]);
 		});
 		
 		new Chart(
