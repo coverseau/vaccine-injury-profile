@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function drawAges(figureID, ages) {
 	const figureContainer = document.getElementById(figureID);
-	figureContainer.style.height = '10rem';
+	//figureContainer.style.height = '10rem';
 	if (!!figureContainer) {
 		const data = {
 			labels: [],
@@ -190,7 +190,8 @@ function drawStates(figureID, tableID, states) {
 
 function drawDates(figureID, doses) {
 	const figureContainer = document.getElementById(figureID);
-	figureContainer.style.height = '20rem';
+	//figureContainer.style.height = '20rem';
+	figureContainer.style.minHeight = '20rem';
 	if (!!figureContainer) {
 		const dates = [];
 		Object.keys(doses).forEach(dose => {
@@ -287,7 +288,8 @@ function drawDates(figureID, doses) {
 
 function drawBrands(figureID, doses) {
 	const figureContainer = document.getElementById(figureID);
-	figureContainer.style.height = '15rem';
+	//figureContainer.style.height = '15rem';
+	figureContainer.style.minHeight = '15rem';
 	if (!!figureContainer) {
 		const brands = [];
 		const doseNs = [];
@@ -403,7 +405,8 @@ function drawBrands(figureID, doses) {
 
 function drawOnset(figureID, doses) {
 	const figureContainer = document.getElementById(figureID);
-	figureContainer.style.height = '20rem';
+	//figureContainer.style.height = '20rem';
+	figureContainer.style.minHeight = '20rem';
 	if (!!figureContainer) {
 		const times = [];
 		Object.keys(doses).forEach(dose => {
@@ -500,7 +503,8 @@ function drawOnset(figureID, doses) {
 
 function drawSymptoms(figureID, symptomSeverities) {
 	const figureContainer = document.getElementById(figureID);
-	figureContainer.style.height = '120rem';
+	//figureContainer.style.height = '120rem';
+	figureContainer.style.minHeight = '120rem';
 	if (!!figureContainer) {
 		const symptoms = [];
 		const severities = [];
@@ -619,7 +623,8 @@ function drawSymptoms(figureID, symptomSeverities) {
 
 function drawImprovement(figureID, months) {
 	const figureContainer = document.getElementById(figureID);
-	figureContainer.style.height = '10rem';
+	//figureContainer.style.height = '15rem';
+	figureContainer.style.minHeight = '15rem';
 	if (!!figureContainer) {
 		const data = {
 			labels: [...Array(months.length).keys()],
@@ -676,7 +681,8 @@ function drawImprovement(figureID, months) {
 
 function drawSpecialists(figureID, specialistsList) {
 	const figureContainer = document.getElementById(figureID);
-	figureContainer.style.height = '75rem';
+	//figureContainer.style.height = '75rem';
+	figureContainer.style.minHeight = '75rem';
 	const specialists = [];
 	Object.keys(specialistsList).forEach(specialist => {
 		if (specialist != 'N') {
@@ -741,7 +747,8 @@ function drawSpecialists(figureID, specialistsList) {
 
 function drawDiagnosisTimes(figureID, times) {
 	const figureContainer = document.getElementById(figureID);
-	figureContainer.style.height = '10rem';
+	//figureContainer.style.height = '15rem';
+	figureContainer.style.minHeight = '15rem';
 	if (!!figureContainer) {
 		const data = {
 			labels: [],

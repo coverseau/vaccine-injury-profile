@@ -49,10 +49,13 @@ figure {
 	margin-left: 1.5rem;
 	margin-right: 1.5rem;
 	max-width: calc(100% - 3rem);
+	width: calc(100% - 3rem);
 }
 
 figure canvas {
+	min-height: 10rem;
 	max-width: 100%;
+	width: auto;
 }
 
 .figureLink {
@@ -79,7 +82,7 @@ figure canvas {
 	background-color: var(--coverse-ochre);
 	border-color: var(--coverse-ochre);
 }
-
+/*
 .minw-25 {
 	min-width: 25% !important;
 }
@@ -99,3 +102,4 @@ figure canvas {
 .minw-75 {
 	min-width: 75% !important;
 }
+*/
