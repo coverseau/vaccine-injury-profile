@@ -226,9 +226,31 @@
 				<canvas id="draw_figure_specialists"></canvas>
 				<figcaption class="figure-caption">Specialists seen (including allied health professionals).</figcaption>
 			 </figure>
-			<p>Of <mark>N<sub>542</sub></mark> responses, <mark>53.7%</mark> indicate they had received a formal medical diagnosis.</p>
 			
-			<!-- specialists -->
+			<p>Of <mark>N<sub>542</sub></mark> responses, <mark>53.7%</mark> indicate they had received a formal medical diagnosis. Of these, <mark>N<sub>268</sub></mark> provided some details of these diagnoses. We utilised Copilot to assist with analysing these responses:</p>
+			<div class="card ms-4 me-4 mb-4">
+				<div class="card-body">
+					<p>These responses coherently cluster around several broad areas:</p>
+					<ul>
+						<li>Inflammatory cardiac disease (pericarditis, myocarditis, myopericarditis, inflammatory cardiomyopathy, heart failure, etc.)</li>
+						<li>Autonomic nervous system disorders (postural orthostatic tachycardia syndrome (POTS), dysautonomia, inappropriate sinus tachycardia, orthostatic hypotension)</li>
+						<li>Neuro‑immune and inflammatory neurological disease (Guillain‑Barré syndrome (GBS), chronic inflammatory demyelinating polyneuropathy (CIDP), small fibre neuropathy (SFN), transverse myelitis, encephalitis, brachial neuritis, radiculoplexopathies)
+						<li>Chronic systemic inflammatory syndromes (myalgic encephalomyelitis / chronic fatigue syndrome (ME/CFS), fibromyalgia, central sensitisation syndromes)</li>
+						<li>Mast cell and hypersensitivity disorders (mast cell activation syndrome (MCAS), chronic urticaria, anaphylaxis, hypersensitivity pneumonitis)</li>
+						<li>Thrombotic and vascular events (pulmonary embolism, cerebrovascular events such as stroke, transient ischemic attack (TIA), cerebral venous sinus thrombosis (CVST), and vaccine‐induced immune thrombotic thrombocytopenia (VITT))</li>
+						<li>Functional neurological disorder</li>
+					</ul>
+					<p>We note that pardicarditis is by far the single most common of these diagnoses, being mentioned by <mark>35.1%</mark> of responses.</p>
+					<p>The pattern of functional and psychiatric diagnoses is usually alongside other diagnoses, suggesting these are secondary diseases rather than the cause of such multisytem pathologies.</p>
+					<p>Of this data, Copilot notes that: <q>This looks far more like a real‑world clinical registry of complex inflammatory illness than a loose aggregation of subjective complaints.</q></p>
+				</div>
+			</div>
+			<p><mark>N<sub>449</sub></mark> indicated that the median time it took to recieve these diagnoses was <mark>1-3 months</mark>. The distribution is presented in <a href="#figure_diagnosisTimes" class="figureLink">Figure diagnosis times</a>.</p>
+			<figure class="figure minw-50" id="figure_diagnosisTimes">
+				<canvas id="draw_figure_diagnosisTimes"></canvas>
+				<figcaption class="figure-caption">Distribution of time to recieve diagnoses.</figcaption>
+			</figure>
+			<p><mark>26.3%</mark> of <mark>N<sub>520</sub></mark> respondents received a diagnosis that later proved to be incorrect.</p>
 			
 			<!-- diagnoses -->
 			

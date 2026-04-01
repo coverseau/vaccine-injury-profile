@@ -940,6 +940,7 @@
 	},
 	"health": {
 		"specialists": {
+			"N": 451,
 			"cardiologist": 60.8,
 			"neurologist": 42.4,
 			"immunologist": 21.5,
@@ -997,6 +998,18 @@
 			"surgeon": 0.222,
 			"thoracic specialist": 0.222,
 			"other": 1.77
+		}
+	},
+	"diagnoses": {
+		"time": {
+			"N": 449,
+			"0-1 day": 7.35,
+			"2-30 days": 32.7,
+			"1-3 months": 20.3,
+			"4-6 months": 11.4,
+			"7-12 months": 9.35,
+			"more than 1 year": 9.35,
+			"still waiting": 9.58
 		}
 	}
 }

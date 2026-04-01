@@ -3,7 +3,6 @@ import { Chart, ArcElement, BarController, BarElement, CategoryScale, Legend, Li
 import AutoColors from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors/+esm';
 
 import summaryData from './data.json' with { type: 'json' };
-//import summaryData from './data.mjs';
 
 const textColour = window.getComputedStyle(document.body).getPropertyValue('--bs-body-color');
 const elementColour = 'rgba(' + window.getComputedStyle(document.body).getPropertyValue('--bs-body-color-rgb') + ',0.1)';
@@ -42,6 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	drawSymptoms('draw_figure_symptoms', summaryData.symptoms.severity);
 	drawImprovement('draw_figure_improvement', summaryData.symptoms.improvement.month);
 	drawSpecialists('draw_figure_specialists', summaryData.health.specialists);
+	drawDiagnosisTimes('draw_figure_diagnosisTimes', summaryData.diagnoses.time);
 });
 
 function drawAges(figureID, ages) {
@@ -670,7 +670,9 @@ function drawSpecialists(figureID, specialists) {
 			}]
 		};
 		Object.keys(specialists).forEach(specialist => {
-			data.datasets[0].data.push(specialists[specialist]);
+			if (specialist != 'N') {
+				data.datasets[0].data.push(specialists[specialist]);
+			}
 		});
 		
 		new Chart(
@@ -706,6 +708,62 @@ function drawSpecialists(figureID, specialists) {
 							ticks: {
 								display: true,
 								autoSkip: false
+							}
+						}
+					}
+				}
+			}
+		);
+	}
+}
+
+function drawDiagnosisTimes(figureID, times) {
+	const figureContainer = document.getElementById(figureID);
+	if (!!figureContainer) {
+		const data = {
+			labels: [],
+			datasets: [{
+				label: 'Time',
+				yAxisID: 'percentage',
+				data: [],
+				backgroundColor: coverseColour
+			}]
+		};
+		Object.keys(times).forEach(time => {
+			if (time != 'N') {
+				data.labels.push(time);
+				data.datasets[0].data.push(times[time]);
+			}
+		});
+		new Chart(
+			figureContainer,
+			{
+				type: 'bar',
+				data: data,
+				options: {
+					plugins: {
+						tooltip: {
+							enabled: true,
+							callbacks: {
+								title: (context) => {
+									return null;
+								},
+								label: (context) => {
+									return context.label + ': ' + context.raw + '%';
+								}
+							}
+						}
+					},
+					scales: {
+						percentage: {
+							type: 'linear',
+							axis: 'y',
+							beginAtZero: true,
+							ticks: {
+								stepSize: 10,
+								callback: function(value, index, ticks) {
+										return value + '%';
+								}
 							}
 						}
 					}
