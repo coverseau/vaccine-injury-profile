@@ -84,6 +84,12 @@ function drawAges(figureID, ages) {
 						}
 					},
 					scales: {
+						x: {
+							ticks: {
+								minRotation: 0,
+								maxRotation: 90
+							}
+						},
 						percentage: {
 							type: 'linear',
 							axis: 'y',
@@ -185,7 +191,7 @@ function drawStates(figureID, tableID, states) {
 
 function drawDates(figureID, doses) {
 	const figureContainer = document.getElementById(figureID);
-	figureContainer.style.height = '10rem';
+	figureContainer.style.height = '20rem';
 	figureContainer.style.maxWidth = 'calc(100% - 3rem)';
 	if (!!figureContainer) {
 		const dates = [];
@@ -283,7 +289,7 @@ function drawDates(figureID, doses) {
 
 function drawBrands(figureID, doses) {
 	const figureContainer = document.getElementById(figureID);
-	figureContainer.style.height = '10rem';
+	figureContainer.style.height = '15rem';
 	figureContainer.style.maxWidth = 'calc(100% - 3rem)';
 	if (!!figureContainer) {
 		const brands = [];
@@ -373,7 +379,11 @@ function drawBrands(figureID, doses) {
 					},
 					scales: {
 						x: {
-							stacked: true
+							stacked: true,
+							ticks: {
+								minRotation: 0,
+								maxRotation: 90
+							}
 						},
 						percentage: {
 							type: 'linear',
@@ -396,7 +406,7 @@ function drawBrands(figureID, doses) {
 
 function drawOnset(figureID, doses) {
 	const figureContainer = document.getElementById(figureID);
-	figureContainer.style.height = '10rem';
+	figureContainer.style.height = '20rem';
 	figureContainer.style.maxWidth = 'calc(100% - 3rem)';
 	if (!!figureContainer) {
 		const times = [];
@@ -646,6 +656,12 @@ function drawImprovement(figureID, months) {
 						}
 					},
 					scales: {
+						x: {
+							ticks: {
+								minRotation: 0,
+								maxRotation: 0
+							}
+						},
 						percentage: {
 							type: 'linear',
 							axis: 'y',
@@ -664,14 +680,17 @@ function drawImprovement(figureID, months) {
 	}
 }
 
-function drawSpecialists(figureID, specialists) {
+function drawSpecialists(figureID, specialistsList) {
 	const figureContainer = document.getElementById(figureID);
 	figureContainer.style.height = '75rem';
 	figureContainer.style.maxWidth = 'calc(100% - 3rem)';
-	figureContainer.style.min
+	const specialists = [];
+	Object.keys(specialistsList).forEach(specialist => {
+		specialists.push(specialist);
+	});
 	if (!!figureContainer) {
 		const data = {
-			labels: Object.keys(specialists),
+			labels: specialists,
 			datasets: [{
 				label: 'specialist',
 				axis: 'x',
@@ -679,9 +698,9 @@ function drawSpecialists(figureID, specialists) {
 				backgroundColor: coverseColour
 			}]
 		};
-		Object.keys(specialists).forEach(specialist => {
+		specialists.forEach(specialist => {
 			if (specialist != 'N') {
-				data.datasets[0].data.push(specialists[specialist]);
+				data.datasets[0].data.push(specialistsList[specialist]);
 			}
 		});
 		
