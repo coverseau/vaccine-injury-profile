@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 	
 	drawAges('draw_figure_ages', summaryData.demographics.age);
 	drawStates('draw_figure_states', 'draw_table_states', summaryData.demographics.state);
-	drawBrands('draw_figure_brands', summaryData.doses);
 	drawDates('draw_figure_dates', summaryData.doses);
+	drawBrands('draw_figure_brands', summaryData.doses);
 	drawOnset('draw_figure_onset', summaryData.doses);
 	drawSymptoms('draw_figure_symptoms', summaryData.symptoms.severity);
 	drawImprovement('draw_figure_improvement', summaryData.symptoms.improvement.month);
@@ -46,6 +46,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function drawAges(figureID, ages) {
 	const figureContainer = document.getElementById(figureID);
+	figureContainer.style.height = '10rem';
+	figureContainer.style.maxWidth = 'calc(100% - 3rem)';
 	if (!!figureContainer) {
 		const data = {
 			labels: [],
@@ -181,8 +183,108 @@ function drawStates(figureID, tableID, states) {
 	}
 }
 
+function drawDates(figureID, doses) {
+	const figureContainer = document.getElementById(figureID);
+	figureContainer.style.height = '10rem';
+	figureContainer.style.maxWidth = 'calc(100% - 3rem)';
+	if (!!figureContainer) {
+		const dates = [];
+		Object.keys(doses).forEach(dose => {
+			if (dose != 'N') {
+				Object.keys(doses[dose].date).forEach(d => {
+					if (d != 'N' && !dates.includes(d)) {
+						dates.push(d);
+					}
+				});
+			}
+		});
+		const data = {
+			labels: dates,
+			datasets: []
+		};
+		Object.keys(doses).forEach(dose => {
+			const dN = Number(dose.slice(4));
+			let postfix = 'th';
+			switch (dN) {
+				case 1:
+					postfix = 'st';
+					break;
+				case 2:
+					postfix = 'nd';
+					break;
+				case 3:
+					postfix = 'rd';
+					break;
+				case 5:
+					postfix += '+';
+					break;
+			}
+			const dataset = {
+				label: dN + postfix + ' dose',
+				yAxisID: 'percentage',
+				data: []
+			};
+			Object.keys(doses[dose].date).forEach(d => {
+				if (d != 'N') {
+					dataset.data.push(doses[dose].date[d]);
+				}
+			});
+			data.datasets.push(dataset);
+		});
+		
+		new Chart(
+			figureContainer,
+			{
+				type: 'bar',
+				data: data,
+				options: {
+					plugins: {
+						autocolors: {
+							enabled: true
+						},
+						legend: {
+							display: true
+						},
+						tooltip: {
+							enabled: true,
+							callbacks: {
+								label: (context) => {
+									return context.dataset.label + ': ' + context.raw + '%';
+								}
+							}
+						}
+					},
+					scales: {
+						x: {
+							stacked: true,
+							ticks: {
+								minRotation: 90,
+								maxRotation: 90
+							}
+						},
+						percentage: {
+							type: 'linear',
+							axis: 'y',
+							beginAtZero: true,
+							stacked: true,
+							ticks: {
+								stepSize: 10,
+								callback: function(value, index, ticks) {
+										return value + '%';
+								}
+							}
+						}
+					}
+				}
+			}
+		);
+	}
+}
+
 function drawBrands(figureID, doses) {
 	const figureContainer = document.getElementById(figureID);
+	figureContainer.style.height = '10rem';
+	figureContainer.style.maxWidth = 'calc(100% - 3rem)';
 	if (!!figureContainer) {
 		const brands = [];
 		const doseNs = [];
@@ -292,104 +394,10 @@ function drawBrands(figureID, doses) {
 	}
 }
 
-function drawDates(figureID, doses) {
-	const figureContainer = document.getElementById(figureID);
-	if (!!figureContainer) {
-		const dates = [];
-		Object.keys(doses).forEach(dose => {
-			if (dose != 'N') {
-				Object.keys(doses[dose].date).forEach(d => {
-					if (d != 'N' && !dates.includes(d)) {
-						dates.push(d);
-					}
-				});
-			}
-		});
-		const data = {
-			labels: dates,
-			datasets: []
-		};
-		Object.keys(doses).forEach(dose => {
-			const dN = Number(dose.slice(4));
-			let postfix = 'th';
-			switch (dN) {
-				case 1:
-					postfix = 'st';
-					break;
-				case 2:
-					postfix = 'nd';
-					break;
-				case 3:
-					postfix = 'rd';
-					break;
-				case 5:
-					postfix += '+';
-					break;
-			}
-			const dataset = {
-				label: dN + postfix + ' dose',
-				yAxisID: 'percentage',
-				data: []
-			};
-			Object.keys(doses[dose].date).forEach(d => {
-				if (d != 'N') {
-					dataset.data.push(doses[dose].date[d]);
-				}
-			});
-			data.datasets.push(dataset);
-		});
-		
-		new Chart(
-			figureContainer,
-			{
-				type: 'bar',
-				data: data,
-				options: {
-					plugins: {
-						autocolors: {
-							enabled: true
-						},
-						legend: {
-							display: true
-						},
-						tooltip: {
-							enabled: true,
-							callbacks: {
-								label: (context) => {
-									return context.dataset.label + ': ' + context.raw + '%';
-								}
-							}
-						}
-					},
-					scales: {
-						x: {
-							stacked: true,
-							ticks: {
-								minRotation: 90,
-								maxRotation: 90
-							}
-						},
-						percentage: {
-							type: 'linear',
-							axis: 'y',
-							beginAtZero: true,
-							stacked: true,
-							ticks: {
-								stepSize: 10,
-								callback: function(value, index, ticks) {
-										return value + '%';
-								}
-							}
-						}
-					}
-				}
-			}
-		);
-	}
-}
-
 function drawOnset(figureID, doses) {
 	const figureContainer = document.getElementById(figureID);
+	figureContainer.style.height = '10rem';
+	figureContainer.style.maxWidth = 'calc(100% - 3rem)';
 	if (!!figureContainer) {
 		const times = [];
 		Object.keys(doses).forEach(dose => {
@@ -606,6 +614,8 @@ function drawSymptoms(figureID, symptomSeverities) {
 
 function drawImprovement(figureID, months) {
 	const figureContainer = document.getElementById(figureID);
+	figureContainer.style.height = '10rem';
+	figureContainer.style.maxWidth = 'calc(100% - 3rem)';
 	if (!!figureContainer) {
 		const data = {
 			labels: [...Array(months.length).keys()],
@@ -719,6 +729,8 @@ function drawSpecialists(figureID, specialists) {
 
 function drawDiagnosisTimes(figureID, times) {
 	const figureContainer = document.getElementById(figureID);
+	figureContainer.style.height = '10rem';
+	figureContainer.style.maxWidth = 'calc(100% - 3rem)';
 	if (!!figureContainer) {
 		const data = {
 			labels: [],
