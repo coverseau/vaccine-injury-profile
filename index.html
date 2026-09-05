@@ -1,0 +1,2053 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="COVERSE’s Vaccine Injury Profile">
+	<meta name="author" content="COVERSE">
+	<meta name="keywords" content="COVID-19,vaccine,COVERSE">
+	<meta name="format-detection" content="telephone=no">
+	<title>COVERSE: Vaccine Injury Profile</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+		<style>
+			:root {
+				--coverse-ochre: #c75b12;
+				--coverse-red: #c11717;
+				--coverse-yellow: #c1a017;
+				--coverse-green: #17c15c;
+				--coverse-light-blue: #17a1c1;
+				--coverse-dark-blue: #1717c1;
+				--coverse-purple: #a017c1;
+				
+				--bs-primary: var(--coverse-ochre);
+				--bs-success: var(--coverse-green);
+				--bs-danger: var(--coverse-red);
+				--bs-warning: var(--coverse-yellow);
+				--bs-info: var(--coverse-light-blue);
+			}
+			
+			html {
+				background-color: var(--coverse-ochre);
+			}
+			
+			main {
+			}
+			
+			section, div.section {
+				padding-top: 1.5rem !important;
+			}
+			
+			header {
+			}
+			
+			footer {
+				font-size: smaller;
+			}
+			
+			nav {
+			}
+			
+			nav#contents a.alert-link {
+				font-weight: inherit;
+			}
+			
+			h2 {
+				text-decoration: underline;
+			}
+			
+			a {
+				color: var(--coverse-ochre);
+			}
+			
+			mark, .mark {
+				background-color: transparent;
+			}
+			
+			sup.required {
+				font-weight: bolder;
+				color: var(--coverse-red);
+			}
+			
+			figure {
+				margin-left: 1.5rem;
+				margin-right: 1.5rem;
+				max-width: calc(100% - 3rem);
+			}
+			
+			figure canvas {
+				min-height: 10rem;
+				max-width: 100%;
+			}
+			
+			.figureLink {
+				color: inherit;
+				text-decoration: inherit;
+			}
+			
+			.text-bg-primary {
+				background-color: var(--coverse-ochre) !important;
+			}
+			
+			.btn-primary {
+				color: var(--bs-white);
+				background-color: var(--coverse-ochre);
+				border-color: var(--coverse-ochre);
+			}
+			
+			.btn-primary:hover, .btn-primary:active {
+				background-color: var(--coverse-red) !important;
+				border-color: var(--coverse-red) !important;
+			}
+			
+			.form-check-input:checked {
+				background-color: var(--coverse-ochre);
+				border-color: var(--coverse-ochre);
+			}
+			
+			.minw-25 {
+				min-width: 25% !important;
+			}
+			
+			.minw-33 {
+				min-width: 33% !important;
+			}
+			
+			.minw-50 {
+				min-width: 50% !important;
+			}
+			
+			.minw-66 {
+				min-width: 66% !important;
+			}
+			
+			.minw-75 {
+				min-width: 75% !important;
+			}
+			
+			@media print {
+				html {
+					background-color: transparent !important;
+				}
+			}
+		</style>
+		<script type="module">
+			import * as bootstrap from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/+esm';
+		
+			function setColourScheme(theme = null) {
+				const colourTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'auto');
+				document.documentElement.setAttribute('data-bs-theme', colourTheme);
+				const urlQuery = window.location.search;
+				const urlQueryParams = new URLSearchParams(urlQuery);
+				const overrideTheme = (!!theme) ? theme : urlQueryParams.get('theme');
+				if (!!overrideTheme) {
+					switch (overrideTheme) {
+						case 'dark':
+							document.documentElement.setAttribute('data-bs-theme', 'dark');
+							break;
+						case 'light':
+							document.documentElement.setAttribute('data-bs-theme', 'light');
+							break;
+					}
+				}
+			}
+			setColourScheme();
+			
+			function switchTablesCharts(display = null) {
+				const urlQuery = window.location.search;
+				const urlQueryParams = new URLSearchParams(urlQuery);
+				const overrideDisplay = (!!display) ? display : urlQueryParams.get('display');
+				let displayTables = false;
+				let displayCharts = true;
+				if (!!overrideDisplay) {
+					switch (overrideDisplay) {
+						case 'tables':
+						case 'table':
+							displayTables = true;
+							displayCharts = false;
+							break;
+						case 'charts':
+						case 'chart':
+							displayTables = false;
+							displayCharts = true;
+							break;
+						case 'both':
+							displayTables = true;
+							displayCharts = true;
+							break;
+					}
+				}
+				const tables = document.querySelectorAll('table.tableChart');
+				tables.forEach(table => {
+					table.style.display = (displayTables) ? 'table' : 'none';
+				});
+				const charts = document.querySelectorAll('canvas');
+				charts.forEach(chart => {
+					chart.style.display = (displayCharts) ? 'block' : 'none';
+				});
+			}
+
+			window.addEventListener('beforeprint', () => { setColourScheme('light'); });
+			window.addEventListener('afterprint', () => { setColourScheme(); });
+
+			document.addEventListener("DOMContentLoaded", async () => {
+				const figures = document.getElementsByTagName('figure');
+				let n = 1;
+				for (let f=0; f<figures.length; f++) {
+					const id = figures[f].id;
+					const captions = document.querySelectorAll('#' + id + ' figcaption');
+					if (!!captions) {
+						const caption = captions[0];
+						caption.innerHTML = "Figure " + n + '. ' + caption.innerHTML;
+						const links = document.querySelectorAll('a[href="#' + id + '"]');
+						links.forEach(link => {
+							link.innerHTML = "Figure " + n;
+						});
+						n++;
+					}
+				}
+			});
+			
+			import { Chart, ArcElement, BarController, BarElement, CategoryScale, Legend, LinearScale, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
+
+			const textColour = window.getComputedStyle(document.body).getPropertyValue('--bs-body-color');
+			const elementColour = 'rgba(' + window.getComputedStyle(document.body).getPropertyValue('--bs-body-color-rgb') + ',0.1)';
+			const coverseColour = window.getComputedStyle(document.body).getPropertyValue('--coverse-ochre');
+			const coverseRed = window.getComputedStyle(document.body).getPropertyValue('--coverse-red');
+			const coverseYellow = window.getComputedStyle(document.body).getPropertyValue('--coverse-yellow');
+			const coverseLightBlue = window.getComputedStyle(document.body).getPropertyValue('--coverse-light-blue');
+			const coverseGreen = window.getComputedStyle(document.body).getPropertyValue('--coverse-green');
+			const colourGray = '#c9cbcf';
+			
+			document.addEventListener("DOMContentLoaded", async () => {
+				Chart.register([
+					ArcElement,
+					BarController,
+					BarElement,
+					CategoryScale,
+					Legend,
+					LinearScale,
+					PieController,
+					Tooltip
+				]);
+				Chart.defaults.color = textColour;
+				Chart.defaults.backgroundColor = elementColour;
+				Chart.defaults.borderColor = elementColour;
+				Chart.defaults.plugins.legend.display = false;
+				Chart.defaults.plugins.tooltip.enabled = false;
+				
+				drawAges('table_ages');
+				drawStates('table_states');
+				drawDates('table_dates');
+				drawBrands('table_brands');
+				drawOnset('table_onset');
+				drawSymptoms('table_symptoms');
+				drawImprovement('table_improvement');
+				drawSpecialists('table_specialists');
+				drawDiagnosisTimes('table_diagnosisTimes');
+				drawCapacity('table_capacity');
+				drawWorkload('table_workload');
+				drawNeeds('table_needs');
+				drawFinancial('table_financial');
+				
+				switchTablesCharts();
+			});
+			
+			function getTableData(tableID) {
+				const header = [];
+				const data = [];
+				const tableHeaderRow = document.querySelector('#' + tableID + ' thead tr');
+				for (const th of tableHeaderRow.children) {
+					header.push(th.textContent);
+				};
+				
+				const tableBodyRows = document.querySelectorAll('#' + tableID + ' tbody tr');
+				tableBodyRows.forEach(row => {
+					const children = row.children;
+					const datum = { };
+					for (let counter=0; counter<children.length; counter++) {
+						const td = children[counter];
+						let text = td.textContent;
+						if (text == '') {
+							text = null;
+						} else if (counter && text.slice(-1) == '%') {
+							text = parseFloat(text.slice(0, -1));
+						}
+						datum[header[counter]] = text;
+					}
+					data.push(datum);
+				});
+				return { 'header': header, 'data': data };
+			}
+			
+			function drawAges(tableID) {
+				const table = document.getElementById(tableID);
+				const dataData = getTableData(tableID);
+				const xAxis = (dataData.header)[0];
+				const yAxis = (dataData.header)[1];
+				
+				const figureContainer = document.createElement('canvas');
+				figureContainer.style.height = '10rem';
+				table.insertAdjacentElement('afterend', figureContainer);
+				
+				const data = {
+					labels: [],
+					datasets: [{
+						label: xAxis,
+						yAxisID: 'percentage',
+						data: [],
+						backgroundColor: coverseColour
+					}]
+				};
+				(dataData.data).forEach(datum => {
+					data.labels.push(datum[xAxis]);
+					data.datasets[0].data.push(datum[yAxis]);
+				});
+				new Chart(
+					figureContainer,
+					{
+						type: 'bar',
+						data: data,
+						options: {
+							plugins: {
+								tooltip: {
+									enabled: true,
+									callbacks: {
+										title: (context) => {
+											return null;
+										},
+										label: (context) => {
+											return context.label + ': ' + context.raw + '%';
+										}
+									}
+								}
+							},
+							scales: {
+								x: {
+									ticks: {
+										minRotation: 0,
+										maxRotation: 90
+									}
+								},
+								percentage: {
+									type: 'linear',
+									axis: 'y',
+									beginAtZero: true,
+									ticks: {
+										stepSize: 10,
+										callback: function(value, index, ticks) {
+												return value + '%';
+										}
+									}
+								}
+							}
+						}
+					}
+				);
+			}
+			
+			function drawStates(tableID) {
+				const table = document.getElementById(tableID);
+				const dataData = getTableData(tableID);
+				const xAxis = (dataData.header)[0];
+				const yAxis = (dataData.header)[1];
+				
+				const figureContainer = document.createElement('canvas');
+				figureContainer.style.maxHeight = '25rem';
+				figureContainer.style.maxWidth = '25rem';
+				table.insertAdjacentElement('afterend', figureContainer);
+				
+				const data = {
+					labels: [],
+					datasets: [{
+						label: xAxis,
+						data: [],
+						backgroundColor: []
+					}]
+				};
+				(dataData.data).forEach(datum => {
+					data.labels.push(datum[xAxis]);
+					data.datasets[0].data.push(datum[yAxis]);
+					switch (datum[xAxis]) {
+						case 'ACT':
+							data.datasets[0].backgroundColor.push('#003da5');
+							break;
+						case 'NSW':
+							data.datasets[0].backgroundColor.push('#9bcbeb');
+							break;
+						case 'NT':
+							data.datasets[0].backgroundColor.push('#c25e03');
+							break;
+						case 'QLD':
+							data.datasets[0].backgroundColor.push('#73182c');
+							break;
+						case 'SA':
+							data.datasets[0].backgroundColor.push('#d50032');
+							break;
+						case 'TAS':
+							data.datasets[0].backgroundColor.push('#006747');
+							break;
+						case 'VIC':
+							data.datasets[0].backgroundColor.push('#003c71');
+							break;
+						case 'WA':
+							data.datasets[0].backgroundColor.push('#ffd100');
+							break;
+					}
+				});
+				new Chart(
+					figureContainer,
+					{
+						type: 'pie',
+						data: data,
+						options: {
+							plugins: {
+								legend: {
+									display: true
+								},
+								tooltip: {
+									enabled: true,
+									callbacks: {
+										title: (context) => {
+											return null;
+										},
+										label: (context) => {
+											return context.label + ': ' + context.raw + '%';
+										}
+									}
+								}
+							}
+						}
+					}
+				);
+			}
+			
+			function drawDates(tableID) {
+				const table = document.getElementById(tableID);
+				const dataData = getTableData(tableID);
+				const xAxis = (dataData.header)[0];
+				
+				const figureContainer = document.createElement('canvas');
+				figureContainer.style.height = '20rem';
+				table.insertAdjacentElement('afterend', figureContainer);
+				
+				const data = {
+					labels: [],
+					datasets: []
+				};
+				for (let counter=0; counter<dataData.header.length; counter++) {
+					const header = (dataData.header)[counter];
+					if (counter == 0 || header == xAxis) {
+						(dataData.data).forEach(datum => {
+								data.labels.push(datum[xAxis]);
+							});
+					} else {
+						const dataset = {
+							label: (dataData.header)[counter],
+							yAxisID: 'percentage',
+							data: [],
+							backgroundColor: colourGray
+						};
+						switch (counter) {
+							case 1:
+								dataset.backgroundColor = coverseRed;
+								break;
+							case 2:
+								dataset.backgroundColor = coverseLightBlue;
+								break;
+							case 3:
+								dataset.backgroundColor = coverseColour;
+								break;
+							case 4:
+								dataset.backgroundColor = coverseGreen;
+								break;
+							case 5:
+								dataset.backgroundColor = coverseYellow;
+								break;
+						}
+						(dataData.data).forEach(datum => {
+							dataset.data.push(datum[header]);
+							});
+						data.datasets.push(dataset);
+					}
+				}
+				
+				new Chart(
+					figureContainer,
+					{
+						type: 'bar',
+						data: data,
+						options: {
+							plugins: {
+								legend: {
+									display: true
+								},
+								tooltip: {
+									enabled: true,
+									callbacks: {
+										label: (context) => {
+											return context.dataset.label + ': ' + context.raw + '%';
+										}
+									}
+								}
+							},
+							scales: {
+								x: {
+									stacked: true,
+									ticks: {
+										minRotation: 90,
+										maxRotation: 90
+									}
+								},
+								percentage: {
+									type: 'linear',
+									axis: 'y',
+									beginAtZero: true,
+									stacked: true,
+									ticks: {
+										stepSize: 10,
+										callback: function(value, index, ticks) {
+											return value + '%';
+										}
+									}
+								}
+							}
+						}
+					}
+				);
+			}
+			
+			function drawBrands(tableID) {
+				const table = document.getElementById(tableID);
+				const dataData = getTableData(tableID);
+				const xAxis = (dataData.header)[0];
+				
+				const figureContainer = document.createElement('canvas');
+				figureContainer.style.height = '15rem';
+				table.insertAdjacentElement('afterend', figureContainer);
+				
+				const data = {
+					labels: [],
+					datasets: []
+				};
+				for (let counter=0; counter<dataData.header.length; counter++) {
+					const header = (dataData.header)[counter];
+					if (counter == 0 || header == xAxis) {
+						(dataData.data).forEach(datum => {
+								data.labels.push(datum[xAxis]);
+							});
+					} else {
+						const dataset = {
+							label: (dataData.header)[counter],
+							yAxisID: 'percentage',
+							data: [],
+							backgroundColor: coverseColour
+						};
+						switch (header.toLowerCase()) {
+							case 'pfizer':
+								dataset.backgroundColor = '#2b01be';
+								break;
+							case 'moderna':
+								dataset.backgroundColor = '#e51937';
+								break;
+							case 'astrazeneca':
+								dataset.backgroundColor = '#efab00';
+								break;
+							case 'novavax':
+								dataset.backgroundColor = '#172959';
+								break;
+							case 'other':
+								dataset.backgroundColor = colourGray;
+								break;
+						}
+						(dataData.data).forEach(datum => {
+							dataset.data.push(datum[header]);
+						});
+						data.datasets.push(dataset);
+					}
+				}
+				new Chart(
+					figureContainer,
+					{
+						type: 'bar',
+						data: data,
+						options: {
+							plugins: {
+								legend: {
+									display: true
+								},
+								tooltip: {
+									enabled: true,
+									callbacks: {
+										title: (context) => {
+											return context.label;
+										},
+										label: (context) => {
+											return context.dataset.label + ': ' + context.raw + '%';
+										}
+									}
+								}
+							},
+							scales: {
+								x: {
+									stacked: true,
+									ticks: {
+										minRotation: 0,
+										maxRotation: 90
+									}
+								},
+								percentage: {
+									type: 'linear',
+									axis: 'y',
+									stacked: true,
+									beginAtZero: true,
+									ticks: {
+										stepSize: 10,
+										callback: function(value, index, ticks) {
+												return value + '%';
+										}
+									}
+								}
+							}
+						}
+					}
+				);
+			}
+			
+			function drawOnset(tableID) {
+				const table = document.getElementById(tableID);
+				const dataData = getTableData(tableID);
+				const xAxis = (dataData.header)[0];
+				
+				const figureContainer = document.createElement('canvas');
+				figureContainer.style.height = '20rem';
+				table.insertAdjacentElement('afterend', figureContainer);
+				
+				const data = {
+					labels: [],
+					datasets: []
+				};
+				for (let counter=0; counter<dataData.header.length; counter++) {
+					const header = (dataData.header)[counter];
+					if (counter == 0 || header == xAxis) {
+						(dataData.data).forEach(datum => {
+								data.labels.push(datum[xAxis]);
+							});
+					} else {
+						const dataset = {
+							label: (dataData.header)[counter],
+							yAxisID: 'percentage',
+							data: [],
+							backgroundColor: colourGray
+						};
+						switch (counter) {
+							case 1:
+								dataset.backgroundColor = coverseRed;
+								break;
+							case 2:
+								dataset.backgroundColor = coverseLightBlue;
+								break;
+							case 3:
+								dataset.backgroundColor = coverseColour;
+								break;
+							case 4:
+								dataset.backgroundColor = coverseGreen;
+								break;
+							case 5:
+								dataset.backgroundColor = coverseYellow;
+								break;
+						}
+						(dataData.data).forEach(datum => {
+							dataset.data.push(datum[header]);
+						});
+						data.datasets.push(dataset);
+					}
+				}
+				new Chart(
+					figureContainer,
+					{
+						type: 'bar',
+						data: data,
+						options: {
+							plugins: {
+								legend: {
+									display: true
+								},
+								tooltip: {
+									enabled: true,
+									callbacks: {
+										label: (context) => {
+											return context.dataset.label + ': ' + context.raw + '%';
+										}
+									}
+								}
+							},
+							scales: {
+								x: {
+									stacked: true,
+									ticks: {
+										minRotation: 90,
+										maxRotation: 90
+									}
+								},
+								percentage: {
+									type: 'linear',
+									axis: 'y',
+									beginAtZero: true,
+									stacked: true,
+									ticks: {
+										stepSize: 10,
+										callback: function(value, index, ticks) {
+												return value + '%';
+										}
+									}
+								}
+							}
+						}
+					}
+				);
+			}
+			
+			function drawSymptoms(tableID) {
+				const table = document.getElementById(tableID);
+				const dataData = getTableData(tableID);
+				const xAxis = (dataData.header)[0];
+				
+				const figureContainer = document.createElement('canvas');
+				figureContainer.style.height = '120rem';
+				table.insertAdjacentElement('afterend', figureContainer);
+				
+				const data = {
+					labels: [],
+					datasets: []
+				};
+				for (let counter=0; counter<dataData.header.length; counter++) {
+					const header = (dataData.header)[counter];
+					if (counter == 0 || header == xAxis) {
+						(dataData.data).forEach(datum => {
+								if (datum[xAxis] == "resurgence of latent disease (e.g. shingles, EBV, cancer, autoimmune disease, etc.)") {
+									const symptomArray = [ "resurgence of latent disease (e.g. shingles,", "EBV, cancer, autoimmune disease, etc.)" ];
+									data.labels.push(symptomArray);
+								} else {
+									data.labels.push(datum[xAxis]);
+								}
+							});
+					} else {
+						const dataset = {
+							label: (dataData.header)[counter],
+							axis: 'x',
+							//yAxisID: 'percentage',
+							data: [],
+							backgroundColor: colourGray
+						};
+						switch (header) {
+							case 'severe':
+								dataset.backgroundColor = coverseRed;
+								break;
+							case 'moderately severe':
+								dataset.backgroundColor = coverseColour;
+								break;
+							case 'moderate':
+								dataset.backgroundColor = coverseYellow;
+								break;
+							case 'mild':
+								dataset.backgroundColor = coverseLightBlue;
+								break;
+							case 'minimal':
+								dataset.backgroundColor = coverseGreen;
+								break;
+							case 'N/A':
+								dataset.backgroundColor = colourGray;
+								break;
+						}
+						(dataData.data).forEach(datum => {
+							dataset.data.push(datum[header]);
+						});
+						data.datasets.push(dataset);
+					}
+				}
+				
+				new Chart(
+					figureContainer,
+					{
+						type: 'bar',
+						data: data,
+						options: {
+							indexAxis: 'y',
+							plugins: {
+								legend: {
+									display: true
+								},
+								tooltip: {
+									enabled: true,
+									callbacks: {
+										title: (context) => {
+											return context.label;
+										},
+										label: (context) => {
+											return context.dataset.label + ': ' + context.raw + '%';
+										}
+									}
+								}
+							},
+							scales: {
+								x: {
+									stacked: true,
+									ticks: {
+										stepSize: 10,
+										callback: function(value, index, ticks) {
+												return value + '%';
+										}
+									}
+								},
+								y: {
+									stacked: true,
+									ticks: {
+										display: true,
+										autoSkip: false
+									}
+								}
+							}
+						}
+					}
+				);
+			}
+			
+			function drawImprovement(tableID) {
+				const table = document.getElementById(tableID);
+				const dataData = getTableData(tableID);
+				const xAxis = (dataData.header)[0];
+				const yAxis = (dataData.header)[1];
+				
+				const figureContainer = document.createElement('canvas');
+				figureContainer.style.height = '15rem';
+				table.insertAdjacentElement('afterend', figureContainer);
+				
+				const data = {
+					labels: [],
+					datasets: [{
+						label: xAxis,
+						yAxisID: 'percentage',
+						data: [],
+						backgroundColor: coverseColour
+					}]
+				};
+				(dataData.data).forEach(datum => {
+					data.labels.push(datum[xAxis]);
+					data.datasets[0].data.push(datum[yAxis]);
+				});
+				
+				new Chart(
+					figureContainer,
+					{
+						type: 'bar',
+						data: data,
+						options: {
+							plugins: {
+								tooltip: {
+									enabled: true,
+									callbacks: {
+										title: (context) => {
+											return null;
+										},
+										label: (context) => {
+											return context.label + ( (context.label == '1') ? ' month: ' : ' months: ' ) + context.raw + '%';
+										}
+									}
+								}
+							},
+							scales: {
+								x: {
+									ticks: {
+										minRotation: 0,
+										maxRotation: 0
+									}
+								},
+								percentage: {
+									type: 'linear',
+									axis: 'y',
+									beginAtZero: true,
+									ticks: {
+										stepSize: 5,
+										callback: function(value, index, ticks) {
+												return value + '%';
+										}
+									}
+								}
+							}
+						}
+					}
+				);
+			}
+			
+			function drawSpecialists(tableID) {
+				const table = document.getElementById(tableID);
+				const dataData = getTableData(tableID);
+				const xAxis = (dataData.header)[0];
+				const yAxis = (dataData.header)[1];
+				
+				const figureContainer = document.createElement('canvas');
+				figureContainer.style.height = '75rem';
+				table.insertAdjacentElement('afterend', figureContainer);
+				
+				const data = {
+					labels: [],
+					datasets: [{
+						label: xAxis,
+						//yAxisID: 'percentage',
+						axis: 'x',
+						data: [],
+						backgroundColor: coverseColour
+					}]
+				};
+				(dataData.data).forEach(datum => {
+					data.labels.push(datum[xAxis]);
+					data.datasets[0].data.push(datum[yAxis]);
+				});
+				
+				new Chart(
+					figureContainer,
+					{
+						type: 'bar',
+						data: data,
+						options: {
+							indexAxis: 'y',
+							plugins: {
+								tooltip: {
+									enabled: true,
+									callbacks: {
+										title: (context) => {
+											return null;
+										},
+										label: (context) => {
+											return context.label + ': ' + context.raw + '%';
+										}
+									}
+								}
+							},
+							scales: {
+								x: {
+									ticks: {
+										stepSize: 10,
+										callback: function(value, index, ticks) {
+												return value + '%';
+										}
+									}
+								},
+								y: {
+									ticks: {
+										display: true,
+										autoSkip: false
+									}
+								}
+							}
+						}
+					}
+				);
+			}
+			
+			function drawDiagnosisTimes(tableID) {
+				const table = document.getElementById(tableID);
+				const dataData = getTableData(tableID);
+				const xAxis = (dataData.header)[0];
+				const yAxis = (dataData.header)[1];
+				
+				const figureContainer = document.createElement('canvas');
+				figureContainer.style.height = '15rem';
+				table.insertAdjacentElement('afterend', figureContainer);
+				
+				const data = {
+					labels: [],
+					datasets: [{
+						label: xAxis,
+						yAxisID: 'percentage',
+						data: [],
+						backgroundColor: coverseColour
+					}]
+				};
+				(dataData.data).forEach(datum => {
+					data.labels.push(datum[xAxis]);
+					data.datasets[0].data.push(datum[yAxis]);
+				});
+				new Chart(
+					figureContainer,
+					{
+						type: 'bar',
+						data: data,
+						options: {
+							plugins: {
+								tooltip: {
+									enabled: true,
+									callbacks: {
+										title: (context) => {
+											return null;
+										},
+										label: (context) => {
+											return context.label + ': ' + context.raw + '%';
+										}
+									}
+								}
+							},
+							scales: {
+								x: {
+									ticks: {
+										minRotation: 0,
+										maxRotation: 90
+									}
+								},
+								percentage: {
+									type: 'linear',
+									axis: 'y',
+									beginAtZero: true,
+									ticks: {
+										stepSize: 10,
+										callback: function(value, index, ticks) {
+												return value + '%';
+										}
+									}
+								}
+							}
+						}
+					}
+				);
+			}
+			
+			function drawCapacity(tableID) {
+				const table = document.getElementById(tableID);
+				const dataData = getTableData(tableID);
+				const xAxis = (dataData.header)[0];
+				
+				const figureContainer = document.createElement('canvas');
+				figureContainer.style.height = '10rem';
+				table.insertAdjacentElement('afterend', figureContainer);
+				
+				const data = {
+					labels: [],
+					datasets: []
+				};
+				for (let counter=0; counter<dataData.header.length; counter++) {
+					const header = (dataData.header)[counter];
+					if (counter == 0 || header == xAxis) {
+						(dataData.data).forEach(datum => {
+								data.labels.push(datum[xAxis]);
+							});
+					} else {
+						const dataset = {
+							label: (dataData.header)[counter],
+							yAxisID: 'percentage',
+							data: [],
+							backgroundColor: coverseColour
+						};
+						switch (header.toLowerCase()) {
+							case 'at peak symptom severity':
+								dataset.backgroundColor = coverseRed;
+								break;
+							case 'during month prior to survey completion':
+								dataset.backgroundColor = coverseYellow;
+								break;
+						}
+						(dataData.data).forEach(datum => {
+							dataset.data.push(datum[header]);
+						});
+						data.datasets.push(dataset);
+					}
+				}
+				new Chart(
+					figureContainer,
+					{
+						type: 'bar',
+						data: data,
+						options: {
+							plugins: {
+								legend: {
+									display: true
+								},
+								tooltip: {
+									enabled: true,
+									callbacks: {
+										title: (context) => {
+											return null;
+										},
+										label: (context) => {
+											return context.label + ' capacity: ' + context.raw + '%';
+										}
+									}
+								}
+							},
+							scales: {
+								x: {
+									ticks: {
+										minRotation: 0,
+										maxRotation: 90
+									}
+								},
+								percentage: {
+									type: 'linear',
+									axis: 'y',
+									beginAtZero: true,
+									ticks: {
+										stepSize: 10,
+										callback: function(value, index, ticks) {
+												return value + '%';
+										}
+									}
+								}
+							}
+						}
+					}
+				);
+			}
+			
+			function drawWorkload(tableID) {
+				const table = document.getElementById(tableID);
+				const dataData = getTableData(tableID);
+				const xAxis = (dataData.header)[0];
+				const yAxis = (dataData.header)[1];
+				
+				const figureContainer = document.createElement('canvas');
+				figureContainer.style.height = '10rem';
+				table.insertAdjacentElement('afterend', figureContainer);
+				
+				const data = {
+					labels: [],
+					datasets: [{
+						label: xAxis,
+						yAxisID: 'percentage',
+						data: [],
+						backgroundColor: coverseColour
+					}]
+				};
+				(dataData.data).forEach(datum => {
+					data.labels.push(datum[xAxis]);
+					data.datasets[0].data.push(datum[yAxis]);
+				});
+				new Chart(
+					figureContainer,
+					{
+						type: 'bar',
+						data: data,
+						options: {
+							plugins: {
+								tooltip: {
+									enabled: true,
+									callbacks: {
+										title: (context) => {
+											return null;
+										},
+										label: (context) => {
+											return context.label + ': ' + context.raw + '%';
+										}
+									}
+								}
+							},
+							scales: {
+								x: {
+									ticks: {
+										minRotation: 0,
+										maxRotation: 90
+									}
+								},
+								percentage: {
+									type: 'linear',
+									axis: 'y',
+									beginAtZero: true,
+									ticks: {
+										stepSize: 10,
+										callback: function(value, index, ticks) {
+												return value + '%';
+										}
+									}
+								}
+							}
+						}
+					}
+				);
+			}
+			
+			function drawNeeds(tableID) {
+				const table = document.getElementById(tableID);
+				const dataData = getTableData(tableID);
+				const xAxis = (dataData.header)[0];
+				const yAxis = (dataData.header)[1];
+				
+				const figureContainer = document.createElement('canvas');
+				figureContainer.style.height = '15rem';
+				table.insertAdjacentElement('afterend', figureContainer);
+				
+				const data = {
+					labels: [],
+					datasets: [{
+						label: xAxis,
+						//yAxisID: 'percentage',
+						axis: 'x',
+						data: [],
+						backgroundColor: coverseColour
+					}]
+				};
+				(dataData.data).forEach(datum => {
+					if (datum[xAxis] == "access to appropriate medical care / tests / treatment") {
+						const needArray = [ "access to appropriate", "medical care / tests / treatment" ];
+						data.labels.push(needArray);
+					} else if (datum[xAxis] == "financial support due to loss of work") {
+						const needArray = [ "financial support", "due to loss of work" ];
+						data.labels.push(needArray);
+					} else if (datum[xAxis] == "financial support due to medical expenses") {
+						const needArray = [ "financial support", "due to medical expenses" ];
+						data.labels.push(needArray);
+					} else {
+						data.labels.push(datum[xAxis]);
+					}
+					data.datasets[0].data.push(datum[yAxis]);
+				});
+				
+				new Chart(
+					figureContainer,
+					{
+						type: 'bar',
+						data: data,
+						options: {
+							indexAxis: 'y',
+							plugins: {
+								tooltip: {
+									enabled: true,
+									callbacks: {
+										title: (context) => {
+											return null;
+										},
+										label: (context) => {
+											return context.label + ': ' + context.raw + '%';
+										}
+									}
+								}
+							},
+							scales: {
+								x: {
+									ticks: {
+										stepSize: 10,
+										callback: function(value, index, ticks) {
+												return value + '%';
+										}
+									}
+								},
+								y: {
+									ticks: {
+										display: true,
+										autoSkip: false
+									}
+								}
+							}
+						}
+					}
+				);
+			}
+			
+			function drawFinancial(tableID) {
+				const table = document.getElementById(tableID);
+				const dataData = getTableData(tableID);
+				const xAxis = (dataData.header)[0];
+				const yAxis = (dataData.header)[1];
+				
+				const figureContainer = document.createElement('canvas');
+				figureContainer.style.height = '20rem';
+				table.insertAdjacentElement('afterend', figureContainer);
+				
+				const data = {
+					labels: [],
+					datasets: [{
+						label: xAxis,
+						//yAxisID: 'percentage',
+						axis: 'x',
+						data: [],
+						backgroundColor: coverseColour
+					}]
+				};
+				(dataData.data).forEach(datum => {
+					data.labels.push(datum[xAxis]);
+					data.datasets[0].data.push(datum[yAxis]);
+				});
+				
+				new Chart(
+					figureContainer,
+					{
+						type: 'bar',
+						data: data,
+						options: {
+							indexAxis: 'y',
+							plugins: {
+								tooltip: {
+									enabled: true,
+									callbacks: {
+										title: (context) => {
+											return null;
+										},
+										label: (context) => {
+											return context.label + ': ' + context.raw + '%';
+										}
+									}
+								}
+							},
+							scales: {
+								x: {
+									ticks: {
+										stepSize: 10,
+										callback: function(value, index, ticks) {
+												return value + '%';
+										}
+									}
+								},
+								y: {
+									ticks: {
+										display: true,
+										autoSkip: false
+									}
+								}
+							}
+						}
+					}
+				);
+			}
+		</script>
+</head>
+<body class="container">
+		
+	<main class="p-4">
+		
+		<header id="header" class="container p-4 text-center">
+			<svg class="img-fluid d-block mx-auto" style="max-height: 240px;" role="img" id="f0f733b9-bb17-468a-a780-beee7f60dbac" data-name="eac4cb91-cc69-44b0-9e29-7990fb12e827" xmlns="http://www.w3.org/2000/svg" aria-labelledby="CVt" viewBox="0 0 327.4 102.1"><title id="CVt">COVERSE logo</title><defs><style>.b0ab3610-dc5a-4ce5-b1f0-b07cd4b7eb95{fill:none;}.ebd3569e-e627-45fe-a4f0-73bedc6d6fb2{fill:#c75b12;}</style></defs><rect class="b0ab3610-dc5a-4ce5-b1f0-b07cd4b7eb95" width="327.4" height="102.1"/><path class="ebd3569e-e627-45fe-a4f0-73bedc6d6fb2" d="M88.5,58.9c-2.3,7.3-7.7,13.5-20,13.5-14.2,0-21.7-9.9-21.7-21.8s8.3-22,22.1-22c12.3,0,18.2,6.7,19.7,13.6H81.5c-1.6-3.9-4.7-8-12.7-8-9.2,0-14.7,6.9-14.7,16.1s5.3,16.5,14.7,16.5c7.4,0,10.5-3.2,12.6-7.8Zm38.4-2.6c0,8.6-5.7,15.9-16.6,15.9-10.4,0-16.2-7.6-16.2-15.9,0-8.5,6-15.9,16.5-15.9C121.4,40.4,126.9,48.5,126.9,56.3Zm-26,0c0,5.5,3.4,10.6,9.6,10.6,6.5,0,9.6-4.9,9.6-10.5s-3.3-10.7-9.7-10.7-9.5,5-9.5,10.6Zm44,15.1-18.1-42h7.6l9.1,21.8c3.4,8.1,4.7,12,5.5,14.4h.1c.6-2.1,2.2-6,5.3-13.9l9.4-22.4h7.4l-18.4,42h-7.9Zm32-13.5c.3,5.3,3.9,9.2,9.6,9.2,4.4,0,6.8-1.7,8.3-4.4h6.6c-1.7,4.7-6,9.6-15.2,9.6-11.2,0-16-8-16-15.8,0-9,6-16,15.9-16,11.5,0,15.7,8.3,15.7,15.8V58ZM195,53.4c-.2-3.3-2-8-8.9-8-5.9,0-8.6,3.6-9.1,8Zm13.9-12.1h6.4c.1.9.2,4.1.2,6.6,1.9-4.5,6.1-7.5,12.1-7.4v6.2c-6.9-.1-12.1,3.7-12.1,12.5V71.4H209v-22C209,46.7,209,44,208.9,41.3Zm29.1,21c1,3.2,3.8,5.1,8.9,5.1,5.4,0,7.2-1.8,7.2-4.2s-1.5-3.8-8.7-4.7c-10.8-1.4-12.7-5.2-12.7-9,0-4.1,3.2-9.1,13-9.1,10.5,0,13.6,5.3,14,9.1h-6.6c-.4-1.7-1.6-4.3-7.7-4.3-5.1,0-6.2,2.2-6.2,3.7,0,2,1.3,3.2,7.9,4.1,11.6,1.6,13.6,5.2,13.6,9.7,0,5.4-4.1,9.6-14.2,9.6-8.6,0-14.1-3.7-15.1-10Zm34-4.4c.3,5.3,3.9,9.2,9.6,9.2,4.4,0,6.8-1.7,8.3-4.4h6.6c-1.7,4.7-6,9.6-15.2,9.6-11.2,0-16-8-16-15.8,0-9,6-16,15.9-16,11.5,0,15.7,8.3,15.7,15.8V58Zm18.2-4.5c-.2-3.3-2-8-8.9-8-5.9,0-8.6,3.6-9.1,8Z" transform="translate(0 0)"/><path class="ebd3569e-e627-45fe-a4f0-73bedc6d6fb2" d="M16.4,48.1a4,4,0,1,0,4-4,4,4,0,0,0-4,4" transform="translate(0 0)"/><rect class="ebd3569e-e627-45fe-a4f0-73bedc6d6fb2" x="22.3" y="46.6" width="27.6" height="3"/><path class="ebd3569e-e627-45fe-a4f0-73bedc6d6fb2" d="M69.1,83.6a4,4,0,1,0-4-4,4,4,0,0,0,4,4" transform="translate(0 0)"/><rect class="ebd3569e-e627-45fe-a4f0-73bedc6d6fb2" x="67.6" y="70.4" width="3" height="9.4"/><path class="ebd3569e-e627-45fe-a4f0-73bedc6d6fb2" d="M69.1,15.9a4,4,0,1,1-4,4h0a4,4,0,0,1,4-4" transform="translate(0 0)"/><rect class="ebd3569e-e627-45fe-a4f0-73bedc6d6fb2" x="67.6" y="19.8" width="3" height="11.3"/><path class="ebd3569e-e627-45fe-a4f0-73bedc6d6fb2" d="M46.5,24.8a4,4,0,1,1,5.7,5.7,4,4,0,0,1-5.7-5.7h0" transform="translate(0 0)"/><rect class="ebd3569e-e627-45fe-a4f0-73bedc6d6fb2" x="51.32" y="26" width="3" height="10.3" transform="translate(-6.56 46.47) rotate(-45)"/><path class="ebd3569e-e627-45fe-a4f0-73bedc6d6fb2" d="M44.1,72.9a4,4,0,1,0,5.7-5.7,4,4,0,0,0-5.7,5.7h0" transform="translate(0 0)"/><rect class="ebd3569e-e627-45fe-a4f0-73bedc6d6fb2" x="45.38" y="65.43" width="9.2" height="3" transform="translate(-32.69 54.94) rotate(-45)"/></svg>
+			<h1 class="display-1 d-none"><b>CO</b>VERSE</h1>
+			<h1 class="display-4 text-center">Vaccine Injury Profile</h1>
+		</header>
+		
+		<nav id="contents" class="alert alert-secondary">
+			<h2 class="alert-heading">Contents</h2>
+			<ul>
+				<li><a class="alert-link" href="#about">About</a></li>
+				<li><a class="alert-link" href="#methodology">Methodology</a></li>
+				<li><a class="alert-link" href="#results">Results</a><ul>
+					<li><a class="alert-link" href="#demographics">Demographics</a></li>
+					<li><a class="alert-link" href="#vaccinations">COVID-19 vaccination history</a></li>
+					<li><a class="alert-link" href="#symptoms">Adverse reaction / symptom details</a></li>
+					<li><a class="alert-link" href="#healthcare">Healthcare access, diagnostics and treatment</a></li>
+					<li><a class="alert-link" href="#impacts">Injury impacts</a></li>
+					<li><a class="alert-link" href="#finances">Financial issues</a></li>
+					<li><a class="alert-link" href="#history">Medical history</a></li>
+					<li><a class="alert-link" href="#stories">Personal stories</a></li>
+				</ul></li>
+				<li><a class="alert-link" href="#comments">Comments</a></li>
+			</ul>
+		</nav>
+	
+		<section id="about" class="lead">
+			<h2>About</h2>
+			<p><b>CO</b>VERSE is Australia’s national charity dedicated to supporting Australians who have suffered harms from COVID-19 vaccines. It was founded in 2022, and its mission and activities can be found on its website at <a href="https://coverse.org.au/">coverse.org.au</a>.</p>
+			<p>One of the most important aspects of <b>CO</b>VERSE’s work has been numerous submissions to public inquiries in Australia, especially federal Australian Government and Parliament of Australia inquiries relevant to the interests of <b>CO</b>VERSE’s constituency. These submissions can all be found at <a href="https://coverse.org.au/submissions">coverse.org.au/submissions</a>.</p>
+			<p>In order to generate data to assist with understanding the issues and needs of the COVID-19 vaccine-injured and bereaved community in Australia, the organisation established an online Vaccine Injury Profile. This Profile allowed users registered on the <b>CO</b>VERSE website to provide details of their personal experiences as people who had suffered serious adverse events following COVID-19 vaccination. This captured information about vaccine doses, symptoms, medical diagnoses, treatments, financial and social issues, and a range of other aspects. All of this helped inform <b>CO</b>VERSE’s national advocacy efforts and the preparation of its public submissions and other content.</p>
+			<p>This document contains summary statistics and analysis of <b>CO</b>VERSE’s Vaccine Injury Profile data.</p>
+			<p>It is not a scientific paper. It has not been peer-reviewed, nor has the Vaccine Injury Profile been granted ethics approval for use in research. Responses are not available for public inspection, as they were collected under strict privacy conditions that disallowed this kind of disclosure of individuals’ information.</p>
+			<p>How to cite this document:<br> &nbsp; <b>CO</b>VERSE. (2026). <i>Vaccine Injury Profile</i>. <a href="https://coverse.org.au/vaccine-injury-profile">https://coverse.org.au/vaccine-injury-profile</a></p>
+			<p>The public document is licensed under the Creative Commons <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Attribution-NonCommercial-NoDerivatives 4.0 International</a> license. In short, this license allows you to use and share this material as long as the following are adhered to:</p>
+			<ul>
+				<li>Credit must be given to <b>CO</b>VERSE.</li>
+				<li>Only noncommercial uses of the work are permitted.</li>
+				<li>No derivatives or adaptations of the work are permitted.</li>
+			</ul>
+			<p class="text-center"><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><svg class="img-fluid" style="height: 3em;" role="img" aria-labelledby="CC1t" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 120 42"><title id="CC1t">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license</title><path d="m3.41.446 113.352.202c1.584 0 3-.236 3 3.16l-.14 37.329H.548V3.669C.548 1.995.71.446 3.41.446z" fill="#aab2ab"/><path d="M117.753 0H2.248A2.25 2.25 0 0 0 0 2.247v39.246c0 .28.227.507.508.507h118.984c.28 0 .508-.227.508-.507V2.247A2.25 2.25 0 0 0 117.753 0zM2.248 1.015h115.505c.68 0 1.232.553 1.232 1.232V29.46H36.429c-3.026 5.47-8.857 9.185-15.547 9.185-6.693 0-12.521-3.71-15.545-9.185H1.015V2.247c0-.68.553-1.232 1.233-1.232z"/><path d="M34.523 19.545c.005 7.53-6.097 13.636-13.627 13.642-7.53.004-13.638-6.096-13.643-13.626v-.016C7.248 12.015 13.35 5.908 20.88 5.903 28.41 5.9 34.519 12 34.523 19.528v.017z" fill="#fff"/><path d="M31.973 8.44c3.023 3.024 4.535 6.726 4.535 11.105 0 4.38-1.486 8.042-4.458 10.988-3.154 3.102-6.88 4.653-11.182 4.653-4.249 0-7.911-1.538-10.986-4.615-3.076-3.075-4.613-6.75-4.613-11.026 0-4.275 1.537-7.977 4.613-11.105 2.997-3.024 6.66-4.536 10.986-4.536 4.38 0 8.08 1.512 11.105 4.536zm-20.056 2.034c-2.556 2.581-3.834 5.606-3.834 9.075 0 3.468 1.266 6.466 3.795 8.996 2.53 2.529 5.542 3.794 9.037 3.794 3.495 0 6.532-1.278 9.115-3.833 2.451-2.373 3.677-5.358 3.677-8.957 0-3.572-1.246-6.604-3.738-9.095-2.49-2.49-5.508-3.735-9.054-3.735-3.546 0-6.547 1.252-8.998 3.755zm6.727 7.549c-.39-.852-.974-1.277-1.755-1.277-1.378 0-2.067.928-2.067 2.783 0 1.856.69 2.783 2.067 2.783.91 0 1.56-.452 1.95-1.357l1.912 1.017c-.911 1.618-2.278 2.428-4.1 2.428-1.405 0-2.53-.43-3.376-1.292-.846-.862-1.27-2.05-1.27-3.563 0-1.488.438-2.67 1.309-3.544.872-.875 1.958-1.311 3.26-1.311 1.926 0 3.304.758 4.139 2.274l-2.07 1.059zm8.99 0c-.39-.852-.964-1.277-1.72-1.277-1.405 0-2.11.928-2.11 2.783 0 1.856.705 2.783 2.11 2.783.913 0 1.552-.452 1.916-1.357l1.953 1.017c-.91 1.618-2.274 2.428-4.092 2.428-1.404 0-2.527-.43-3.372-1.292-.843-.862-1.266-2.05-1.266-3.563 0-1.488.429-2.67 1.286-3.544.857-.875 1.948-1.311 3.274-1.311 1.922 0 3.3.758 4.13 2.274l-2.109 1.059z"/><g fill="#fff"><path d="M48.093 32.747c.316 0 .605.029.865.084.26.055.482.146.669.274.185.126.329.295.431.504.102.21.154.47.154.78 0 .333-.076.61-.228.833-.152.223-.376.405-.674.547.41.118.715.323.917.617.202.294.303.649.303 1.063 0 .334-.065.623-.195.867s-.306.444-.525.598c-.22.155-.472.27-.753.344a3.381 3.381 0 0 1-.87.111h-3.216v-6.622h3.122zm-.185 2.679c.259 0 .473-.062.64-.186.167-.123.25-.323.25-.6a.768.768 0 0 0-.083-.38.625.625 0 0 0-.223-.232.945.945 0 0 0-.32-.115 2.159 2.159 0 0 0-.377-.032h-1.364v1.545h1.477zm.084 2.81c.143 0 .279-.014.409-.042a1.04 1.04 0 0 0 .344-.139.704.704 0 0 0 .237-.265.901.901 0 0 0 .088-.425c0-.34-.096-.583-.288-.728-.192-.145-.445-.218-.762-.218h-1.59v1.817h1.562zM50.787 32.747h1.634l1.55 2.616 1.542-2.616h1.623l-2.458 4.08v2.542h-1.46v-2.578l-2.43-4.044z"/></g><g fill="#fff"><path d="m72.517 32.747 2.767 4.443h.016v-4.443h1.366v6.622H75.21l-2.756-4.433h-.018v4.433h-1.367v-6.622h1.45zM82.195 34.512a1.492 1.492 0 0 0-.766-.612 1.504 1.504 0 0 0-.514-.089c-.328 0-.607.063-.836.19a1.56 1.56 0 0 0-.556.51 2.232 2.232 0 0 0-.311.727 3.613 3.613 0 0 0 0 1.655c.065.263.169.5.311.71.142.21.327.378.556.505.23.127.508.19.836.19.444 0 .793-.136 1.043-.409.25-.271.404-.63.46-1.076h1.41a3.37 3.37 0 0 1-.288 1.123 2.596 2.596 0 0 1-1.503 1.394c-.34.125-.715.187-1.122.187-.508 0-.964-.088-1.37-.265a2.94 2.94 0 0 1-1.025-.728 3.216 3.216 0 0 1-.642-1.09 4.005 4.005 0 0 1-.223-1.351c0-.495.075-.954.223-1.378.149-.424.362-.794.642-1.11a2.938 2.938 0 0 1 1.026-.742c.405-.18.861-.269 1.369-.269.365 0 .71.053 1.034.159.325.104.616.258.872.46.257.2.469.45.636.747.166.297.271.637.315 1.02h-1.41a1.182 1.182 0 0 0-.167-.458z"/></g><g fill="#fff"><path d="m98.355 32.747 2.767 4.443h.016v-4.443h1.366v6.622h-1.457l-2.756-4.433h-.018v4.433h-1.367v-6.622h1.45zM106.64 32.747c.428 0 .825.068 1.194.204.369.136.687.34.957.613.269.271.48.612.63 1.02.153.408.229.887.229 1.437 0 .483-.062.927-.186 1.336-.124.407-.311.76-.561 1.056-.252.297-.564.531-.939.701-.375.17-.815.255-1.324.255h-2.86v-6.622h2.86zm-.102 5.396c.211 0 .415-.034.613-.102a1.34 1.34 0 0 0 .529-.339c.154-.157.278-.362.371-.615.093-.253.14-.563.14-.927 0-.334-.033-.634-.098-.903a1.798 1.798 0 0 0-.32-.69 1.421 1.421 0 0 0-.59-.44c-.244-.103-.546-.153-.904-.153h-1.039v4.169h1.298z"/></g><path d="M87.801 14.981c.005 5.5-4.451 9.962-9.953 9.967-5.5.003-9.963-4.453-9.967-9.952v-.015c-.004-5.5 4.453-9.962 9.954-9.967 5.5-.003 9.963 4.453 9.966 9.952v.015z" fill="#fff"/><path d="M77.826 3.386c3.252 0 6 1.12 8.244 3.362 2.245 2.242 3.368 4.987 3.368 8.233 0 3.246-1.104 5.962-3.31 8.146-2.342 2.3-5.11 3.449-8.302 3.449-3.153 0-5.873-1.14-8.156-3.42-2.284-2.28-3.425-5.006-3.425-8.175 0-3.17 1.141-5.914 3.425-8.233 2.225-2.241 4.944-3.362 8.156-3.362zm-8.972 8.48a9.289 9.289 0 0 0-.52 3.115c0 2.57.94 4.792 2.817 6.667 1.877 1.874 4.112 2.811 6.705 2.811 2.592 0 4.846-.946 6.762-2.84a8.928 8.928 0 0 0 1.585-2.028l-4.372-1.947c-.296 1.471-1.607 2.464-3.191 2.58v1.789h-1.331v-1.788c-1.302-.015-2.559-.547-3.52-1.388l1.597-1.61c.769.723 1.538 1.048 2.588 1.048.68 0 1.435-.266 1.435-1.153a.867.867 0 0 0-.313-.696l-1.106-.491-1.376-.614-1.837-.818-5.923-2.637zm9.002-6.393c-2.633 0-4.857.927-6.677 2.783-.495.5-.926 1.021-1.29 1.566l4.431 1.974c.401-1.23 1.57-1.976 2.989-2.059V7.95h1.331v1.788c.917.044 1.923.296 2.913 1.063l-1.523 1.567c-.562-.4-1.272-.68-1.982-.68-.576 0-1.39.177-1.39.901 0 .11.037.207.104.295l1.483.659 1.004.447c.641.287 1.254.558 1.86.829l5.943 2.645c.196-.778.295-1.606.295-2.482 0-2.647-.929-4.89-2.786-6.725-1.84-1.856-4.073-2.783-6.705-2.783z"/><g><path d="M114.668 14.981c.005 5.845-4.73 10.587-10.576 10.592-5.846.003-10.589-4.731-10.593-10.577v-.015C93.495 9.136 98.23 4.394 104.076 4.39c5.846-.005 10.588 4.73 10.592 10.575v.016z" fill="#fff"/><path d="M103.918 3.386c-3.212 0-5.931 1.12-8.157 3.362-2.283 2.319-3.425 5.063-3.425 8.233 0 3.17 1.142 5.894 3.425 8.174 2.283 2.28 5.003 3.42 8.157 3.42 3.193 0 5.96-1.15 8.302-3.448 2.205-2.184 3.309-4.9 3.309-8.146 0-3.248-1.123-5.99-3.368-8.233-2.244-2.242-4.993-3.362-8.243-3.362zm.028 2.086c2.632 0 4.867.928 6.706 2.784 1.858 1.835 2.786 4.077 2.786 6.725 0 2.667-.909 4.88-2.727 6.638-1.917 1.894-4.172 2.84-6.765 2.84s-4.828-.937-6.705-2.812c-1.877-1.874-2.815-4.097-2.815-6.666 0-2.571.948-4.812 2.845-6.725 1.819-1.856 4.043-2.784 6.675-2.784z"/><path d="M108.313 12.233h-8.428v1.996h8.428v-1.996zm0 3.726h-8.428v1.996h8.428V15.96z"/></g><g transform="matrix(.99377 0 0 .99367 -437.12 0)"><circle cx="491.947" cy="15.314" r="10.806" fill="#fff"/><path d="M495.075 12.187a.754.754 0 0 0-.754-.753h-4.773a.754.754 0 0 0-.754.753v4.773h1.332v5.652h3.617V16.96h1.332v-4.773z"/><circle cx="491.935" cy="9.172" r="1.632"/><path clip-rule="evenodd" d="M491.92 3.408c-3.232 0-5.968 1.127-8.208 3.384-2.297 2.333-3.446 5.095-3.446 8.284 0 3.189 1.149 5.932 3.446 8.227 2.298 2.294 5.035 3.442 8.207 3.442 3.213 0 5.999-1.157 8.355-3.472 2.22-2.197 3.329-4.93 3.329-8.197 0-3.268-1.129-6.029-3.388-8.285-2.258-2.256-5.023-3.383-8.296-3.383zm.03 2.1c2.648 0 4.896.933 6.746 2.8 1.87 1.847 2.805 4.104 2.805 6.768 0 2.683-.916 4.91-2.747 6.68-1.927 1.906-4.196 2.859-6.804 2.859-2.61 0-4.86-.943-6.748-2.83-1.889-1.886-2.833-4.122-2.833-6.71 0-2.586.954-4.842 2.862-6.767 1.831-1.867 4.07-2.8 6.719-2.8z" fill-rule="evenodd"/></g></svg></a></p>
+			<p class="small">Last edited: 5<sup>th</sup> September 2026.</p>
+		</section>
+		
+		<hr>
+		
+		<section id="methodology">
+			<h2>Methodology</h2>
+			<p>The Vaccine Injury Profile asked more than 40 questions related to Australian individuals’ experiences with COVID-19 vaccine injury, including health as well as social and financial aspects. The entire list of questions can be <a href="questions.html">viewed online</a>.</p>
+			<p>The list of questions was developed based on several considerations, including the experiences of international counterparts in conducting their own surveys (including <a href="https://postvac.org/pvs_umfrage_ergebnisse/" title="">Germany</a>, the <a href="https://doi.org/10.5281/zenodo.10582005" title="Characterising long COVID-like COVID-19 vaccine reactions"><abbr title="United Kingdom">UK</abbr></a>, and the <a href="https://react19.org/science-and-research/reviews-surveys-studies/react19-patient-led-research-persistent-symptoms-survey-1" title="Covid Vaccine Persistent Symptoms Survey"><abbr title="United States of America">USA</abbr></a>), information gleaned from social media support groups, and <b>CO</b>VERSE’s need for Australian data to guide its advocacy efforts.</p>
+			<p>In order to make the Profile as easy as possible to complete, <b>CO</b>VERSE designed the Profile with many of the questions (especially the qualitative ones) not being required to be completed. Not all individuals who started the Profile completed all required questions, and not all completed the optional questions.</p>
+			<p>Note that the underlying denominator, <mark>N</mark>, we used for statistical analysis varies from question to question, depending on whether the question was compulsory, how many people answered the question, and demographic specificities (e.g. biological sex). This allowed us to utilise larger or more appropriate data in the analysis of each question. Throughout the analysis the relevant <mark>N</mark> used for each calculation will be provided. Where we utilised all Profile responses we depict the denominator as <mark>N<sub>all</sub></mark>. Where we incorporate only those responses from individuals who answered a particular question, we depict, for example, <mark>N<sub>138</sub></mark> to indicate we only used <mark>138</mark> responses. We appreciate that this is not a usual methodology for statistical analysis of this type, however our aim was to extract as much useful information as we could from the data we have, within reason, to guide our advocacy.</p>
+			<p>Most summary data is presented as a percentage of the given <mark>N</mark>, and where appropriate we also provide calculated values (using standard Microsoft Excel formulas) such as median, average, standard deviation (σ), confidence interval (CI), etc.</p>
+			<p>For the open-ended text questions we utilised <a href="https://www.microsoft.com/en-au/microsoft-365-copilot/chat">Microsoft 365 Copilot</a> to augment analysis of responses. These responses were manually cleaned (fixed typographic errors, ensured consistent disease naming, removed any and all personally identifiable content, etc.) before being entered into Copilot, and we ensured that Microsoft policies did not allow our data to be stored or used for any purpose (including the training of models) other than our inputs and requested analyses.</p>
+		</section>
+		
+		<hr>
+		
+		<section id="results">
+			<h2>Results</h2>
+			
+			<section id="demographics">
+				<h3>Demographics</h3>
+				<p>A total of <mark>594</mark> individuals began answering the Vaccine Injury Profile (<mark>N<sub>all</sub></mark>), with <mark>525</mark> having completed all required questions. Within <mark>N<sub>all</sub></mark> responses, <mark>65.0%</mark> indicated being female, and <mark>35.0%</mark> being male.</p>
+				<p>Age values were calculated by subtracting the year of birth from the date the respondent began completing the Profile. The average age of <mark>N<sub>535</sub></mark> respondents was <mark>50.4±14.0 (95% CI 49.2-51.6)</mark>. The average age of females was <mark>51.4±13.4 (95% CI 50.3-52.5)</mark>, and average age of males was <mark>48.3±15.0 (95% CI 47.0-49.6)</mark>. The age distribution is presented in <a href="#figure_ages" class="figureLink">Figure ages</a>.</p>
+				<figure class="figure minw-50" id="figure_ages">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_ages">
+						<thead>
+							<tr><th scope="col" class="text-center">Age</th><th scope="col" class="text-end">% respondents</th></tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td class="text-center">10-19</td><td class="text-end">1.3%</td></tr>
+							<tr><td class="text-center">20-29</td><td class="text-end">5.2%</td></tr>
+							<tr><td class="text-center">30-39</td><td class="text-end">17.2%</td></tr>
+							<tr><td class="text-center">40-49</td><td class="text-end">23.2%</td></tr>
+							<tr><td class="text-center">50-59</td><td class="text-end">26.7%</td></tr>
+							<tr><td class="text-center">60-69</td><td class="text-end">17.4%</td></tr>
+							<tr><td class="text-center">70-79</td><td class="text-end">7.3%</td></tr>
+							<tr><td class="text-center">80-89</td><td class="text-end">1.7%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Age distribution of respondents.</figcaption>
+				</figure>
+				<p>All of Australia’s States and Territories were represented among the respondents, with the proportion from each region displayed in <a href="#figure_states" class="figureLink">Figure states</a>.</p>
+				<figure class="figure minw-66" id="figure_states">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_states">
+						<thead>
+							<tr><th scope="col" class="text-center">state</th><th scope="col" class="text-end">% respondents</th></tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td class="text-center">ACT</td><td class="text-end">3.0%</td></tr>
+							<tr><td class="text-center">NSW</td><td class="text-end">28.6%</td></tr>
+							<tr><td class="text-center">NT</td><td class="text-end">1.2%</td></tr>
+							<tr><td class="text-center">QLD</td><td class="text-end">20.4%</td></tr>
+							<tr><td class="text-center">SA</td><td class="text-end">7.6%</td></tr>
+							<tr><td class="text-center">TAS</td><td class="text-end">2.0%</td></tr>
+							<tr><td class="text-center">VIC</td><td class="text-end">2.6%</td></tr>
+							<tr><td class="text-center">WA</td><td class="text-end">11.1%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Distribution of respondents across Australia’s States and Territories.</figcaption>
+				</figure>
+				<p>When asked if they would be interested in participating in research involving COVID-19 vaccine-injured people, <mark>83.7%</mark> indicated that they would.</p>
+			</section>
+			
+			<section id="vaccinations">
+				<h3>COVID-19 vaccination history</h3>
+				<p>Respondents were asked about the COVID-19 vaccine doses they received, including whether they experienced an adverse reaction to each. A total of <mark>1,530</mark> doses were recorded in the Profile, of which <mark>62.3%</mark> were followed by an adverse reaction. Results for each dose are summarised in <a href="#figure_doses" class="figureLink">Figure doses</a>.</p>
+				<figure class="figure" id="figure_doses">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_doses">
+						<thead>
+							<tr>
+								<th scope="col" class="text-center">dose <i>n</i></th>
+								<th scope="col" class="text-center">N (received dose <i>n</i>)</th>
+								<th scope="col" class="text-center">% (reacted to dose <i>n</i>)</th>
+								<th scope="col">median date of receiving dose <i>n</i></th>
+							</tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td class="text-center">1</td><td class="text-center">594</td><td class="text-center">62.0%</td><td>23<sup>rd</sup> August 2021</td></tr>
+							<tr><td class="text-center">2</td><td class="text-center">505</td><td class="text-center">71.5%</td><td>19<sup>th</sup> September 2021</td></tr>
+							<tr><td class="text-center">3</td><td class="text-center">273</td><td class="text-center">65.2%</td><td>19<sup>th</sup> January 2022</td></tr>
+							<tr><td class="text-center">4</td><td class="text-center">117</td><td class="text-center">35.0%</td><td>15<sup>th</sup> July 2022</td></tr>
+							<tr><td class="text-center">5+</td><td class="text-center">41</td><td class="text-center">12.0%</td><td>26<sup>th</sup> April 2023</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Information about COVID-19 vaccine doses received and reacted to.</figcaption>
+				</figure>
+				
+				<p><a href="#figure_dates" class="figureLink">Figure dates</a> depicts the date distribution of doses reported by respondents, and <a href="#figure_brands" class="figureLink">Figure brands</a> provides a percentage breakdown of the brands of COVID-19 vaccines that respondents received. The percentages of both figures are out of <mark>N<sub>all</sub></mark> respondents.</p>
+				<figure class="figure minw-75" id="figure_dates">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_dates">
+						<thead>
+							<tr>
+								<th scope="col">dates</th>
+								<th scope="col" class="text-center">1<sup>st</sup> dose</th>
+								<th scope="col" class="text-center">2<sup>nd</sup> dose</th>
+								<th scope="col" class="text-center">3<sup>rd</sup> dose</th>
+								<th scope="col" class="text-center">4<sup>th</sup> dose</th>
+								<th scope="col" class="text-center">5<sup>th</sup>+ dose</th>
+							</tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td>Jan-Mar 2021</td><td class="text-center">3.0%</td><td class="text-center">0.5%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>Apr-Jun 2021</td><td class="text-center">17.3%</td><td class="text-center">5.2%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>Jul-Sep 2021</td><td class="text-center">33.7%</td><td class="text-center">29.3%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>Oct-Dec 2021</td><td class="text-center">19.5%</td><td class="text-center">21.7%</td><td class="text-center">7.7%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>Jan-Mar 2022</td><td class="text-center">2.2%</td><td class="text-center">4.6%</td><td class="text-center">19.0%</td><td class="text-center">0.2%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>Apr-Jun 2022</td><td class="text-center">0.5%</td><td class="text-center">1.0%</td><td class="text-center">1.9%</td><td class="text-center">2.7%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>Jul-Sep 2022</td><td class="text-center">1.7%</td><td class="text-center">0.7%</td><td class="text-center">1.5%</td><td class="text-center">4.6%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>Oct-Dec 2022</td><td class="text-center">0.5%</td><td class="text-center">0.7%</td><td class="text-center">0.5%</td><td class="text-center">0.8%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>Jan-Mar 2023</td><td class="text-center">0.0%</td><td class="text-center">0.2%</td><td class="text-center">0.2%</td><td class="text-center">0.0%</td><td class="text-center">0.5%</td></tr>
+							<tr><td>Apr-Jun 2023</td><td class="text-center">0.2%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td><td class="text-center">0.3%</td><td class="text-center">0.8%</td></tr>
+							<tr><td>Jul-Sep 2023</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td><td class="text-center">0.2%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>Oct-Dec 2023</td><td class="text-center">0.0%</td><td class="text-center">0.2%</td><td class="text-center">0.0%</td><td class="text-center">0.2%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>Jan-Mar 2024</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td><td class="text-center">0.2%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>Apr-Jun 2024</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td><td class="text-center">0.2%</td></tr>
+							<tr><td>Jul-Sep 2024</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>Oct-Dec 2024</td><td class="text-center">0.2%</td><td class="text-center">0.2%</td><td class="text-center">0.2%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Date distribution (by quarters) of all doses reported by respondents. Note that not all respondents were able to indicate exact dates for each of their vaccination doses.</figcaption>
+				</figure>
+				<figure class="figure minw-66" id="figure_brands">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_brands">
+						<thead>
+							<tr><th scope="col">dose</th><th scope="col" class="text-center">Pfizer</th><th scope="col" class="text-center">Moderna</th><th scope="col" class="text-center">AstraZeneca</th><th scope="col" class="text-center">Novavax</th><th scope="col" class="text-center">other</th></tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td>1<sup>st</sup> dose</td><td class="text-center">66.7%</td><td class="text-center">4.7%</td><td class="text-center">27.6%</td><td class="text-center">0.8%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>2<sup>nd</sup> dose</td><td class="text-center">54.4%</td><td class="text-center">3.5%</td><td class="text-center">20.5%</td><td class="text-center">1.5%</td><td class="text-center">0.2%</td></tr>
+							<tr><td>3<sup>rd</sup> dose</td><td class="text-center">26.6%</td><td class="text-center">9.3%</td><td class="text-center">1.3%</td><td class="text-center">2.5%</td><td class="text-center">0.2%</td></tr>
+							<tr><td>4<sup>th</sup> dose</td><td class="text-center">7.2%</td><td class="text-center">3.2%</td><td class="text-center">0.3%</td><td class="text-center">1.2%</td><td class="text-center">0.3%</td></tr>
+							<tr><td>5<sup>th</sup>+ dose</td><td class="text-center">0.8%</td><td class="text-center">0.7%</td><td class="text-center">0.0%</td><td class="text-center">0.2%</td><td class="text-center">0.0%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Relative distribution of COVID-19 vaccine brands among respondents.</figcaption>
+				</figure>
+				
+				<p>Time to symptom onset varied, however the most commonly reported periods were within <mark>1-12 hours</mark> and <mark>1-7 days</mark>. <a href="#figure_onset" class="figureLink">Figure onset</a> shows the percentage of <mark>N<sub>all</sub></mark> respondents who reacted within each depicted time period.</p>
+				<figure class="figure minw-75" id="figure_onset">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_onset">
+						<thead>
+							<tr><th scope="col">time to onset</th><th scope="col" class="text-center">1<sup>st</sup> dose</th><th scope="col" class="text-center">2<sup>nd</sup> dose</th><th scope="col" class="text-center">3<sup>rd</sup> dose</th><th scope="col" class="text-center">4<sup>th</sup> dose</th><th scope="col" class="text-center">5<sup>th</sup>+ dose</th></tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td>0-5 min</td><td class="text-center">3.7%</td><td class="text-center">2.0%</td><td class="text-center">1.5%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>6-30 min</td><td class="text-center">4.0%</td><td class="text-center">2.7%</td><td class="text-center">1.3%</td><td class="text-center">0.5%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>31-59 min</td><td class="text-center">0.7%</td><td class="text-center">0.8%</td><td class="text-center">0.3%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>1-12 hrs</td><td class="text-center">16.2%</td><td class="text-center">12.3%</td><td class="text-center">6.2%</td><td class="text-center">1.0%</td><td class="text-center">0.5%</td></tr>
+							<tr><td>13-23 hrs</td><td class="text-center">2.4%</td><td class="text-center">3.2%</td><td class="text-center">1.7%</td><td class="text-center">0.7%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>1-7 days</td><td class="text-center">23.9%</td><td class="text-center">23.6%</td><td class="text-center">9.1%</td><td class="text-center">2.5%</td><td class="text-center">0.2%</td></tr>
+							<tr><td>8-14 days</td><td class="text-center">5.7%</td><td class="text-center">4.2%</td><td class="text-center">2.0%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>15-30 days</td><td class="text-center">1.7%</td><td class="text-center">1.9%</td><td class="text-center">1.3%</td><td class="text-center">0.3%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>1-3 months</td><td class="text-center">1.2%</td><td class="text-center">3.7%</td><td class="text-center">2.4%</td><td class="text-center">0.7%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>4-12 months</td><td class="text-center">0.2%</td><td class="text-center">1.0%</td><td class="text-center">0.2%</td><td class="text-center">0.2%</td><td class="text-center">0.0%</td></tr>
+							<tr><td>> 1 year</td><td class="text-center">0.0%</td><td class="text-center">0.3%</td><td class="text-center">0.2%</td><td class="text-center">0.0%</td><td class="text-center">0.0%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Time to symptom onset after vaccination.</figcaption>
+				</figure>
+				
+				<p>Of <mark>N<sub>318</sub></mark> respondents who specifically indicated that they got subsequent doses after reacting to an earlier dose, <mark>78.3%</mark> indicated that their health worsened, <mark>2.5%</mark> felt better, and <mark>19.2%</mark> had no change in their symptoms.</p>
+				<p><mark>N<sub>263</sub></mark> indicated whether or not they were subject to a workplace COVID-19 vaccine mandate for the dose that they became injured by, of which <mark>51.0%</mark> reported that they were formally mandated to receive that dose while <mark>8.4%</mark> reported that while they were not formally mandated they were bullied or coerced by their workplace to receive the dose. Note that this particular question was added to the Profile some time after the Profile was initially opened for submissions, hence why we could not capture a greater proportion of all respondents.</p>
+			</section>
+			
+			<section id="symptoms">
+				<h3>Adverse reaction / symptom details</h3>
+				<p>For a collection of 71 symptoms, we asked respondents to indicate if they had experienced each as part of their post-vaccination symptoms, and how severe these symptoms were <em>at their worst</em> (minimal, mild, moderate, moderately severe, or severe). <a href="#figure_symptoms" class="figureLink">Figure symptoms</a> presents an overview of these results, from the <mark>N<sub>577</sub></mark> people who completed this question. Note that <mark>N/A</mark> indicates that the respondent specifically indicated that the particular symptom was not applicable to them, however it is assumed that no choice of <mark>N/A</mark> or symptom severity also indicates that the symptom was not applicable.</p>
+				<figure class="figure minw-75" id="figure_symptoms">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_symptoms">
+						<thead>
+							<tr>
+								<th scope="col">symptom</th>
+								<th scope="col" class="text-center">severe</th>
+								<th scope="col" class="text-center">moderately severe</th>
+								<th scope="col" class="text-center">moderate</th>
+								<th scope="col" class="text-center">mild</th>
+								<th scope="col" class="text-center">minimal</th>
+								<th scope="col" class="text-center">N/A</th>
+							</tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td>fatigue</td><td class="text-center">49.9%</td><td class="text-center">19.9%</td><td class="text-center">10.6%</td><td class="text-center">5.2%</td><td class="text-center">2.1%</td><td class="text-center">4.3%</td></tr>
+							<tr><td>exercise intolerance</td><td class="text-center">52.3%</td><td class="text-center">18.0%</td><td class="text-center">9.4%</td><td class="text-center">3.8%</td><td class="text-center">1.9%</td><td class="text-center">5.0%</td></tr>
+							<tr><td>brain fog</td><td class="text-center">32.9%</td><td class="text-center">20.8%</td><td class="text-center">19.9%</td><td class="text-center">5.7%</td><td class="text-center">3.3%</td><td class="text-center">7.1%</td></tr>
+							<tr><td>dizziness</td><td class="text-center">23.7%</td><td class="text-center">17.0%</td><td class="text-center">18.5%</td><td class="text-center">14.3%</td><td class="text-center">5.7%</td><td class="text-center">10.6%</td></tr>
+							<tr><td>insomnia</td><td class="text-center">23.4%</td><td class="text-center">13.3%</td><td class="text-center">16.5%</td><td class="text-center">9.0%</td><td class="text-center">9.5%</td><td class="text-center">17.2%</td></tr>
+							<tr><td>sleep disturbances</td><td class="text-center">28.6%</td><td class="text-center">18.2%</td><td class="text-center">17.7%</td><td class="text-center">9.2%</td><td class="text-center">5.9%</td><td class="text-center">10.1%</td></tr>
+							<tr><td>excessive sleep</td><td class="text-center">15.1%</td><td class="text-center">11.4%</td><td class="text-center">13.2%</td><td class="text-center">9.0%</td><td class="text-center">14.4%</td><td class="text-center">24.1%</td></tr>
+							<tr><td>paralysis</td><td class="text-center">5.2%</td><td class="text-center">5.6%</td><td class="text-center">4.9%</td><td class="text-center">6.1%</td><td class="text-center">8.0%</td><td class="text-center">55.8%</td></tr>
+							<tr><td>seizures</td><td class="text-center">2.9%</td><td class="text-center">2.4%</td><td class="text-center">1.6%</td><td class="text-center">2.8%</td><td class="text-center">9.9%</td><td class="text-center">65.5%</td></tr>
+							<tr><td>head pressure</td><td class="text-center">19.8%</td><td class="text-center">12.5%</td><td class="text-center">14.7%</td><td class="text-center">9.7%</td><td class="text-center">5.6%</td><td class="text-center">25.3%</td></tr>
+							<tr><td>new headaches</td><td class="text-center">22.2%</td><td class="text-center">14.9%</td><td class="text-center">17.2%</td><td class="text-center">8.5%</td><td class="text-center">6.8%</td><td class="text-center">18.9%</td></tr>
+							<tr><td>memory loss</td><td class="text-center">14.6%</td><td class="text-center">15.4%</td><td class="text-center">17.0%</td><td class="text-center">14.0%</td><td class="text-center">7.6%</td><td class="text-center">19.4%</td></tr>
+							<tr><td>new severe anxiety</td><td class="text-center">21.3%</td><td class="text-center">15.9%</td><td class="text-center">15.9%</td><td class="text-center">5.5%</td><td class="text-center">6.2%</td><td class="text-center">21.5%</td></tr>
+							<tr><td>feeling off-balance, or in motion while at rest</td><td class="text-center">20.8%</td><td class="text-center">14.4%</td><td class="text-center">18.0%</td><td class="text-center">8.8%</td><td class="text-center">6.6%</td><td class="text-center">20.6%</td></tr>
+							<tr><td>tinnitus</td><td class="text-center">14.7%</td><td class="text-center">10.1%</td><td class="text-center">12.1%</td><td class="text-center">8.5%</td><td class="text-center">6.6%</td><td class="text-center">35.4%</td></tr>
+							<tr><td>sensitivity to sound</td><td class="text-center">15.1%</td><td class="text-center">10.7%</td><td class="text-center">13.9%</td><td class="text-center">9.5%</td><td class="text-center">6.6%</td><td class="text-center">31.2%</td></tr>
+							<tr><td>sensitivity to light</td><td class="text-center">13.2%</td><td class="text-center">11.3%</td><td class="text-center">14.0%</td><td class="text-center">9.0%</td><td class="text-center">7.3%</td><td class="text-center">32.2%</td></tr>
+							<tr><td>visual disturbances</td><td class="text-center">11.8%</td><td class="text-center">10.6%</td><td class="text-center">14.2%</td><td class="text-center">11.1%</td><td class="text-center">8.1%</td><td class="text-center">31.0%</td></tr>
+							<tr><td>temporary blindness</td><td class="text-center">1.2%</td><td class="text-center">1.4%</td><td class="text-center">1.6%</td><td class="text-center">3.3%</td><td class="text-center">10.4%</td><td class="text-center">67.4%</td></tr>
+							<tr><td>glaucoma</td><td class="text-center">0.9%</td><td class="text-center">0.9%</td><td class="text-center">1.0%</td><td class="text-center">1.4%</td><td class="text-center">8.7%</td><td class="text-center">71.2%</td></tr>
+							<tr><td>dry eyes</td><td class="text-center">6.9%</td><td class="text-center">7.5%</td><td class="text-center">10.6%</td><td class="text-center">8.1%</td><td class="text-center">8.3%</td><td class="text-center">45.4%</td></tr>
+							<tr><td>nerve pain</td><td class="text-center">28.2%</td><td class="text-center">13.9%</td><td class="text-center">11.1%</td><td class="text-center">5.2%</td><td class="text-center">4.5%</td><td class="text-center">25.1%</td></tr>
+							<tr><td>tremors</td><td class="text-center">12.0%</td><td class="text-center">8.8%</td><td class="text-center">10.1%</td><td class="text-center">8.1%</td><td class="text-center">9.5%</td><td class="text-center">37.8%</td></tr>
+							<tr><td>muscle twitching</td><td class="text-center">13.5%</td><td class="text-center">12.8%</td><td class="text-center">14.6%</td><td class="text-center">11.1%</td><td class="text-center">8.1%</td><td class="text-center">28.4%</td></tr>
+							<tr><td>internal vibrations</td><td class="text-center">12.8%</td><td class="text-center">9.5%</td><td class="text-center">10.7%</td><td class="text-center">8.1%</td><td class="text-center">6.9%</td><td class="text-center">38.6%</td></tr>
+							<tr><td>tingling / numbness in extremities</td><td class="text-center">26.2%</td><td class="text-center">15.6%</td><td class="text-center">14.9%</td><td class="text-center">8.0%</td><td class="text-center">5.4%</td><td class="text-center">19.8%</td></tr>
+							<tr><td>burning sensation on skin</td><td class="text-center">18.0%</td><td class="text-center">7.6%</td><td class="text-center">9.5%</td><td class="text-center">6.9%</td><td class="text-center">8.0%</td><td class="text-center">38.3%</td></tr>
+							<tr><td>joint pain / arthritis</td><td class="text-center">22.5%</td><td class="text-center">15.6%</td><td class="text-center">14.7%</td><td class="text-center">7.8%</td><td class="text-center">4.0%</td><td class="text-center">23.7%</td></tr>
+							<tr><td>muscle aches</td><td class="text-center">25.3%</td><td class="text-center">18.2%</td><td class="text-center">18.7%</td><td class="text-center">7.3%</td><td class="text-center">3.8%</td><td class="text-center">15.1%</td></tr>
+							<tr><td>muscle weakness</td><td class="text-center">27.0%</td><td class="text-center">17.3%</td><td class="text-center">15.9%</td><td class="text-center">8.3%</td><td class="text-center">4.9%</td><td class="text-center">15.1%</td></tr>
+							<tr><td>unstable joints</td><td class="text-center">12.5%</td><td class="text-center">9.9%</td><td class="text-center">10.2%</td><td class="text-center">7.4%</td><td class="text-center">7.3%</td><td class="text-center">38.5%</td></tr>
+							<tr><td>muscle loss</td><td class="text-center">15.4%</td><td class="text-center">12.0%</td><td class="text-center">15.6%</td><td class="text-center">8.7%</td><td class="text-center">7.1%</td><td class="text-center">27.9%</td></tr>
+							<tr><td>heaviness in legs</td><td class="text-center">21.8%</td><td class="text-center">10.1%</td><td class="text-center">14.9%</td><td class="text-center">7.6%</td><td class="text-center">7.1%</td><td class="text-center">26.3%</td></tr>
+							<tr><td>adrenaline surges</td><td class="text-center">11.3%</td><td class="text-center">12.1%</td><td class="text-center">9.7%</td><td class="text-center">6.9%</td><td class="text-center">6.6%</td><td class="text-center">39.0%</td></tr>
+							<tr><td>chest pain</td><td class="text-center">27.6%</td><td class="text-center">16.3%</td><td class="text-center">14.6%</td><td class="text-center">7.6%</td><td class="text-center">4.7%</td><td class="text-center">17.9%</td></tr>
+							<tr><td>myocarditis</td><td class="text-center">7.3%</td><td class="text-center">5.0%</td><td class="text-center">2.4%</td><td class="text-center">3.8%</td><td class="text-center">5.5%</td><td class="text-center">59.1%</td></tr>
+							<tr><td>pericarditis</td><td class="text-center">13.9%</td><td class="text-center">5.4%</td><td class="text-center">4.3%</td><td class="text-center">2.4%</td><td class="text-center">5.4%</td><td class="text-center">52.7%</td></tr>
+							<tr><td>heart palpitations</td><td class="text-center">27.6%</td><td class="text-center">19.1%</td><td class="text-center">14.7%</td><td class="text-center">6.8%</td><td class="text-center">3.6%</td><td class="text-center">16.6%</td></tr>
+							<tr><td>shortness of breath</td><td class="text-center">28.1%</td><td class="text-center">18.9%</td><td class="text-center">15.3%</td><td class="text-center">9.2%</td><td class="text-center">4.3%</td><td class="text-center">13.0%</td></tr>
+							<tr><td>high heart rate</td><td class="text-center">25.0%</td><td class="text-center">17.7%</td><td class="text-center">13.7%</td><td class="text-center">7.1%</td><td class="text-center">5.2%</td><td class="text-center">19.2%</td></tr>
+							<tr><td>low blood pressure</td><td class="text-center">7.6%</td><td class="text-center">5.7%</td><td class="text-center">8.3%</td><td class="text-center">6.2%</td><td class="text-center">8.1%</td><td class="text-center">47.8%</td></tr>
+							<tr><td>high blood pressure</td><td class="text-center">9.0%</td><td class="text-center">10.9%</td><td class="text-center">10.4%</td><td class="text-center">5.7%</td><td class="text-center">5.2%</td><td class="text-center">41.4%</td></tr>
+							<tr><td>persistent cough</td><td class="text-center">6.4%</td><td class="text-center">5.2%</td><td class="text-center">9.5%</td><td class="text-center">7.3%</td><td class="text-center">9.7%</td><td class="text-center">45.8%</td></tr>
+							<tr><td>heartburn / indigestion</td><td class="text-center">9.5%</td><td class="text-center">9.4%</td><td class="text-center">13.3%</td><td class="text-center">8.5%</td><td class="text-center">8.0%</td><td class="text-center">35.0%</td></tr>
+							<tr><td>dry mouth</td><td class="text-center">9.5%</td><td class="text-center">5.4%</td><td class="text-center">12.5%</td><td class="text-center">8.1%</td><td class="text-center">6.6%</td><td class="text-center">40.9%</td></tr>
+							<tr><td>abdominal / stomach pain</td><td class="text-center">12.3%</td><td class="text-center">9.2%</td><td class="text-center">13.3%</td><td class="text-center">10.6%</td><td class="text-center">6.8%</td><td class="text-center">31.5%</td></tr>
+							<tr><td>nausea</td><td class="text-center">11.6%</td><td class="text-center">11.1%</td><td class="text-center">13.3%</td><td class="text-center">9.2%</td><td class="text-center">8.3%</td><td class="text-center">29.5%</td></tr>
+							<tr><td>diarrhoea</td><td class="text-center">8.5%</td><td class="text-center">7.1%</td><td class="text-center">10.7%</td><td class="text-center">9.5%</td><td class="text-center">8.5%</td><td class="text-center">40.0%</td></tr>
+							<tr><td>loss of bowel control</td><td class="text-center">4.7%</td><td class="text-center">3.6%</td><td class="text-center">2.3%</td><td class="text-center">4.7%</td><td class="text-center">9.5%</td><td class="text-center">58.6%</td></tr>
+							<tr><td>constipation</td><td class="text-center">7.1%</td><td class="text-center">6.9%</td><td class="text-center">9.4%</td><td class="text-center">5.0%</td><td class="text-center">8.3%</td><td class="text-center">48.4%</td></tr>
+							<tr><td>bloody or black tar-like stool</td><td class="text-center">3.6%</td><td class="text-center">1.7%</td><td class="text-center">3.1%</td><td class="text-center">3.1%</td><td class="text-center">8.5%</td><td class="text-center">64.8%</td></tr>
+							<tr><td>excessive gas</td><td class="text-center">4.2%</td><td class="text-center">4.7%</td><td class="text-center">10.6%</td><td class="text-center">6.8%</td><td class="text-center">8.3%</td><td class="text-center">37.6%</td></tr>
+							<tr><td>increased thirst</td><td class="text-center">5.9%</td><td class="text-center">7.3%</td><td class="text-center">12.0%</td><td class="text-center">6.6%</td><td class="text-center">6.2%</td><td class="text-center">34.0%</td></tr>
+							<tr><td>frequent urination</td><td class="text-center">7.6%</td><td class="text-center">8.7%</td><td class="text-center">13.3%</td><td class="text-center">5.9%</td><td class="text-center">5.4%</td><td class="text-center">31.2%</td></tr>
+							<tr><td>loss of bladder control</td><td class="text-center">4.0%</td><td class="text-center">2.4%</td><td class="text-center">5.7%</td><td class="text-center">4.0%</td><td class="text-center">7.8%</td><td class="text-center">48.0%</td></tr>
+							<tr><td>abnormal glucose levels</td><td class="text-center">2.4%</td><td class="text-center">2.3%</td><td class="text-center">2.9%</td><td class="text-center">2.8%</td><td class="text-center">5.9%</td><td class="text-center">54.2%</td></tr>
+							<tr><td>discolouring of skin / eyes</td><td class="text-center">2.6%</td><td class="text-center">3.5%</td><td class="text-center">4.7%</td><td class="text-center">5.0%</td><td class="text-center">7.3%</td><td class="text-center">48.5%</td></tr>
+							<tr><td>discolouration in fingertips / toes</td><td class="text-center">3.1%</td><td class="text-center">4.0%</td><td class="text-center">5.7%</td><td class="text-center">5.2%</td><td class="text-center">6.9%</td><td class="text-center">46.1%</td></tr>
+							<tr><td>bulging veins</td><td class="text-center">3.1%</td><td class="text-center">4.5%</td><td class="text-center">5.7%</td><td class="text-center">4.7%</td><td class="text-center">7.3%</td><td class="text-center">46.3%</td></tr>
+							<tr><td>poor circulation</td><td class="text-center">12.0%</td><td class="text-center">10.1%</td><td class="text-center">11.4%</td><td class="text-center">5.4%</td><td class="text-center">8.3%</td><td class="text-center">37.8%</td></tr>
+							<tr><td>swelling of extremities</td><td class="text-center">8.3%</td><td class="text-center">6.2%</td><td class="text-center">6.8%</td><td class="text-center">7.4%</td><td class="text-center">10.1%</td><td class="text-center">45.4%</td></tr>
+							<tr><td>swollen lymph nodes</td><td class="text-center">5.2%</td><td class="text-center">5.2%</td><td class="text-center">10.7%</td><td class="text-center">4.7%</td><td class="text-center">5.9%</td><td class="text-center">29.8%</td></tr>
+							<tr><td>persistent sore throat</td><td class="text-center">2.9%</td><td class="text-center">3.3%</td><td class="text-center">4.9%</td><td class="text-center">6.1%</td><td class="text-center">8.0%</td><td class="text-center">36.7%</td></tr>
+							<tr><td>heat intolerance</td><td class="text-center">6.4%</td><td class="text-center">9.2%</td><td class="text-center">9.5%</td><td class="text-center">5.7%</td><td class="text-center">3.6%</td><td class="text-center">26.7%</td></tr>
+							<tr><td>skin redness, hives, petechia or rashes</td><td class="text-center">6.9%</td><td class="text-center">6.2%</td><td class="text-center">7.8%</td><td class="text-center">4.5%</td><td class="text-center">5.7%</td><td class="text-center">31.7%</td></tr>
+							<tr><td>new food allergies / intolerances</td><td class="text-center">8.7%</td><td class="text-center">4.3%</td><td class="text-center">4.5%</td><td class="text-center">4.2%</td><td class="text-center">4.5%</td><td class="text-center">36.2%</td></tr>
+							<tr><td>anaphylaxis</td><td class="text-center">1.2%</td><td class="text-center">0.5%</td><td class="text-center">0.7%</td><td class="text-center">2.4%</td><td class="text-center">4.9%</td><td class="text-center">51.8%</td></tr>
+							<tr><td>hair loss</td><td class="text-center">3.6%</td><td class="text-center">4.5%</td><td class="text-center">9.2%</td><td class="text-center">5.5%</td><td class="text-center">4.5%</td><td class="text-center">34.8%</td></tr>
+							<tr><td>chills</td><td class="text-center">3.8%</td><td class="text-center">5.9%</td><td class="text-center">13.7%</td><td class="text-center">5.7%</td><td class="text-center">5.9%</td><td class="text-center">26.9%</td></tr>
+							<tr><td>irregular menstrual cycle</td><td class="text-center">7.1%</td><td class="text-center">3.3%</td><td class="text-center">5.5%</td><td class="text-center">3.1%</td><td class="text-center">5.5%</td><td class="text-center">58.6%</td></tr>
+							<tr><td>resurgence of latent disease (e.g. shingles, EBV, cancer, autoimmune disease, etc.)</td><td class="text-center">16.5%</td><td class="text-center">5.0%</td><td class="text-center">4.5%</td><td class="text-center">2.6%</td><td class="text-center">5.0%</td><td class="text-center">48.2%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Post vaccination symptom severity at their worst.</figcaption>
+				 </figure>
+				
+				<p>In addition to these pre-defined symptoms, we also asked about any other symptoms that people experienced. There was a wide range of free-text responses from <mark>N<sub>300</sub></mark> people, which included diagnoses, test results and functional capacity as well as symptom descriptions. We combined these other responses with the pre-defined symptom responses and summarised the combined <mark>N<sub>565</sub></mark> records with assistance from Copilot:</p>
+				<div class="card ms-4 me-4 mb-4">
+					<div class="card-body">
+						<p>Most respondents reported symptoms spanning multiple organ systems simultaneously. Symptom burden was frequently high, with many respondents describing moderate to severe impairment. The responses describe a highly heterogeneous but recognisable pattern of multi‑organ symptomatology, dominated by fatigue, neurological dysfunction, cardiovascular involvement, musculoskeletal pain, immune/allergic manifestations, and autonomic instability.</p>
+						<p>The top 10 most commonly reported symptoms, that appear across the majority of responses, encapsulate:</p>
+						<ol>
+							<li>Fatigue</li>
+							<li>Exercise intolerance / post‑exertional malaise</li>
+							<li>Brain fog / cognitive impairment</li>
+							<li>Dizziness / balance disturbance</li>
+							<li>Sleep disturbance</li>
+							<li>Headache or head pressure</li>
+							<li>Cardiac palpitations / abnormal heart rate</li>
+							<li>Chest pain</li>
+							<li>Muscle and joint pain</li>
+							<li>Peripheral nerve symptoms</li>
+						</ol>
+						<p>Recurring multi-symptom constellations that stand out across many of the responses are:</p>
+						<ul>
+							<li>Multi‑system neuro‑autonomic symptoms: brain fog, dizziness, balance problems, palpitations, heart rate variability, heat intolerance, chills, adrenaline surges, bladder/bowel control disturbances. Symptoms span central, peripheral, and autonomic nervous systems, and are often described as fluctuating but persistent and disabling.</li>
+							<li>Severe fatigue with post‑exertional malaise: profound fatigue, exercise intolerance, cognitive worsening after activity, need for prolonged rest or sleep. Functional limitation is central, rather than organ‑specific, and the symptom burden is often reported as life‑altering with reduced capacity for daily living.</li>
+							<li>Inflammatory cardio‑respiratory symptoms: chest pain, myocarditis/pericarditis, shortness of breath, persistent cough or air hunger.</li>
+							<li>Neuropathic pain and sensory dysregulation: burning skin, tingling, numbness, tremors, internal vibrations, facial neuralgia, limb weakness, sensory loss. Descriptions are classic for peripheral and small‑fiber neuropathic phenomena, and are often severe and constant.</li>
+							<li>Immune / inflammatory reactivation and hypersensitivity: new food allergies, anaphylaxis, rashes, petechiae, swelling, swollen lymph nodes, reactivation or emergence of autoimmune or inflammatory diagnoses. Combines dermatologic, lymphatic, allergic, and systemic inflammatory features.</li>
+						</ul>
+						<p>The dominant theme is not any single organ-related symptom, but a systemic illness characterised by profound fatigue with exercise intolerance and widespread neuro-autonomic dysfunction, around which cardiovascular, musculoskeletal, immune, and gastrointestinal symptoms cluster. The symptom patterns most strongly resemble established multi‑system neuro‑immune illnesses such as <abbr title="myalgic encephalomyelitis / chronic fatigue syndrome">ME/CFS</abbr>, dysautonomia, and small‑fiber neuropathy, often with overlapping inflammatory or hypersensitivity features, rather than any single well‑bounded disease entity.</p>
+						<p>Conversely, Copilot pointed out that patterns <em>do not</em> resemble: isolated psychiatric illness, single‑organ diseases, acute self‑limited inflammatory reactions, or traditional degenerative neurological disorders alone.</p>
+						<p>While data are all self-reported, Copilot also notes that the dataset shows high internal coherence, cross‑participant convergence, symptom‑cluster stability, and severity‑graded continuity, which together indicate a strong and robust syndrome‑level signal.</p>
+					</div>
+				</div>
+				<p><a href="#figure_side" class="figureLink">Figure side</a> provides the breakdown of which side of the body people felt their symptoms were more dominant.</p>
+				<figure class="figure minw-66" id="figure_side">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto" id="table_sides">
+						<thead>
+							<tr><th scope="col">side</th><th scope="col" class="text-center">% respondents (<mark>N<sub>all</sub></mark>)</th></tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td>left</td><td class="text-center">21.5%</td></tr>
+							<tr><td>right</td><td class="text-center">9.3%</td></tr>
+							<tr><td>varies</td><td class="text-center">16.8%</td></tr>
+							<tr><td>no difference</td><td class="text-center">29.6%</td></tr>
+							<tr><td>N/A</td><td class="text-center">22.7%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Dominant side of symptoms.</figcaption>
+				</figure>
+				<p>Of <mark>N<sub>564</sub></mark> respondents, only <mark>7.6%</mark> indicated that their health was definitely improving, with a further <mark>21.3%</mark> indicating that they were slowly improving. Contrasting these numbers, <mark>26.8%</mark> say they were not improving, <mark>17.6%</mark> were actually getting worse, and <mark>26.8%</mark> were experiencing ongoing fluctuation in their health.</p>
+				<p>Of those who were improving, slowly improving, or fluctuating, <mark>N<sub>192</sub></mark> indicated that the median time before they began to experience symptom improvement was <mark>8 months</mark>. The distribution of responses is shown in <a href="#figure_improvement" class="figureLink">Figure improvement</a>.</p>
+				<figure class="figure minw-75" id="figure_improvement">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_improvement">
+						<thead>
+							<tr><th scope="col" class="text-center">months</th><th scope="col" class="text-center">% respondents</th></tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td class="text-center">0</td><td class="text-center">2.1%</td></tr>
+							<tr><td class="text-center">1</td><td class="text-center">3.1%</td></tr>
+							<tr><td class="text-center">2</td><td class="text-center">2.6%</td></tr>
+							<tr><td class="text-center">3</td><td class="text-center">6.8%</td></tr>
+							<tr><td class="text-center">4</td><td class="text-center">5.7%</td></tr>
+							<tr><td class="text-center">5</td><td class="text-center">4.7%</td></tr>
+							<tr><td class="text-center">6</td><td class="text-center">15.6%</td></tr>
+							<tr><td class="text-center">7</td><td class="text-center">3.6%</td></tr>
+							<tr><td class="text-center">8</td><td class="text-center">8.9%</td></tr>
+							<tr><td class="text-center">9</td><td class="text-center">5.2%</td></tr>
+							<tr><td class="text-center">10</td><td class="text-center">6.8%</td></tr>
+							<tr><td class="text-center">11</td><td class="text-center">3.6%</td></tr>
+							<tr><td class="text-center">12</td><td class="text-center">10.4%</td></tr>
+							<tr><td class="text-center">13</td><td class="text-center">3.6%</td></tr>
+							<tr><td class="text-center">14</td><td class="text-center">3.6%</td></tr>
+							<tr><td class="text-center">15</td><td class="text-center">2.1%</td></tr>
+							<tr><td class="text-center">16</td><td class="text-center">1.6%</td></tr>
+							<tr><td class="text-center">17</td><td class="text-center">0.0%</td></tr>
+							<tr><td class="text-center">18</td><td class="text-center">3.1%</td></tr>
+							<tr><td class="text-center">19</td><td class="text-center">1.0%</td></tr>
+							<tr><td class="text-center">20</td><td class="text-center">0.5%</td></tr>
+							<tr><td class="text-center">21</td><td class="text-center">0.0%</td></tr>
+							<tr><td class="text-center">22</td><td class="text-center">0.5%</td></tr>
+							<tr><td class="text-center">23</td><td class="text-center">0.0%</td></tr>
+							<tr><td class="text-center">24</td><td class="text-center">3.1%</td></tr>
+							<tr><td class="text-center">25</td><td class="text-center">0.0%</td></tr>
+							<tr><td class="text-center">26</td><td class="text-center">0.0%</td></tr>
+							<tr><td class="text-center">27</td><td class="text-center">0.0%</td></tr>
+							<tr><td class="text-center">28</td><td class="text-center">0.0%</td></tr>
+							<tr><td class="text-center">29</td><td class="text-center">0.5%</td></tr>
+							<tr><td class="text-center">30</td><td class="text-center">0.5%</td></tr>
+							<tr><td class="text-center">31</td><td class="text-center">0.0%</td></tr>
+							<tr><td class="text-center">32</td><td class="text-center">0.0%</td></tr>
+							<tr><td class="text-center">33</td><td class="text-center">0.0%</td></tr>
+							<tr><td class="text-center">34</td><td class="text-center">0.0%</td></tr>
+							<tr><td class="text-center">35</td><td class="text-center">0.0%</td></tr>
+							<tr><td class="text-center">36</td><td class="text-center">0.5%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Months until improvement in symptoms.</figcaption>
+				 </figure>
+			</section>
+			
+			<section id="healthcare">
+				<h3>Healthcare access, diagnostics and treatment</h3>
+				<p><mark>58.4%</mark> of <mark>N<sub>546</sub></mark> respondents indicated that their usual <abbr title="general practitioner">GP</abbr> recognised that they had experienced an adverse event following their COVID-19 vaccinations.</p>
+				<p>Of <mark>N<sub>546</sub></mark> respondents, <mark>51.5%</mark> were able to confirm that their adverse reaction had been reported to Australia’s Therapeutic Goods Administration (<abbr title="Therapeutic Goods Administration">TGA</abbr>, the national drug regulator responsible for vaccine approvals and adverse event monitoring). Further breakdown of this reporting is shown in <a href="#figure_reported" class="figureLink">Figure reported</a>.</p>
+				<figure class="figure" id="figure_reported">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto" id="table_reporting">
+						<thead>
+							<tr><th scope="col">reported</th><th scope="col" class="text-center">% respondents</th></tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td>yes (self-reported)</td><td class="text-center">37.5%</td></tr>
+							<tr><td>yes (reported by <abbr title="general practitioner">GP</abbr> / specialist)</td><td class="text-center">10.4%</td></tr>
+							<tr><td>yes (reported by hospital)</td><td class="text-center">3.3%</td></tr>
+							<tr><td>no</td><td class="text-center">31.3%</td></tr>
+							<tr><td>unsure</td><td class="text-center">17.2%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Summary of <abbr title="adverse event following immunisation">AEFI</abbr> reporting to the <abbr title="Therapeutic Goods Administration">TGA</abbr>.</figcaption>
+				</figure>
+				<p>Out of those who confirmed that their <abbr title="adverse event following immunisation">AEFI</abbr> had been reported, <mark>12.4%</mark> of <mark>N<sub>275</sub></mark> indicated that the <abbr title="Therapeutic Goods Administration">TGA</abbr> had been in contact with them about their reaction. Note, however, that the wording of this question in its original form was ambiguous, and was only later revised to ask specifically if the <abbr title="Therapeutic Goods Administration">TGA</abbr> had made contact to seek further information or arrange additional medical investigations. We suspect that the actual number of instances where the <abbr title="Therapeutic Goods Administration">TGA</abbr> ever made contact with reporters for further information is closer to <mark>0%</mark>, based on our many interactions with members of our community and further descriptive comments about this topic in respondent <a href="#stories">narrative text responses</a>. However, we are unable to separate responses to the earlier wording of our question from the later more specific version to verify this.</p>
+				<p><mark>83.9%</mark> of <mark>N<sub>546</sub></mark> respondents had been referred to a medical specialist for further investigation (responses also included allied health specialists such as psychologist, dietitians, respiratory therapists, etc.). Of the <mark>N<sub>455</sub></mark> who indicated which specialists they had seen, the median number of distinct specialists seen was <mark>2</mark>. The distribution of specialities is summarised in <a href="#figure_specialists" class="figureLink">Figure specialists</a>.</p>
+				<figure class="figure" id="figure_specialists">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_specialists">
+						<thead>
+							<tr><th scope="col">specialist</th><th scope="col" class="text-center">% respondents</th></tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td>cardiologist</td><td class="text-center">60.8%</td></tr>
+							<tr><td>neurologist</td><td class="text-center">42.4%</td></tr>
+							<tr><td>immunologist</td><td class="text-center">21.5%</td></tr>
+							<tr><td>rheumatologist</td><td class="text-center">21.3%</td></tr>
+							<tr><td>psychologist</td><td class="text-center">19.7%</td></tr>
+							<tr><td>gastroenterologist</td><td class="text-center">14.2%</td></tr>
+							<tr><td>respiratory physician</td><td class="text-center">12.4%</td></tr>
+							<tr><td>endocrinologist</td><td class="text-center">9.5%</td></tr>
+							<tr><td>ophthalmologist</td><td class="text-center">9.5%</td></tr>
+							<tr><td>haematologist</td><td class="text-center">8.2%</td></tr>
+							<tr><td>dermatologist</td><td class="text-center">7.8%</td></tr>
+							<tr><td>otolaryngologist</td><td class="text-center">6.7%</td></tr>
+							<tr><td>gynaecologist</td><td class="text-center">4.7%</td></tr>
+							<tr><td>physiotherapist</td><td class="text-center">2.7%</td></tr>
+							<tr><td>pain specialist</td><td class="text-center">2.4%</td></tr>
+							<tr><td>orthopaedic surgeon</td><td class="text-center">2.2%</td></tr>
+							<tr><td>exercise physiologist</td><td class="text-center">2.0%</td></tr>
+							<tr><td>psychiatrist</td><td class="text-center">1.8%</td></tr>
+							<tr><td>nephrologist</td><td class="text-center">1.3%</td></tr>
+							<tr><td>vascular surgeon</td><td class="text-center">1.3%</td></tr>
+							<tr><td>neurosurgeon</td><td class="text-center">1.1%</td></tr>
+							<tr><td>sleep physician</td><td class="text-center">1.1%</td></tr>
+							<tr><td>infectologist</td><td class="text-center">0.9%</td></tr>
+							<tr><td>sport physician</td><td class="text-center">0.9%</td></tr>
+							<tr><td>audiologist</td><td class="text-center">0.7%</td></tr>
+							<tr><td>colorectal surgeon</td><td class="text-center">0.7%</td></tr>
+							<tr><td>geriatrician</td><td class="text-center">0.7%</td></tr>
+							<tr><td>rehabilitation specialist</td><td class="text-center">0.7%</td></tr>
+							<tr><td>speech pathologist</td><td class="text-center">0.7%</td></tr>
+							<tr><td>integrative general practitioner</td><td class="text-center">0.4%</td></tr>
+							<tr><td>occupational therapist</td><td class="text-center">0.4%</td></tr>
+							<tr><td>oncologist</td><td class="text-center">0.4%</td></tr>
+							<tr><td>podiatrist</td><td class="text-center">0.4%</td></tr>
+							<tr><td>behavioural optometrist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>breast surgeon</td><td class="text-center">0.2%</td></tr>
+							<tr><td>chiropractor</td><td class="text-center">0.2%</td></tr>
+							<tr><td>counsellor</td><td class="text-center">0.2%</td></tr>
+							<tr><td>dentist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>dietician</td><td class="text-center">0.2%</td></tr>
+							<tr><td>epidemiologist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>hydrotherapist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>lymphoedema specialist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>massage therapist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>naturopath</td><td class="text-center">0.2%</td></tr>
+							<tr><td>neurophysiotherapist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>oral and maxillofacial surgeon</td><td class="text-center">0.2%</td></tr>
+							<tr><td>orthoptist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>osteopath</td><td class="text-center">0.2%</td></tr>
+							<tr><td>plastic surgeon</td><td class="text-center">0.2%</td></tr>
+							<tr><td>psychotherapist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>pulmonologist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>radiologist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>speech therapist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>stomatologist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>surgeon</td><td class="text-center">0.2%</td></tr>
+							<tr><td>thoracic specialist</td><td class="text-center">0.2%</td></tr>
+							<tr><td>other</td><td class="text-center">1.8%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Specialists seen (including allied health professionals).</figcaption>
+				 </figure>
+				
+				<p id="diagnoses">Of <mark>N<sub>542</sub></mark> responses, <mark>53.7%</mark> indicated they had received a formal medical diagnosis. Of these diagnoses, <mark>N<sub>268</sub></mark> provided further details. We utilised Copilot to assist with analysing these responses:</p>
+				<div class="card ms-4 me-4 mb-4">
+					<div class="card-body">
+						<p>These responses coherently cluster around several clear areas:</p>
+						<ul>
+							<li>Cardiac inflammatory and rhythm disorders (especially pericarditis, myocarditis, arrhythmias).</li>
+							<li>Neurological and neuromuscular conditions (peripheral neuropathies, demyelinating diseases, autonomic dysfunction, central nervous system inflammatory syndromes).</li>
+							<li>Systemic immune-mediated and autoimmune diseases (both organ‑specific and systemic).</li>
+							<li>Autonomic dysfunction syndromes (particularly postural orthostatic tachycardia syndrome (<abbr title="postural orthostatic tachycardia syndrome">POTS</abbr>) and dysautonomia).</li>
+							<li>Chronic multisystem symptom syndromes (especially myalgic encephalomyelitis / chronic fatigue syndrome (<abbr title="myalgic encephalomyelitis / chronic fatigue syndrome">ME/CFS</abbr>), fibromyalgia, chronic pain syndromes).</li>
+							<li>Hematologic and thrombotic disorders (including thrombocytopenia, thromboembolism, antiphospholipid-related conditions).</li>
+							<li>Inflammatory and autoimmune gastrointestinal, endocrine, and connective tissue diseases.</li>
+						</ul>
+						<p>We note that pericarditis is the single most common of these diagnoses.</p>
+						<p>The data also includes functional and psychiatric diagnoses. However, these are always coexisting with structural or inflammatory diagnoses, suggesting they are secondary diseases rather than the cause of such multisystem pathologies.</p>
+						<p>Copilot notes that the dataset describes a concentration of inflammatory, immune-mediated, autonomic, cardiac, and neurological diagnoses, frequently coexisting within the same individuals. Rather than isolated single‑organ diseases, many responses suggest multisystem illness patterns involving immune dysregulation, neuroinflammation or neuropathy, cardiovascular inflammation or instability, and autonomic nervous system dysfunction.</p>
+						<p>Moreover, when combined with the above <a href="#symptoms">symptom</a> responses, Copilot notes that consistency between symptom phenomenology and diagnostic frameworks strongly suggests respondents are describing recognisable medical syndromes affecting multiple interacting systems, rather than isolated or purely subjective symptom reporting.</p>
+					</div>
+				</div>
+				<p><mark>N<sub>449</sub></mark> indicated that the median time it took to receive these diagnoses was <mark>1-3 months</mark>. The distribution of time to diagnosis is presented in <a href="#figure_diagnosisTimes" class="figureLink">Figure diagnosis times</a>.</p>
+				<figure class="figure minw-50" id="figure_diagnosisTimes">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_diagnosisTimes">
+						<thead>
+							<tr><th scope="col" class="text-center">time</th><th scope="col" class="text-center">% respondents</th></tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td class="text-center">0-1 day</td><td class="text-center">7.3%</td></tr>
+							<tr><td class="text-center">2-30 days</td><td class="text-center">32.7%</td></tr>
+							<tr><td class="text-center">1-3 months</td><td class="text-center">20.3%</td></tr>
+							<tr><td class="text-center">4-6 months</td><td class="text-center">11.4%</td></tr>
+							<tr><td class="text-center">7-12 months</td><td class="text-center">9.4%</td></tr>
+							<tr><td class="text-center">&gt; 1 year</td><td class="text-center">9.4%</td></tr>
+							<tr><td class="text-center">still waiting</td><td class="text-center">9.6%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Time to receive diagnosis.</figcaption>
+				</figure>
+				<p><mark>26.3%</mark> of <mark>N<sub>520</sub></mark> respondents received a diagnosis that later proved to be incorrect.</p>
+				
+				<p>We asked respondents to indicate test results, diagnosis or symptoms that seemed of particular significance. We used Copilot to assist with analysis of these <mark>N<sub>320</sub></mark> responses.</p>
+				<div class="card ms-4 me-4 mb-4">
+					<div class="card-body">
+						<p>The free-text responses varied widely, with different people choosing to articulate different aspects of their medical discovery. However, the pattern of cardiovascular, neurological, immunological, and autonomic disease featured heavily. Most notably, there was a recurrent disconnect between severe lived symptoms and either inconclusive or delayed diagnostic findings.</p>
+						<p>Within the variety of responses, the diagnostic tests most commonly noted as significant for the patient were cardiac MRIs, inflammatory/coagulation markers (CRP, D‑dimer), and MRI‑based neurological testing, and the notable diagnoses reflect what has already been articulated <a href="#diagnoses">above</a>.</p>
+					</div>
+				</div>
+				
+				<p>A number of questions were asked about treatment approaches (prescription, alternative, self-medicated, etc.), and their perceived effectiveness towards improving symptoms. Responses were unstructured and highly diverse, which we analysed <mark>N<sub>493</sub></mark> with assistance from Copilot:</p>
+				<div class="card ms-4 me-4 mb-4">
+					<div class="card-body">
+						<p class="alert alert-danger" role="alert"><strong>Warning:</strong> treatment options described below have not been validated by us in any well-formed clinical trials, hence descriptions here cannot be taken as evidence of safety or efficacy. While some of these treatment approaches may have been described in published peer-reviewed studies, patients should consult with their healthcare teams before attempting any of them.</p>
+						<p>The most common prescribed medication was colchicine, which aligns with pericarditis being the most common diagnosis. Other medications that many have tried include prednisone/prednisolone, non-steroidal anti-inflammatory drugs (<abbr title="non-steroidal anti-inflammatory drug">NSAID</abbr>s), low-dose naltrexone (<abbr title="low-dose naltrexone">LDN</abbr>), beta-blockers, amitriptyline/endep, proton pump inhibitors, and intravenous immunoglobulin (<abbr title="intravenous immunoglobuli">IVIG</abbr>).</p>
+						<p>Most people also attempted non-pharmaceutical, allied health, and alternative health treatment approaches alongside conventional care, of which the most common were acupuncture, naturopathy, physiotherapy, myotherapy, chiropractic / osteopathy, hyperbaric oxygen therapy (<abbr title="hyperbaric oxygen therapy">HBOT</abbr>), intermittent fasting, dietary changes, and Chinese medicine.</p>
+						<p>Overall, the interventions found to be most helpful were: magnesium, acupuncture, vitamins C and D, <abbr title="low-dose naltrexone">LDN</abbr>, colchicine, ibuprofen and N‑acetylcysteine (<abbr title="N‑acetylcysteine">NAC</abbr>). However, many people were either unable to articulate which treatments assisted them, or did not experience any notable improvement from any of them.</p>
+						<p>The least helpful treatments were more often the conventional pharmaceutical products, especially where respondents reported side effects from them. This includes most of the products also identified as most helpful for some people, highlighting highly individualised responses to these medications amidst a heterogeneous patient cohort.</p>
+						<p>When matched to the official diagnoses that respondents reported, the following patterns were observed:</p>
+						<ul>
+							<li>Pericarditis / myocarditis: colchicine was most helpful, steroids were sometimes helpful in the short-term, and responses to <abbr title="non-steroidal anti-inflammatory drug">NSAID</abbr> use were highly variable.</li>
+							<li>Dysautonomia / <abbr title="postural orthostatic tachycardia syndrome">POTS</abbr>: electrolytes, rest/pacing and <abbr title="low-dose naltrexone">LDN</abbr> were most helpful.</li>
+							<li>Neuropathies, demyelinating syndromes: <abbr title="low-dose naltrexone">LDN</abbr>, magnesium, and acupuncture were most helpful. However, when used, <abbr title="intravenous immunoglobuli">IVIG</abbr> was almost always helpful. The range of neuropathic pain medication tried often came with side effects that negatively impacted perceived benefits.</li>
+							<li><abbr title="myalgic encephalomyelitis / chronic fatigue syndrome">ME/CFS</abbr>: rest/pacing, magnesium, intermittent fasting and acupuncture were most helpful. And decidedly unhelpful were antidepressants and clinical advice to “just push through”.</li>
+						</ul>
+						<p>Overall, specifically targeted therapies towards clear diagnoses were helpful. However, it is important to note that in the vast majority of respondents who experienced improvement, helpful treatments led to symptom relief rather than cure.</p>
+					</div>
+				</div>
+			</section>
+			
+			<section id="impacts">
+				<h3>Injury impacts</h3>
+				<p>At the peak of symptom severity, <mark>69.9%</mark> of <mark>N<sub>525</sub></mark> respondents were unable to undertake <em>any</em> work, including domestic chores. In the month prior to respondents completing the Vaccine Injury Profile, this number had reduced to <mark>22.7%</mark>. <a href="#figure_capacity" class="figureLink">Figure capacity</a> depicts estimated work capacity at symptom peak and in the month prior to completing the Vaccine Injury Profile.</p>
+				<figure class="figure minw-50" id="figure_capacity">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_capacity">
+						<thead>
+							<tr><th scope="col" class="text-center">work capacity</th><th scope="col" class="text-center">at peak symptom severity</th><th scope="col" class="text-center">during month prior to survey completion</th></tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td class="text-center">0%</td><td class="text-center">69.9%</td><td class="text-center">22.7%</td></tr>
+							<tr><td class="text-center">10%</td><td class="text-center">2.5%</td><td class="text-center">6.7%</td></tr>
+							<tr><td class="text-center">20%</td><td class="text-center">3.0%</td><td class="text-center">7.8%</td></tr>
+							<tr><td class="text-center">30%</td><td class="text-center">3.2%</td><td class="text-center">7.6%</td></tr>
+							<tr><td class="text-center">40%</td><td class="text-center">1.5%</td><td class="text-center">4.0%</td></tr>
+							<tr><td class="text-center">50%</td><td class="text-center">7.2%</td><td class="text-center">17.1%</td></tr>
+							<tr><td class="text-center">60%</td><td class="text-center">2.5%</td><td class="text-center">6.5%</td></tr>
+							<tr><td class="text-center">70%</td><td class="text-center">2.9%</td><td class="text-center">7.0%</td></tr>
+							<tr><td class="text-center">80%</td><td class="text-center">3.2%</td><td class="text-center">9.0%</td></tr>
+							<tr><td class="text-center">90%</td><td class="text-center">1.7%</td><td class="text-center">5.5%</td></tr>
+							<tr><td class="text-center">100%</td><td class="text-center">2.3%</td><td class="text-center">6.1%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Estimated work capacity.</figcaption>
+				</figure>
+				<p><a href="#figure_workload" class="figureLink">Figure workload</a> presents the distribution of how long it took <mark>N<sub>492</sub></mark> respondents to be able to resume their normal activities and workload, with almost 40% of respondents still unable to undertake their normal tasks at the time of survey completion.</p>
+				<figure class="figure minw-50" id="figure_workload">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_workload">
+						<thead>
+							<tr><th scope="col" class="text-center">time</th><th scope="col" class="text-center">% respondents</th></tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td class="text-center">1-3 weeks</td><td class="text-center">9.1%</td></tr>
+							<tr><td class="text-center">1-3 months</td><td class="text-center">12.6%</td></tr>
+							<tr><td class="text-center">4-6 months</td><td class="text-center">8.7%</td></tr>
+							<tr><td class="text-center">6-9 months</td><td class="text-center">6.3%</td></tr>
+							<tr><td class="text-center">9-12 months</td><td class="text-center">7.9%</td></tr>
+							<tr><td class="text-center">1-2 years</td><td class="text-center">13.2%</td></tr>
+							<tr><td class="text-center">more than 2 years</td><td class="text-center">3.0%</td></tr>
+							<tr><td class="text-center">ongoing</td><td class="text-center">39.0%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Time to be able to resume normal activities and workload.</figcaption>
+				</figure>
+				<p>Most respondents, <mark>N<sub>484</sub></mark>, indicated they continue to require additional assistance, primarily regarding medical care. Overall results regarding respondent needs are displayed in <a href="#figure_needs" class="figureLink">Figure needs</a>.</p>
+				<figure class="figure minw-50" id="figure_needs">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_needs">
+						<thead>
+							<tr><th scope="col">need</th><th scope="col" class="text-center">% respondents</th></tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td>access to appropriate medical care / tests / treatment</td><td class="text-center">76.7%</td></tr>
+							<tr><td>mental health support</td><td class="text-center">39.7%</td></tr>
+							<tr><td>financial support due to loss of work</td><td class="text-center">38.8%</td></tr>
+							<tr><td>financial support due to medical expenses</td><td class="text-center">49.0%</td></tr>
+							<tr><td>assistance with daily living</td><td class="text-center">6.8%</td></tr>
+							<tr><td>other</td><td class="text-center">7.2%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">What respondents most need assistance with.</figcaption>
+				</figure>
+			</section>
+			
+			<section id="finances">
+				<h3>Financial issues</h3>
+				<p>More than half, <mark>54.9%</mark>, of <mark>N<sub>525</sub></mark> respondents were not able to access any financial assistance, and only <mark>7.24%</mark> did not require any. Others were able to access a variety of financial supports, including workplace entitlements, loans, and government programs. <a href="#figure_financial" class="figureLink">Figure financial</a> presents the range of financial assistance options that people have been able to access.</p>
+				<figure class="figure minw-50" id="figure_financial">
+					<table class="table table-sm table-bordered table-striped table-hover align-middle small w-auto tableChart" id="table_financial">
+						<thead>
+							<tr><th scope="col">financial assistance required</th><th scope="col" class="text-center">% respondents</th></tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr><td>paid leave entitlements</td><td class="text-center">12.6%</td></tr>
+							<tr><td>workers’ compensation</td><td class="text-center">4.6%</td></tr>
+							<tr><td>income protection insurance</td><td class="text-center">8.4%</td></tr>
+							<tr><td>superannuation (early withdrawal)</td><td class="text-center">5.9%</td></tr>
+							<tr><td>JobSeeker</td><td class="text-center">5.9%</td></tr>
+							<tr><td>new loan</td><td class="text-center">1.1%</td></tr>
+							<tr><td>extension of existing loan</td><td class="text-center">1.0%</td></tr>
+							<tr><td>friend or family</td><td class="text-center">11.8%</td></tr>
+							<tr><td>disability support pension</td><td class="text-center">4.4%</td></tr>
+							<tr><td><abbr title="National Disability Insurance Scheme">NDIS</abbr></td><td class="text-center">1.5%</td></tr>
+							<tr><td>COVID-19 Vaccine Claims Scheme</td><td class="text-center">1.7%</td></tr>
+							<tr><td>other</td><td class="text-center">1.1%</td></tr>
+						</tbody>
+					</table>
+					<figcaption class="figure-caption">Avenues of financial assistance accessed.</figcaption>
+				</figure>
+				<p>Note that at the time of survey completion, a mere <mark>1.7%</mark> reported successful claims with the Australian Government’s COVID-19 Vaccine Claims Scheme.</p>
+				<p>Of those who were entitled to workers’ compensation (<mark>N<sub>81</sub></mark>) (i.e. they were instructed to receive COVID-19 vaccination by their workplace), exactly two thirds (<mark>66.7%</mark>) had issues with their workers’ compensation claim. The majority of these issues were denial of claim (<mark>55%</mark>) or the workplace discouraging or not adequately informing or supporting claimants of their entitlements (<mark>11%</mark>). The majority of the remainder (<mark>30%</mark>) dealt with delayed processing of claims or inadequate reimbursement of medical expenses.</p>
+			</section>
+			
+			<section id="covid19">
+				<h3>COVID-19 infection history</h3>
+				<p>When asked about their COVID-19 infection status, <mark>61.0%</mark> of <mark>N<sub>515</sub></mark> respondents reported that they had experienced a COVID-19 infection. However, only <mark>2.9%</mark> had contracted COVID-19 prior to their vaccinations, and only <mark>7.0%</mark> contracted it between their COVID-19 vaccination doses.</p>
+				<p>Those who had not had COVID-19 were asked whether this was confirmed by SARS-CoV-2 antibody serology testing. <mark>26.1%</mark> of <mark>N<sub>184</sub></mark> reported a negative serology test, and the remainder had not done this test.</p>
+			</section>
+			
+			<section id="history">
+				<h3>Medical history</h3>
+				<p><mark>51.5%</mark> of <mark>N<sub>513</sub></mark> respondents report having pre-existing medical conditions at the time of their COVID-19 vaccinations, of which <mark>75.4%</mark> report a worsening of those conditions following COVID-19 vaccination.</p>
+				<p>A wide range of pre-existing conditions were reported. The most prevalent were: asthma (<mark>12.9%</mark>), hypertension (<mark>10.6%</mark>), depression (<mark>8.7%</mark>), anxiety (<mark>7.2%</mark>), arthritis (<mark>5.3%</mark>), fibromyalgia (<mark>4.9%</mark>), <abbr title="myalgic encephalomyelitis / chronic fatigue syndrome">ME/CFS</abbr> (<mark>4.9%</mark>), migraines (<mark>4.6%</mark>), <abbr title="post-traumatic stress disorder">PTSD</abbr> (<mark>4.6%</mark>), and diabetes (<mark>4.2%</mark>).</p>
+			</section>
+			
+			<section id="stories">
+				<h3>Personal stories</h3>
+				<!-- stories -->
+				<p>At the end of the Vaccine Injury Profile, we asked, “Tell us your story in your own words”, to which <mark>N<sub>416</sub></mark> respondents contributed varying aspects of their journeys. All stories were read by <b>CO</b>VERSE personel and were manually sanitised: spelling was corrected, health terminology was harmonised (where appropriate), and all personally identifying information was removed (including names, exact dates, locations, employers, etc.). The median number of words in each story was 416 (<abbr title="interquartile range">IQR</abbr> 99–508), or 3 paragraphs (<abbr title="interquartile range">IQR</abbr> 1–7). Copilot was utiliased on the sanitised versions to augment human review and analysis:</p>
+				<div class="card ms-4 me-4 mb-4">
+					<div class="card-body">
+						<p>Despite individuals’ stories revealing a broad range of complaints, largely reflecting quantiative responses described above, most striking was just how similar the vast majority of these narratives were, despite representing a diverse population.</p>
+						<p>The following is an accurate reflection of the journeys described by a clear majority (60-90%) of patients:</p>
+						<ol>
+							<li>Previously extremely fit, active, healthy, and engaged in their personal and professional lives, and previous high levels of trust in public vaccination.</li>
+							<li>Mandated, or otherwise felt pressure or coerced, into getting vaccinated, for reasons other than self-concern about contracting COVID-19.</li>
+							<li>Reaction began very quickly, within 7 days and often within hours.</li>
+							<li>Dramatic and highly disabling symptoms, noteably crushing fatigue, cognitive impairment, autonomic dysfunction, commonly resembling what is described as Post COVID-19 Vaccination Syndrome (<abbr title="Post COVID-19 Vaccination Syndrome">PCVS</abbr>).</li>
+							<li>Where diagnoses align with conditions recognised by government drug agencies, almost all of these patients suffer additional highly disabling symptoms and conditions not described by those agencies, commonly aligning with <abbr title="Post COVID-19 Vaccination Syndrome">PCVS</abbr>.</li>
+							<li>Symptoms are neither mild nor self-resolving.</li>
+							<li>Repeated presentation to hospital emergency, resulting in little meaningful diagnostic evidence in support of symptoms.</li>
+							<li>Outright gaslighting and psychologisation from medical professionals, or acknowledgement of potential vaccine reaction but unwillingness to document it.</li>
+							<li>No follow-up or investigation from pharmacovigillance authorities, leaving patients (and their treating physicians) without answers.</li>
+							<li>Advised and pressured into getting further COVID-19 vaccinations, while exemption from further vaccination was impossible to obtain.</li>
+							<li>Additional doses dramatically worsen symptoms.</li>
+							<li>No compensation.</li>
+							<li>More than 15% contemplated ending their lives, and up to half faced extreme despair.</li>
+							<li>Contracting COVID-19 leads to a significant flare of symptoms, but this is usually temporary.</li>
+							<li>Loss of previous life, loss of function, loss of independance, financial loss, ongoing impacts on family.</li>
+							<li>Erosion of trust in government, drug regulators, health systems, and doctors.</li>
+							<li>Wish to return to their previous lives, be believed, receive meaningful treatment, and obtain accountability and justice.</li>
+						</ol>
+						<p>Below is a collection of short quotes from the stories that convey the situations and trauma these people have experienced:</p>
+						<blockquote class="blockquote fs-6">
+							<ul>
+								<li>“I’ve gone from a healthy adult to someone that struggles with life.”</li>
+								<li>“I feel that I’m alone in this.”</li>
+								<li>“My life feels like it’s slipping through my hands.”</li>
+								<li>“It’s been the biggest regret of my life.”</li>
+								<li>“I thought I was going to die.”</li>
+								<li>“My burning passion for life had been almost completely snuffed out.”</li>
+								<li>“On bad days I do pray that my life will end soon.”</li>
+								<li>“I have lost my family, livelihood and friends.”</li>
+								<li>“I’m at the point of suicide.”</li>
+								<li>“It has ruined my life.”</li>
+								<li>“I just want my old life back.”</li>
+								<li>“They have taken away my dignity.”</li>
+								<li>“I know I am dying because of this.”</li>
+								<li>“My life finished after the vaccination.”</li>
+								<li>“I don’t think I will ever get better.”</li>
+								<li>“I’ve been suffering through a living hell.”</li>
+								<li>“The vaccine destroyed my life.”</li>
+								<li>“I wish that one day I could wake up and be my normal, physical sporty self again.”</li>
+							</ul>
+						</blockquote>
+						<p>It is our view that the consistency observed amongst the stories point to a potentially significant safety signal that has gone largely uninvestigaed (or ignored!) by pharmacovigilance organisations.</p>
+					</div>
+				</div>
+			</section>
+		</section>
+
+		<hr>
+		
+		<section id="comments">
+			<h2>Comments</h2>
+			<p>By undertaking this survey, <b>CO</b>VERSE has done more than any government or health organisation in Australia to track and document the stories and trajectories of Australians who have been negatively impacted by COVID-19 vaccines. The people, their data and stories, depicted here represent a fraction of those Australians who have suffered harms from the COVID-19 vaccines.</p>
+			<p>Through our direct engagement with, literally, thousands of Australians who have suffered serious adverse reactions following their COVID-19 vaccinations, we note that the data and stories captured in the Vaccine Injury Profile form an accurate picture of the broader situation that our constituency has faced and continues to face.</p>
+			<p>At the time of the preparation of this document, the vast majority of Australians harmed by the COVID-19 vaccines have <strong>not</strong> been compensated by the Australian Government. While some 90% of <em>those who applied</em> for compensation from the COVID-19 Vaccine Claims Scheme have had their claims rejected (this includes a significant number who withdrew their claims based on advice from Services Australia prior to completing the full assessment), we note that a far larger number did not apply. The reasons people did not apply, despite extensive medical evidence of suffering from a COVID-19 vaccine-caused condition, include the excessive administrative burden of the Scheme, medical conditions not being listed as compensable by the Scheme, not fulfilling non-medical administrative aspects of the scheme, or simply not having the energy to pursue a claim due to significant and ongoing symptom burden.</p>
+			<p>Australia’s Therapeutic Goods Administration (<abbr title="Therapeutic Goods Administration">TGA</abbr>) lists more than 140,000 <abbr title="adverse event following immunisation">AEFI</abbr> reports (of which more than 22,000 are classified as <i>serious</i>), which represents almost ¼ of all reports (for all vaccines, drugs, supplements, and medical devices) recorded by the group since 1971. While the <abbr title="Therapeutic Goods Administration">TGA</abbr> does not make causality determination against any of these individual reports, the data and stories we have captured suggests that widespread structural failures (including outright gaslighting) compounded with the lack of follow-up or assessment of <abbr title="adverse event following immunisation">AEFI</abbr> reports, has left the <abbr title="Therapeutic Goods Administration">TGA</abbr> (and similar pharmacovigilance organisations around the world) blind and/or ignorant to the realities of the people who suffer these harms. This significant shortcoming not only affects the lives of those who suffer from these harms, it also impacts broader discussions of vaccine safety in the community. In fact, while governments lay blame for declining vaccination rates on “misinformation” (and, occasionally, on “vaccine fatigue”), it is abundantly clear to us that lack of acknowledgement of, research into, and compensation for, people whose lives have been destroyed by very serious harms caused by the COVID-19 vaccines plays a significant role in this decline.</p>
+			<p>We urge the Australian Government to:</p>
+			<ul>
+				<li>Follow up every serious <abbr title="adverse event following immunisation">AEFI</abbr> report to track symptom trajectory, diagnoses, emerging evidence, and mortality.</li>
+				<li>Refer all cases of potential or unclear causality to advanced medical research facilities for detailed assessment and research, in order to try and find answers for those patients and to improve understanding of vaccine-caused diseases.</li>
+				<li>Compensate every single case of serious adverse events following vaccination for which there is no evidence for a more likely cause, including adequate coverage for both formal and informal medical costs, as well as generous pain and suffering owing to the fact that these people would still be healthy today if it were not for a vaccine that was part of a major public health initiative (and in many cases unnecessarily mandated).</li>
+				<li>Issue a formal apology in Parliament, and on behalf of Australia, to those people who have suffered harms from vaccines and been dismissed, gaslit, derided, and denied treatment and compensation.</li>
+			</ul>
+			<p>For those interested in the evolving science around COVID-19 vaccine injuries, <b>CO</b>VERSE (in collaboration with our international partners) maintains a curated database of peer-reviewed medical and scientific articles, which is publicly accessible at: <a href="https://coverse.org.au/science/">coverse.org.au/science</a></p>
+			<p><b>CO</b>VERSE’s submissions to public inquiries are all freely available and accessible at <a href="https://coverse.org.au/submissions/">coverse.org.au/submissions</a>, which serves as a historical record for future generations to look back and see how our governments and parliaments abandoned citizens harmed through the public COVID-19 vaccination campaigns.</p>
+		</section>
+		
+		<hr>
+		
+	</main>
+	
+	<footer id="footer" class="container pt-4 pb-1">
+		<p class="text-center">Copyright © <b>CO</b>VERSE</p>
+		<p class="text-center"><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><svg class="img-fluid" style="height: 3em;" role="img" aria-labelledby="CC2t" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 120 42"><title id="CC2t">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license</title><path d="m3.41.446 113.352.202c1.584 0 3-.236 3 3.16l-.14 37.329H.548V3.669C.548 1.995.71.446 3.41.446z" fill="#aab2ab"/><path d="M117.753 0H2.248A2.25 2.25 0 0 0 0 2.247v39.246c0 .28.227.507.508.507h118.984c.28 0 .508-.227.508-.507V2.247A2.25 2.25 0 0 0 117.753 0zM2.248 1.015h115.505c.68 0 1.232.553 1.232 1.232V29.46H36.429c-3.026 5.47-8.857 9.185-15.547 9.185-6.693 0-12.521-3.71-15.545-9.185H1.015V2.247c0-.68.553-1.232 1.233-1.232z"/><path d="M34.523 19.545c.005 7.53-6.097 13.636-13.627 13.642-7.53.004-13.638-6.096-13.643-13.626v-.016C7.248 12.015 13.35 5.908 20.88 5.903 28.41 5.9 34.519 12 34.523 19.528v.017z" fill="#fff"/><path d="M31.973 8.44c3.023 3.024 4.535 6.726 4.535 11.105 0 4.38-1.486 8.042-4.458 10.988-3.154 3.102-6.88 4.653-11.182 4.653-4.249 0-7.911-1.538-10.986-4.615-3.076-3.075-4.613-6.75-4.613-11.026 0-4.275 1.537-7.977 4.613-11.105 2.997-3.024 6.66-4.536 10.986-4.536 4.38 0 8.08 1.512 11.105 4.536zm-20.056 2.034c-2.556 2.581-3.834 5.606-3.834 9.075 0 3.468 1.266 6.466 3.795 8.996 2.53 2.529 5.542 3.794 9.037 3.794 3.495 0 6.532-1.278 9.115-3.833 2.451-2.373 3.677-5.358 3.677-8.957 0-3.572-1.246-6.604-3.738-9.095-2.49-2.49-5.508-3.735-9.054-3.735-3.546 0-6.547 1.252-8.998 3.755zm6.727 7.549c-.39-.852-.974-1.277-1.755-1.277-1.378 0-2.067.928-2.067 2.783 0 1.856.69 2.783 2.067 2.783.91 0 1.56-.452 1.95-1.357l1.912 1.017c-.911 1.618-2.278 2.428-4.1 2.428-1.405 0-2.53-.43-3.376-1.292-.846-.862-1.27-2.05-1.27-3.563 0-1.488.438-2.67 1.309-3.544.872-.875 1.958-1.311 3.26-1.311 1.926 0 3.304.758 4.139 2.274l-2.07 1.059zm8.99 0c-.39-.852-.964-1.277-1.72-1.277-1.405 0-2.11.928-2.11 2.783 0 1.856.705 2.783 2.11 2.783.913 0 1.552-.452 1.916-1.357l1.953 1.017c-.91 1.618-2.274 2.428-4.092 2.428-1.404 0-2.527-.43-3.372-1.292-.843-.862-1.266-2.05-1.266-3.563 0-1.488.429-2.67 1.286-3.544.857-.875 1.948-1.311 3.274-1.311 1.922 0 3.3.758 4.13 2.274l-2.109 1.059z"/><g fill="#fff"><path d="M48.093 32.747c.316 0 .605.029.865.084.26.055.482.146.669.274.185.126.329.295.431.504.102.21.154.47.154.78 0 .333-.076.61-.228.833-.152.223-.376.405-.674.547.41.118.715.323.917.617.202.294.303.649.303 1.063 0 .334-.065.623-.195.867s-.306.444-.525.598c-.22.155-.472.27-.753.344a3.381 3.381 0 0 1-.87.111h-3.216v-6.622h3.122zm-.185 2.679c.259 0 .473-.062.64-.186.167-.123.25-.323.25-.6a.768.768 0 0 0-.083-.38.625.625 0 0 0-.223-.232.945.945 0 0 0-.32-.115 2.159 2.159 0 0 0-.377-.032h-1.364v1.545h1.477zm.084 2.81c.143 0 .279-.014.409-.042a1.04 1.04 0 0 0 .344-.139.704.704 0 0 0 .237-.265.901.901 0 0 0 .088-.425c0-.34-.096-.583-.288-.728-.192-.145-.445-.218-.762-.218h-1.59v1.817h1.562zM50.787 32.747h1.634l1.55 2.616 1.542-2.616h1.623l-2.458 4.08v2.542h-1.46v-2.578l-2.43-4.044z"/></g><g fill="#fff"><path d="m72.517 32.747 2.767 4.443h.016v-4.443h1.366v6.622H75.21l-2.756-4.433h-.018v4.433h-1.367v-6.622h1.45zM82.195 34.512a1.492 1.492 0 0 0-.766-.612 1.504 1.504 0 0 0-.514-.089c-.328 0-.607.063-.836.19a1.56 1.56 0 0 0-.556.51 2.232 2.232 0 0 0-.311.727 3.613 3.613 0 0 0 0 1.655c.065.263.169.5.311.71.142.21.327.378.556.505.23.127.508.19.836.19.444 0 .793-.136 1.043-.409.25-.271.404-.63.46-1.076h1.41a3.37 3.37 0 0 1-.288 1.123 2.596 2.596 0 0 1-1.503 1.394c-.34.125-.715.187-1.122.187-.508 0-.964-.088-1.37-.265a2.94 2.94 0 0 1-1.025-.728 3.216 3.216 0 0 1-.642-1.09 4.005 4.005 0 0 1-.223-1.351c0-.495.075-.954.223-1.378.149-.424.362-.794.642-1.11a2.938 2.938 0 0 1 1.026-.742c.405-.18.861-.269 1.369-.269.365 0 .71.053 1.034.159.325.104.616.258.872.46.257.2.469.45.636.747.166.297.271.637.315 1.02h-1.41a1.182 1.182 0 0 0-.167-.458z"/></g><g fill="#fff"><path d="m98.355 32.747 2.767 4.443h.016v-4.443h1.366v6.622h-1.457l-2.756-4.433h-.018v4.433h-1.367v-6.622h1.45zM106.64 32.747c.428 0 .825.068 1.194.204.369.136.687.34.957.613.269.271.48.612.63 1.02.153.408.229.887.229 1.437 0 .483-.062.927-.186 1.336-.124.407-.311.76-.561 1.056-.252.297-.564.531-.939.701-.375.17-.815.255-1.324.255h-2.86v-6.622h2.86zm-.102 5.396c.211 0 .415-.034.613-.102a1.34 1.34 0 0 0 .529-.339c.154-.157.278-.362.371-.615.093-.253.14-.563.14-.927 0-.334-.033-.634-.098-.903a1.798 1.798 0 0 0-.32-.69 1.421 1.421 0 0 0-.59-.44c-.244-.103-.546-.153-.904-.153h-1.039v4.169h1.298z"/></g><path d="M87.801 14.981c.005 5.5-4.451 9.962-9.953 9.967-5.5.003-9.963-4.453-9.967-9.952v-.015c-.004-5.5 4.453-9.962 9.954-9.967 5.5-.003 9.963 4.453 9.966 9.952v.015z" fill="#fff"/><path d="M77.826 3.386c3.252 0 6 1.12 8.244 3.362 2.245 2.242 3.368 4.987 3.368 8.233 0 3.246-1.104 5.962-3.31 8.146-2.342 2.3-5.11 3.449-8.302 3.449-3.153 0-5.873-1.14-8.156-3.42-2.284-2.28-3.425-5.006-3.425-8.175 0-3.17 1.141-5.914 3.425-8.233 2.225-2.241 4.944-3.362 8.156-3.362zm-8.972 8.48a9.289 9.289 0 0 0-.52 3.115c0 2.57.94 4.792 2.817 6.667 1.877 1.874 4.112 2.811 6.705 2.811 2.592 0 4.846-.946 6.762-2.84a8.928 8.928 0 0 0 1.585-2.028l-4.372-1.947c-.296 1.471-1.607 2.464-3.191 2.58v1.789h-1.331v-1.788c-1.302-.015-2.559-.547-3.52-1.388l1.597-1.61c.769.723 1.538 1.048 2.588 1.048.68 0 1.435-.266 1.435-1.153a.867.867 0 0 0-.313-.696l-1.106-.491-1.376-.614-1.837-.818-5.923-2.637zm9.002-6.393c-2.633 0-4.857.927-6.677 2.783-.495.5-.926 1.021-1.29 1.566l4.431 1.974c.401-1.23 1.57-1.976 2.989-2.059V7.95h1.331v1.788c.917.044 1.923.296 2.913 1.063l-1.523 1.567c-.562-.4-1.272-.68-1.982-.68-.576 0-1.39.177-1.39.901 0 .11.037.207.104.295l1.483.659 1.004.447c.641.287 1.254.558 1.86.829l5.943 2.645c.196-.778.295-1.606.295-2.482 0-2.647-.929-4.89-2.786-6.725-1.84-1.856-4.073-2.783-6.705-2.783z"/><g><path d="M114.668 14.981c.005 5.845-4.73 10.587-10.576 10.592-5.846.003-10.589-4.731-10.593-10.577v-.015C93.495 9.136 98.23 4.394 104.076 4.39c5.846-.005 10.588 4.73 10.592 10.575v.016z" fill="#fff"/><path d="M103.918 3.386c-3.212 0-5.931 1.12-8.157 3.362-2.283 2.319-3.425 5.063-3.425 8.233 0 3.17 1.142 5.894 3.425 8.174 2.283 2.28 5.003 3.42 8.157 3.42 3.193 0 5.96-1.15 8.302-3.448 2.205-2.184 3.309-4.9 3.309-8.146 0-3.248-1.123-5.99-3.368-8.233-2.244-2.242-4.993-3.362-8.243-3.362zm.028 2.086c2.632 0 4.867.928 6.706 2.784 1.858 1.835 2.786 4.077 2.786 6.725 0 2.667-.909 4.88-2.727 6.638-1.917 1.894-4.172 2.84-6.765 2.84s-4.828-.937-6.705-2.812c-1.877-1.874-2.815-4.097-2.815-6.666 0-2.571.948-4.812 2.845-6.725 1.819-1.856 4.043-2.784 6.675-2.784z"/><path d="M108.313 12.233h-8.428v1.996h8.428v-1.996zm0 3.726h-8.428v1.996h8.428V15.96z"/></g><g transform="matrix(.99377 0 0 .99367 -437.12 0)"><circle cx="491.947" cy="15.314" r="10.806" fill="#fff"/><path d="M495.075 12.187a.754.754 0 0 0-.754-.753h-4.773a.754.754 0 0 0-.754.753v4.773h1.332v5.652h3.617V16.96h1.332v-4.773z"/><circle cx="491.935" cy="9.172" r="1.632"/><path clip-rule="evenodd" d="M491.92 3.408c-3.232 0-5.968 1.127-8.208 3.384-2.297 2.333-3.446 5.095-3.446 8.284 0 3.189 1.149 5.932 3.446 8.227 2.298 2.294 5.035 3.442 8.207 3.442 3.213 0 5.999-1.157 8.355-3.472 2.22-2.197 3.329-4.93 3.329-8.197 0-3.268-1.129-6.029-3.388-8.285-2.258-2.256-5.023-3.383-8.296-3.383zm.03 2.1c2.648 0 4.896.933 6.746 2.8 1.87 1.847 2.805 4.104 2.805 6.768 0 2.683-.916 4.91-2.747 6.68-1.927 1.906-4.196 2.859-6.804 2.859-2.61 0-4.86-.943-6.748-2.83-1.889-1.886-2.833-4.122-2.833-6.71 0-2.586.954-4.842 2.862-6.767 1.831-1.867 4.07-2.8 6.719-2.8z" fill-rule="evenodd"/></g></svg></a></p>
+	</footer>
+
+</body>
+</html>
