@@ -1,6 +1,6 @@
 # **CO**VERSE’s Vaccine Injury Profile
 
-Last edited: 9<sup>th</sup> September 2026.
+Last edited: 10<sup>th</sup> September 2026.
 
 **CO**VERSE is Australia’s national charity dedicated to supporting Australians who have suffered harms from COVID-19 vaccines. It was founded in 2022, and its mission and activities can be found on its website at [coverse.org.au](https://coverse.org.au/).
 
