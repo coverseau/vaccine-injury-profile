@@ -131,7 +131,7 @@
 			}
 		</style>
 		<script type="module">
-			import * as bootstrap from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/+esm';
+			//import * as bootstrap from 'https://cdn.jsdelivr.net/npm/bootstrap@5/+esm';
 		
 			function setColourScheme(theme = null) {
 				const colourTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'auto');
@@ -207,7 +207,7 @@
 				}
 			});
 			
-			import { Chart, ArcElement, BarController, BarElement, CategoryScale, Legend, LinearScale, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js/+esm';
+			import { Chart, ArcElement, BarController, BarElement, CategoryScale, Legend, LinearScale, PieController, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js@4/+esm';
 
 			const textColour = window.getComputedStyle(document.body).getPropertyValue('--bs-body-color');
 			const elementColour = 'rgba(' + window.getComputedStyle(document.body).getPropertyValue('--bs-body-color-rgb') + ',0.1)';
