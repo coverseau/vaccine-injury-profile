@@ -13,7 +13,7 @@ This Git repository contains summary statistics and analysis of **CO**VERSE’s 
 It is not a scientific paper. It has not been peer-reviewed, nor has the Vaccine Injury Profile been granted ethics approval for use in research. Responses are not available for public inspection, as they were collected under strict privacy conditions that disallowed this kind of disclosure of individuals’ information.
 
 How to cite this document:
- **CO**VERSE. (2026). _Vaccine Injury Profile_. [doi:10.5281/zenodo.22949036](https://doi.org/10.5281/zenodo.22949036)
+ **CO**VERSE. (2026). _Vaccine Injury Profile_. [doi:10.5281/zenodo.22949035](https://doi.org/10.5281/zenodo.22949035)
 
 The repository is licensed under the Creative Commons _[Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/)_ license. In short, this license allows you to use and share this material as long as the following are adhered to:
 * Credit must be given to **CO**VERSE.
